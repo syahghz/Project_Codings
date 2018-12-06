@@ -1,0 +1,94 @@
+*{
+	padding-left: 0px;
+	margin: 0px;
+}
+
+body{
+	background-color: white;/*#f2f8ed*/
+}
+
+/* Navigation bar*/
+.navibar{
+	background-color: white;
+	font-size: 1.2em;
+	font-style: normal;
+	color: green;
+	position: fixed;
+	width: 100%;
+}
+
+.tname{
+	text-align: left;
+	margin-left: 1%;
+    color: #B23939;
+}
+
+#welc{
+	float: right;
+	margin-top: -30px;
+	margin-right: 30px;
+    color:  #297373;
+}
+
+nav{
+	width: 600px;
+	list-style-type: none;
+	padding: 0px;
+	display: inline;
+	text-align: center;
+	margin-left: 705px;
+}
+
+nav a#bkgd{
+	float: none;
+	color: #00868B;
+    background-color: white;
+	text-align: center;
+	text-decoration: none;
+	font-family: arial;
+	list-style-type: none;
+	width: 50%;
+	position: relative;
+    font-weight: bold;
+	font-size: 0.6em;
+    border: 1px solid #00868B;
+	border-radius: 5px;
+	padding: 7px;
+}
+
+nav a#bkgd:hover{
+    background-color: #00868B;
+    color: white;
+}
+
+nav a.current{
+    padding: 7px;
+    font-size: 0.6em;
+    font-family: arial;
+    background-color: #CCE3DE;
+    color: #00868B;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #00868B;
+    font-weight: bold;
+}
+
+#small{
+	width:30px;
+	height: 30px;
+    margin-bottom: -10px;
+}
+
+hr{
+	background-color: #00868B;
+	height: 2px;
+	margin-top: 15px;
+    width: 100%;
+}
+
+#br1{
+	line-height: 160px;
+}
+
+
+/*ends of nav bar*/
