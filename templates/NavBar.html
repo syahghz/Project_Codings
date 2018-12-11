@@ -1,37 +1,12 @@
 <!doctype html>
 <head>
+    <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styleBar.css') }}">
+
 </head>
 <body>
-<!--
-<div class="navbar">
-  <header>
-      <h3> Welcome User!</h3>
-      <h1>Webpage</h1>
-
-
-      <div>
-        <nav>
-            <a class="bkgd" href="#">Home</a>
-            <a class="bkgd" href="#">About Us</a>
-            <a class="bkgd" href="#">Event</a>
-            <a class="bkgd" href="#">Volunteer</a>
-            <a class="bkgd" href="#">Recipe</a>
-            <a class="bkgd" href="#">Exercises</a>
-            <a class="bkgd" href="#">Inspirations</a>
-            <a class="bkgd" href="#">Delivery</a>
-            <a class="chosen" href="#">Profile</a>
-        </nav>
-        <br>
-        <hr class="line">
-      </div>
-  </header>
-</div>-->
-
-
 
 <div class="navibar">
- <header>
    <h1 class="tname">WebPage</h1>
    <p id="welc">
    <script>
@@ -56,7 +31,16 @@
     <hr>
     </div>
 </div>
-</header>
- <br id="br1">
+
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% block content %}{% endblock %}
+</section>
+
+
+
 
 </body>
+</html>
