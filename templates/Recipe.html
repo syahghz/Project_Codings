@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Recipe.css') }}">
+</head>
+<body>
+<header>
+    <h1 id="titleee">{{dn}}</h1>
+</header>
+
+
+<table border="1">
+        <tr>
+        <th width='50%' height="500em">
+{{ind}}
+        </th>
+
+    <th width='50%' height="500em">
+        {{nu}}
+        </th>
+
+        </tr>
+    <tr>
+        <th height="700em"  colspan='2'>{{dir}}</th>
+
+    </tr>
+
+</table>
+
+</body>
+</html>
