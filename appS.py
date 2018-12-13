@@ -3,17 +3,15 @@ from persistenceS import *
 import uuid
 import datetime
 
-app = Flask(__name__)
+appS = Flask(__name__)
 
-@app.route("/")
+@appS.route("/")
 def index():
     return render_template('NavBar.html')
 
-'''@app.route("/TrackProg")
-def TrackProg():
-    return render_template('TrackProg.html')'''
 
-@app.route('/TrackProg', methods=('GET', 'POST'))
+
+@appS.route('/TrackProg', methods=('GET', 'POST'))
 def add():
     if request.method == 'POST':
         exer = request.form['exer']
@@ -22,7 +20,7 @@ def add():
         id = str(uuid.uuid4())
         date = datetime.date.today()
         error = None
-        currentUsername = 'vera' #''syahiirah'
+        currentUsername = 'syahiirah' #'vera'
         storeBook(id, currentUsername, date, exer, hours, mins)
 
         tester = displaybook(id)
@@ -32,15 +30,9 @@ def add():
 
     return render_template('TrackProg.html')
 
-@app.route('/Reward')
-def calcr():
-    print("rEwaRD")
-
-
-
 
 
 if __name__ == '__main__':
-    app.run()
+    appS.run()
 
 
