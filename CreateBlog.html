@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Recipe</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CreateBlog.css') }}">
+</head>
+<body>
+<header>
+    <h1>Create Recipe</h1>
+
+    <hr>
+</header>
+
+<div class = "form">
+    <form method="post" action="/">
+
+        <table>
+        <tr>
+        <th width=50%>
+            <br>
+        <label for="dishName">Name of Dish</label>
+            <br>
+            <br>
+
+             <textarea name="DishName" id="dishName" class="textbox"></textarea>
+            <br>
+            <br>
+        <label for="ingredient">Ingredients</label>
+
+            <br>
+            <br>
+
+        <textarea name="Ingredients" id="ingredient" class="textbox"></textarea>
+
+        <br>
+        <br>
+
+        <label for="nutri">Nutrition Value</label>
+
+            <br>
+            <br>
+
+        <textarea name="Nutrition" id="nutri" class="textbox"></textarea>
+
+        <br>
+        <br>
+
+             <button><a href="">Cancel</a></button>
+
+        </th>
+
+            <th width = 1000>
+        <label for="instruction">Instructions</label>
+
+                <br>
+                <br>
+
+        <textarea name="Instructions" id="instruction" rows="28" cols="100"></textarea>
+
+        <br>
+        <br>
+                <input type="file" name="file" id="file"/>
+
+                <br>
+                <br>
+
+                <input type="submit" value="Create" id = "submit">
+            </th>
+        </tr>
+        </table>
+    </form>
+    </div>
+
+</body>
+</html>

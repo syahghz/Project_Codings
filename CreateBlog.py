@@ -9,8 +9,8 @@ def testing():
         dish_name = request.form['DishName']
         ingredient = request.form['Ingredients']
         nutrition = request.form['Nutrition']
-        direction = request.form['Directions']
-        return render_template('Recipe.html', dn=dish_name, ind=ingredient, nu=nutrition, dir=direction)
+        instructions = request.form['Instructions']
+        return render_template('Recipe.html', dn=dish_name, ind=ingredient, nu=nutrition, ins=instructions)
 
     return render_template('CreateBlog.html')
 
