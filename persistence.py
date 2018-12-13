@@ -1,47 +1,5 @@
-<<<<<<< HEAD
 import shelve
-import os
-
-book = shelve.open("book")
-x = []
-class AllBooks:
-    def __init__(self):
-        self.exercise = ''
-        self.hour = 0
-        self.mins = 0
-        self.date = ""
-        self.username = ""
-
-
-def storeBook(id, username, date, exercise, hour, mins):
-    bok = AllBooks()
-    bok.username = username
-    bok.date = date
-    bok.exercise = exercise
-    bok.hour = hour
-    bok.mins = mins
-
-    exist = False
-
-    book[id] = bok
-
-def displaybook(id): #clear the display beofre u display again hah
-    klist = list(book.keys())
-    print(klist)
-    x.clear()
-
-    if id in klist:
-        for i in klist:
-            print('checkig...'+book[i].username)
-            if book[i].username == 'vera': #'syahiirah'
-                print(x)
-                x.append(book[i])
-
-        return x
-    return ""
-
-
-=======
+userinfo=shelve.open("userinfo")
 
 class Item:
     def __init__(self,name,price,calories):
@@ -107,4 +65,160 @@ class Store:
 
 
 
->>>>>>> origin/master
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Nicole's code
+import shelve
+import uuid
+from datetime import date
+# today = str(date.today())
+
+class User:
+    def __init__(self, id):
+        self.__id = id
+        self.__username = ''
+        self.__password = ''
+
+    def get_id(self):
+        return self.__id
+
+    def set_username(self, username):
+        self.__username = username
+
+    def set_password(self, password):
+        self.__password = password
+
+    def get_username(self):
+        return self.__username
+
+    def get_password(self):
+        return self.__password
+
+class Blog:
+    def __init__(self, id):
+        self.id = id
+        self.username = ''
+        self.title = ''
+        self.body = ''
+        self.created = ''
+
+users = shelve.open('user')
+blogs = shelve.open('blog')
+
+def create_blog(username, title, body):
+    id = str(uuid.uuid4())
+    blog = Blog(id)
+    blog.title = title
+    blog.username = username
+    blog.body = body
+    blog.created = str(date.today())
+    blogs[id] = blog
+
+def update_blog(blog):
+    blogs[blog.id] = blog
+
+def delete_blog(id):
+    if id in blogs:
+        del blogs[id]
+
+def get_blogs():
+    klist = list(blogs.keys())
+    x = []
+    for i in klist:
+        x.append(blogs[i])
+    return x
+
+def get_blog(id):
+    if id in blogs:
+        return blogs[id]
+
+def create_user(username, password):
+    id = str(uuid.uuid4())
+    user = User(id)
+    user.set_username(username)
+    user.set_password(password)
+    users[id] = user
+
+def get_user(username, password):
+    klist = list(users.keys())
+    for key in klist:
+        user = users[key]
+        print(user.get_username(), username, user.get_password(), password)
+        if user.get_username() == username and user.get_password() == password:
+            return user
+    return None
+
+def update_user(id, user):
+    users[id] = user
+    return users[id]
+
+def clear_user():
+    klist = list(users.keys())
+    for key in klist:
+        del users[key]
+
+def clear_blog():
+    klist = list(blogs.keys())
+    for key in klist:
+        del blogs[key]
+
+def add_user(user):
+    users[user.get_id()] = user
+
+def init_db():
+    clear_user()
+    clear_blog()
+    for i in range(5):
+        create_user('user'+str(i), 'pass'+str(i))
+        create_blog('user'+str(i), 'title'+str(i), 'body'+str(i))
+
+
+
+
+
+
+#my code
+
+class editprofile(User):
+    def __init__(self,id):
+        super().__init__(id)
+        self.__gender=""
+        self.__goal=""
+        self.__achievement=""
+        self.__address=""
+    def get_gender(self):
+        return self.__gender
+    def get_goal(self):
+        return self.__goal
+    def get_achievement(self):
+        return self.__achievement
+    def get_address(self):
+        return self.__address
+
+    def set_gender(self,gender):
+        self.__gender=gender
+    def set_goal(self,goal):
+        self.__goal=goal
+    def set_achievement(self,achievement):
+        self.__achievement=achievement
+    def set_address(self,address):
+        self.__address=address
+
