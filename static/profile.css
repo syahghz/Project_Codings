@@ -1,0 +1,93 @@
+
+
+.pic{
+    width: 50%;
+    height: 50%;
+}
+
+/*.btn{
+	height: 20px;
+	width: 75px;
+	text-align: center;
+	border-radius: 5px;
+	background-color: #00bfff;
+	color: white;
+	border-color: #00688b;
+	margin-left:730%;
+	padding: 2px;
+	margin-top: 6px;
+}*/
+
+.owninfo{
+    display: block;}
+
+.edit{
+    display:block;
+    text-decoration:none;
+    background-color:#00868B;
+    color:white;
+    border-radius:10px;
+    padding:10px;
+    width:50%;
+    font-size:2em;
+    text-align: center;}
+
+.change{
+    display:inline-block;
+    text-decoration:none;
+    background-color:#00868B;
+    color:white;
+    border-radius:10px;
+    padding:10px;
+    width:25%;
+    font-size:2em;
+    text-align:center;
+    }
+
+#changeright{float:right;
+            clear:both;
+            }
+#changeleft{clear:both;}
+
+.changebut{margin:0;
+        overflow:auto;}
+
+
+.edit:hover{
+    background-color:white;
+    color:#297373;
+}
+
+.side{float:right;
+
+    width:50%;
+}
+
+.editbut{float:left;
+   padding:0;
+    margin:0;
+    width:50%
+}
+
+
+/*editprofile*/
+.form{color:#00868B;
+margin:auto;}
+
+#particular{
+    text-align:center;
+    margin:auto;
+    width:80%;
+    height:85%;
+    opacity:0.85;}
+
+.question{
+    display: inline-block;
+    clear: left;
+    width: 250px;
+    text-align: left;
+    margin:auto;
+}
+
+.title{text-align: center;}
+

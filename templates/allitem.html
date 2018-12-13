@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Item</title>
+    <link rel="stylesheet" type="text/css" href="../static/foodnavi.css">
+</head>
+<body>
+<style>
+    .allitem{display:block;
+        text-decoration:none;
+        color:#00868B;
+        padding:10px;
+        width:70%;
+        font-size:2em;
+        text-align: center;
+        margin:auto;
+        border-style: solid;
+        border-color: #00868B;
+        }
+
+</style>
+<ul>
+{% for food in item %}
+    <li class="itembox">
+
+
+
+            <div class="allitem">
+                <h1>{{item[food]["name"]}}</h1>
+                <p>{{item[food]["price"]}}</p>
+                <p>{{item[food]["calories"]}}</p>
+                <p>{{item[food]["ingredient"]}}</p>
+                <button onclick="store.Cart()">Add to Cart</button>
+                <br>
+                <!--pic=item[food]["pic"]-->
+                <!--with open (pic."rb") as f:-->
+                <!--image=f.read()-->
+
+            </div>
+
+    </li>
+{% endfor %}
+</ul>
+</body>
+</html>

@@ -1,0 +1,60 @@
+{% extends "delivery.html" %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="../static/foodnavi.css">
+
+<style>
+#hello{font-size: 3em;
+color:pink;}
+
+
+    .groupitem{display:block;
+        text-decoration:none;
+        color:#00868B;
+        padding:10px;
+        width:25%;
+        font-size:2em;
+        text-align: center;
+        float:right;
+        margin:20px;
+        border-style: solid;
+        border-color: #00868B;}
+
+</style>
+
+<div class="containitem">
+
+
+<ul class="group">
+
+    {% for food in item %}
+        <li class="itembox">
+            <a href="allitem.html" >
+
+
+                <div class="groupitem">
+                    <p>{{item[food]["name"]}}</p>
+                    <p>{{item[food]["price"]}}</p>
+                    <p>{{item[food]["calories"]}}</p>
+
+
+                    <!--pic=item[food]["pic"]-->
+                    <!--with open (pic."rb") as f:-->
+                        <!--image=f.read()-->
+
+
+
+                </div>
+            </a>
+        </li>
+    {% endfor %}
+    <!--<a href=""  onclick ="clicka(self)"><img src="../static/images/nav1.jpg"></a>-->
+    <!--<a href=""  ><img src="../static/images/nav1.jpg">{{clicka}}</a>-->
+
+</ul>
+</div>
+{% endblock %}
+
+
+
+
