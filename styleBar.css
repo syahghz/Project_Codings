@@ -12,7 +12,7 @@ body{
 	background-color: white;
 	font-size: 1.2em;
 	font-style: normal;
-
+    position: fixed;
 	width: 100%;
     padding-top: 20px;
 }
@@ -106,6 +106,7 @@ hr{
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  border: 1px solid black;
 }
 
 .picdown-content a, .inspidown-content a{
@@ -118,9 +119,13 @@ hr{
 }
 
 .picdown-content a:hover ,.inspidown-content a:hover{
-  background-color: white;
+  color: gray;
 }
 
 .profpic:hover .picdown-content, .inspi:hover .inspidown-content {
   display: block;
+}
+
+#centerkan{
+    text-align: center;
 }
