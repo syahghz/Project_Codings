@@ -1,0 +1,32 @@
+{% extends "NavBar.html" %}
+
+{% block content %}
+    <br><br><br><br><br><br><br>
+
+    <title>Using Credit Card</title>
+    <link rel="stylesheet" type="text/css" href="../static/foodnavi.css">
+<body>
+<div class="itemform">
+    <form method="post">
+        <fieldset id="particular">
+
+            <h1 class="title">Details</h1>
+
+
+            <div class="question">
+                <label for="contactnumber" class="eachq">Contact number:<input type="text" name="contactnumber" id="contactnumber" pattern="\d{8}" title="Please enter a valid contact number. 8 digits" required > </label>
+                <br>
+                <br>
+                <label for="add" class="add">Address:<textarea cols=55 rows=5 name="add" id="add" required ></textarea></label>
+                <br>
+            </div>
+        </fieldset>
+
+        <div class="changebut">
+            <a href="{{ url_for('shopping_cart') }}"><button type="button">Back</button></a> <input type="reset" value="Reset" />
+            <button type="submit" href="{{ url_for('payment') }}">Next</button>
+        </div>
+    </form>
+</div>
+</body>
+{% endblock %}

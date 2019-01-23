@@ -1,0 +1,26 @@
+<form method="post">
+    <label for="name">Name:</label>
+    <input name="name" id="name"
+           value="{{ request.form['name'] or post['name'] }}" required>
+    <label for="price">price</label>
+    <textarea name="price" id="price">{{ request.form['price'] or post['price'] }}</textarea>
+
+    <label for="calories">calories</label>
+    <input name="calories" id="calories"
+           value="{{ request.form['calories'] or post['calories'] }}" required>
+
+    <label for="ingredient">Ingredient</label>
+    <input name="ingredient" id="ingredient"
+           value="{{ request.form['ingredient'] or post['ingredient'] }}" required>
+
+    <label for="quantity">Quantity</label>
+    <input name="quantity" id="quantity"
+           value="{{ request.form['quantity'] or post['quantity'] }}" required>
+
+    <input type="submit" value="Save" id="Create" />
+
+</form>
+<form action="{{ url_for('deleteitem', id=post['id']) }}" method="post">
+    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+</form>
+<hr>

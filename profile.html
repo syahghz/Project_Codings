@@ -1,0 +1,92 @@
+{% extends "NavBar.html" %}
+
+{% block content %}
+<br><br><br><br><br><br><br>
+<title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../static/profile.css">
+
+
+<div class="editbut">
+
+    <ul>
+
+        <li class="owninfo">
+            <a class="edit" href="{{ url_for('logout') }}">Log Out</a>
+
+            <br>
+        </li>
+
+        <li class="owninfo">
+            <a class="edit" href="{{ url_for('editprofile') }}">Edit Profile</a>
+
+            <br>
+        </li>
+
+        <li class="owninfo">
+            <a class="edit">My Progress</a>
+            <br>
+        </li>
+
+        <li class="owninfo">
+            <a class="edit">Exercise Plan</a>
+            <br>
+        </li>
+
+        <li class="owninfo">
+            <a class="edit">Customize Diet</a>
+            <br>
+        </li>
+
+    </ul>
+</div>
+
+
+<div class="side">
+    <div class="own">
+        <ul>
+
+
+            <li class="owninfo">
+
+                <p id="name"> {{ session['user_name'] }} </p>
+
+
+            </li>
+            <li class="owninfo">
+
+
+            </li>
+        </ul>
+    </div>
+
+    <div class="ownstuff" >
+        <ul>
+            <li class="owninfo"><h2>My Goal</h2></li>
+
+            {% if pp==[] %}
+                <li class="owninfo">   <p id='goal'> Excerise daily </p>    </li>
+
+            <li class="owninfo"> <h2>My Achievement</h2></li>
+
+            <li class="owninfo"><p id="ach"> Have an account for this website</p></li>
+
+                {% else %}
+
+            <li><p id='goal'> {{ pp[-1]["get_goal"] }} </p></li>
+
+                <li class="owninfo"> <h2>My Achievement</h2></li>
+
+            <li class="owninfo"><p id="ach">{{ pp[-1]["get_achievement"] }}</p></li>
+        {% endif %}
+            <br>
+
+
+
+            <br>
+
+        </ul>
+    </div>
+</div>
+
+  {% endblock %}
+

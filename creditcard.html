@@ -1,0 +1,42 @@
+{% extends "NavBar.html" %}
+
+{% block content %}
+<br><br><br><br><br><br><br>
+
+
+<title>Using Credit Card</title>
+    <link rel="stylesheet" type="text/css" href="../static/foodnavi.css">
+
+<div class="itemform">
+    <form method="post">
+        <fieldset id="particular">
+
+            <h1 class="title">Food Delivery Payment</h1>
+
+
+            <div class="question">
+                <label for="cardname" class="eachq">Name On Card:<input name="cardname" id="cardname" required ></label>
+                <br>
+                <br>
+                <label for="cardnumber" class="eachq">Card Number:<input name="cardnumber" id="cardnumber" pattern="\d{16}" title="16 digits" required ></label>
+                <br>
+                <br>
+                <label for="expiry" class="eachq">Expiry Date:<textarea cols=25 rows=1 name="expiry" id="expiry" required ></textarea></label>
+                <br>
+                <br>
+                <label for="scode" class="eachq">Security Code:<input name="scode" id="scode" pattern=".{3,4}" required ></label>
+                <br>
+                <br>
+            </div>
+        </fieldset>
+
+        <div class="changebut">
+            <a href="{{ url_for('payment') }}"><button type="button">Back</button></a> <input type="reset" value="Reset" />
+            <button type="submit"><a href="{{ url_for("finish") }}"> Submit </a></button>
+        </div>
+
+
+    </form>
+</div>
+
+{% endblock %}

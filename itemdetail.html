@@ -1,0 +1,65 @@
+{#<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='foodnavi.css') }}">#}
+{% extends "NavBar.html" %}
+
+{% block content %}
+<br><br><br><br><br><br><br>
+<link rel="stylesheet" type="text/css" href="../static/foodnavi.css">
+
+{#<style>#}
+{##}
+{#    .deliverypic{width:20%;#}
+{#                height:20%;#}
+{#    }#}
+{#    #tabledetail{color:#00868B;}#}
+{##}
+{##}
+{#</style>#}
+<div class="tabledetail">
+    <img class="deliverypicc" src= "/static/images/{{ item['pic'] }}" >
+
+<h2 id="indfname">{{ item.name }}</h2>
+
+
+
+<div class="cart well">
+    <h3 class="pdetailtitle">Price:</h3>
+    <p> {{ item.price }} </p>
+    <br>
+</div>
+<div class="details">
+
+    <h3 class="pdetailtitle">Product details:</h3>
+
+    <br>
+
+    <h3 class="pdetailtitle">Type:</h3>
+    <p>{{ item.type }}</p>
+
+    <br>
+
+    <h3 class="pdetailtitle">Calories:</h3>
+    <p>{{ item.calories }}</p>
+
+    <br>
+
+    <h3 class="pdetailtitle">Ingredients:</h3>
+    <p>{{ item.ingredient }}</p>
+
+    <br>
+    <form method="post" action="{{ url_for('add_to_cart',id=item.id )}}">
+    <label for="quantity">Amount you are buying:</label>
+
+    <select name="quantity" id="quantity" class="selectpicker form-control">
+        {% for o in data %}
+            <option name="quantity" id ="quantity" value="{{ request.form['quantity'] or o.quantity}}">{{ o.quantity }}</option>
+        {% endfor %}
+    </select>
+
+<button type="submit">Add to Cart</button>
+
+
+    </form>
+
+</div>
+</div>
+{% endblock %}

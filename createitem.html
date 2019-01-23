@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin-Add item in delivery</title>
+    <link rel="stylesheet" type="text/css" href="../static/foodnavi.css">
+</head>
+<body>
+<div class="itemform">
+    <form method="post" enctype="multipart/form-data">
+        <fieldset id="particular">
+
+            <h1 class="title">Add Item In Delivery</h1>
+
+
+            <div class="question">
+                <label for="name" class="eachq">Name of Item:<textarea cols=25 rows=1 name="name" id="name" required ></textarea></label>
+                <br>
+                <br>
+                <!--<label class="eachq">Type:-->
+                    <!--<select>-->
+                        <!--<option class="option" id="maindish">Main dish</option>-->
+                        <!--<option class="option" id="soup">Soup</option>-->
+                        <!--<option class="option" id="dessert">Dessert</option>-->
+                        <!--<option class="option" id="drink">Drink</option>-->
+
+                    <!--</select>-->
+                <!--</label>-->
+                <label for="utype">Type:</label>
+                <select id="utype" name="comp_select" class="selectpicker form-control">
+                    {% for o in data %}
+                    <option value="{{ o.type }}">{{ o.type }}</option>
+                    {% endfor %}
+                </select>
+
+                <br>
+                <br>
+                <label for="price" class="eachq">Price:<textarea cols=25 rows=1 name="price" id="price" required ></textarea></label>
+                <br>
+                <br>
+                <label for="calories" class="eachq">Calories:<textarea cols=25 rows=1 name="calories" id="calories" required ></textarea></label>
+                <br>
+                <br>
+                <label for="ingredient" class="eachq">Ingredient:<textarea cols=55 rows=5 name="ingredient" id="ingredient" required ></textarea></label>
+                <br>
+                <br>
+                <label for="quantity" class="eachq">Quantity:<textarea cols=25 rows=1 name="quantity" id="quantity" required ></textarea></label>
+                <input id="picitem" class="picitem" type="file" name="picitem">
+                <!--<input id="picitem" class="picitem" type="file" name="picitem" accept="image/*">-->
+                <br>
+                <br>
+
+            </div>
+        </fieldset>
+
+        <div class="changebut">
+            <a href="delivery.html"><button type="button">Back</button></a> <input type="reset" value="Reset" />
+            <input type="submit" value="Create" id="Create" onclick="return alert('Food been created.');"/>
+        </div>
+
+
+    </form>
+</div>
+
+</body>
+</html>

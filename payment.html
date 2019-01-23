@@ -1,0 +1,34 @@
+{% extends "NavBar.html" %}
+
+{% block content %}
+<br><br><br><br><br><br><br>
+<title>Payment</title>
+    <link rel="stylesheet" type="text/css" href="../static/foodnavi.css">
+
+
+<br>
+<div class="top">
+<p class="toptitle">PAYMENT</p>
+</div>
+<br>
+<div class="paybuts">
+    <a href="{{ url_for('finish') }}"><button class="pay" type="button" onclick="return alert('You have successfully pay for the food.');">Cash On Delivery</button> </a>
+
+    <a href="{{ url_for('creditcard') }}"><button type="button" class="pay">Credit Card</button></a>
+</div>
+
+<br>
+<a class="edit" href="{{ url_for('shopping_cart') }}">Your Cart</a>
+<a class="edit" href="">Use Points</a>
+
+<div class="smallinfo">
+
+
+    <p>*Every 50 points can have a discount of $2</p>
+    <p>*Press one time to deduct $2 from the total price</p>
+
+</div>
+
+
+
+{% endblock %}
