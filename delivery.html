@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Food Delivery</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='foodnavi.css') }}">
+</head>
+
+
+
+<body>
+
+    <div class="notfoodnav">
+    <div id="decoration">
+    <div class="slides">
+
+        <div id="slide-1" class="inside">
+            <img class="s" src="../static/images/slide1.png">
+
+        </div>
+        <div id="slide-2" class="inside">
+            <img class="s" src="../static/images/slide2.jpg">
+        </div>
+        <div id="slide-3" class="inside">
+            <img class="s" src="../static/images/slide3.jpg">
+        </div>
+        <div id="slide-4" class="inside">
+            <img class="s" src="../static/images/slide3.jpg">
+        </div>
+        <div id="slide-5" class="inside">
+            <img class="s" src="../static/images/slide3.jpg">
+        </div>
+
+    <div class="dotcon">
+        <a href="#slide-1" class="dot"> </a>
+        <a href="#slide-2" class="dot"> </a>
+        <a href="#slide-3" class="dot"> </a>
+        <a href="#slide-4" class="dot"> </a>
+        <a href="#slide-5" class="dot"> </a>
+    </div>
+</div>
+    </div>
+
+    <div class="foodoptions">
+        <ul>
+            {% for food in item %}
+                {% if food.quantity==0 %}
+
+            <li class="itemboxhome">
+                <div class="allitemhome">
+                    <p>Out of stock</p>
+                    <h1>{{ food["name"] }}</h1>
+                    <p>{{ food["price"] }}</p>
+                    <p>{{ food["calories"] }}</p>
+                    <img class="deliverypic" src= "/static/images/{{ food['pic'] }}" >
+                    <br>
+                </div>
+            </li>
+            <br>
+            <br>
+                {% else %}
+                <li class="itemboxhome">
+                    <div class="allitemhome">
+                        <h1>{{ food["name"] }}</h1>
+                        <p>{{ food["price"] }}</p>
+                        <p>{{ food["calories"] }}</p>
+                        <img class="deliverypic" src= "/static/images/{{ food['pic'] }}" >
+                        <a class="btn btn-primary" href=/showitemdetail/{{ food.id }}>Details</a>
+                        <br>
+                    </div>
+                </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+<!--<div id="cont">-->
+    <!--<div class="fnavcon">-->
+
+        <!--<a class="fbutton" href="https://www.google.com"><img class="fnavi" src="../static/images/nav1.jpg">-->
+            <!--<h3 class="centered">All</h3>-->
+        <!--</a>-->
+    <!--</div>-->
+
+    <!--<div class="fnavcon">-->
+        <!--<a class="fbutton"><img class="fnavi" src="../static/images/soba_noodles.jpg"></a>-->
+        <!--<h3 class="centered">Main Dish</h3>-->
+    <!--</div>-->
+
+    <!--<div class="fnavcon">-->
+        <!--<a class="fbutton"><img class="fnavi" src="../static/images/nav3.jpg"></a>-->
+        <!--<h3 class="centered">Soup</h3>-->
+    <!--</div>-->
+
+    <!--<div class="fnavcon">-->
+        <!--<a class="fbutton"><img class="fnavi" src="../static/images/nav4.jpg"></a>-->
+        <!--<h3 class="centered">Dessert</h3>-->
+    <!--</div>-->
+
+    <!--<div class="fnavcon">-->
+        <!--<a class="fbutton"><img class="fnavi" src="../static/images/nav5.jpg"></a>-->
+        <!--<h3 class="centered">Drink</h3>-->
+    <!--</div>-->
+
+<!--</div>-->
+</body>
+</html>
