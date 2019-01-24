@@ -7,7 +7,7 @@ class RegistrationForm(Form):
     confirm_password =PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
 
     birthday = DateTimeField('Birthday', format='%m/%d/%y', validators=[DataRequired()])
-    accept_rules = BooleanField('I accept the site rules',validators=[InputRequired()])
+
     submit = SubmitField('Sign up')
 
 class LoginForm(Form):

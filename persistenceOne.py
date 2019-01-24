@@ -52,8 +52,8 @@ def get_user(username, password,email):
     klist = list(users.keys())
     for key in klist:
         user = users[key]
-        print(user.get_username(), username, user.get_password(), password)
-        if user.get_username() == username and user.get_password() == password and user.get_email() == email:
+        print(users.get_username(), username, users.get_password(), password)
+        if users.get_username() == username and users.get_password() == password and users.get_email() == email:
             return user
     return None
 

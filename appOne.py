@@ -1,5 +1,5 @@
 from flask import *
-from persistenceOne import *
+from persistence import *
 
 
 app = Flask(__name__)
@@ -78,6 +78,7 @@ def register():
 @app.route('/logout')
 def logout():
     session.clear()
+    redirect(url_for('login'))
 
 
 
