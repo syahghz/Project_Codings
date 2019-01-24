@@ -2,9 +2,9 @@ from flask import *
 from persistenceS import *
 import uuid
 import datetime
-import matplotlib.pyplot as plt
-import random
-import os
+# import matplotlib.pyplot as plt
+# import random
+# import os
 
 appS = Flask(__name__)
 
@@ -39,28 +39,28 @@ def add():
             tester = displaybook(id)
             request.form = ""
             # print(exer)
+            points = 50
             print("checking boleh ke tk ", tester)
 
-            print('jln sini ke tk')
-            graph(exer,hours,mins)
-
-
-            # read new
-            graphFile = open('graphFile.txt', 'r')
-            print('gah')
-            contents = graphFile.read()
-            print(contents)
-            graphFile.close()
-            print(contents)
-            return render_template('TrackProg.html', contents=contents, tester=tester)
-
-
-        # return render_template('TrackProg.html', tester=tester)
+            # print('jln sini ke tk')
+            # graph(exer,hours,mins)
+    #             #
+    #             #
+    #             # # read new
+    #             # graphFile = open('graphFile.txt', 'r')
+    #             # print('gah')
+    #             # contents = graphFile.read()
+    #             # print(contents)
+    #             # graphFile.close()
+    #             # print(contents)
+    #             # return render_template('TrackProg.html', contents=contents, tester=tester)
+            return render_template('TrackProg.html', tester=tester, points=points)
         # else:
         #     return less
     else:
         tester = displaybook('Renjun')
-        return render_template('TrackProg.html', tester=tester)
+        points = 30
+        return render_template('TrackProg.html', tester=tester, points=points)
 
 
 # graph
@@ -79,7 +79,7 @@ def add():
     # graphFile.close()
     # print(contents)
     # return render_template('TrackProg.html', contents =contents)
-    # return render_template('TrackProg.html', tester=tester)
+    return render_template('TrackProg.html', tester=tester)
 
 
 

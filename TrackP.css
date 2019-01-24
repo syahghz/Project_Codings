@@ -32,10 +32,12 @@ div.trackForm{
 
 .goal{
     background-color: #CCE3DE;
-    width:30%;
+    /*width:30%;*/
     margin-top: -3%;
     padding: 15px;
     width: 15%;
+    margin-left: 15px;
+    text_decoration: underline;
 }
 
 #wecenter{
@@ -109,5 +111,12 @@ th, td{
     /*border-color: white;*/
 }
 
-
+.reward{
+    border: 1px solid #00868b;
+    margin: auto;
+    width: 50%;
+    height: 5%;
+    padding: 7px;
+    padding-top: 10px;
+}
 

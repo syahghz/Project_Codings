@@ -75,7 +75,21 @@
 
 <br><br><br><br><br><br><br>
 </div>
+<br><br><br><br><br><br><br>
+<div class="reward">
+    {% if points >= 50%}
+        Your Points:
+            Yay! You have accumulated 50 points! We are gifting you a $2 voucher for your hard work!
+        <p>Voucher is to be used in the delivery page only</p>
+        <button>Use Now</button>
+    {%else%}
+        Your Points:
+            Yay! You have accumulated 30 points! You are a step closer to meeting your goal!
+    {%endif%}
 
+
+</div>
+<br><br><br><br><br><br><br>
 <script>
     if ( window.history.replaceState ) {
         window.history.replaceState( null, null, window.location.href );
@@ -89,13 +103,13 @@
 //     }
 </script>
 
-<div>
-<h1>Graphhhh</h1>
+<!--<div>-->
+<!--<h1>Graphhhh</h1>-->
 
 
 
-    <img src="{{contents}}" class="graph">
-</div>
+    <!--<img src="{{contents}}" class="graph">-->
+<!--</div>-->
 
 
 
