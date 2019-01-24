@@ -1,5 +1,5 @@
 from flask import *
-from persistence import *
+from persistenceOne import *
 
 
 app = Flask(__name__)
@@ -42,8 +42,13 @@ def login():
                 session['password'] = user.get_password()
                 session['email'] = user.get_email()
                 return'Success! Welcome! :)'
+            return redirect('hi')
         flash(error)
     return render_template('login.html')
+
+@app.route("/hi")
+def hi():
+    return render_template("hi.html")
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():

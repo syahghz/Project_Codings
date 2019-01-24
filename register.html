@@ -1,11 +1,5 @@
-{% extends 'base.html' %}
 
-{% block header %}
-  <h1>{% block title %}Register{% endblock %}</h1>
-{% endblock %}
-
-{% block content %}
-  <form method="post" action="">
+<form method="post">
     <label for="username">Username</label>
     <input name="username" id="username" required><!--value="{{ request.form['username'] }}" -->
     <label for="password">Password</label>
@@ -13,6 +7,4 @@
     <label for="email">Email</label>
     <input type="email" name="'email" id="email" required><!--value="{{ request.form['email'] }}" -->
     <input type="submit" value="Register">
-  </form>
-{% endblock %}
-
+</form>

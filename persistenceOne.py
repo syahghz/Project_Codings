@@ -2,7 +2,7 @@ import shelve
 import uuid
 from datetime import date
 # today = str(date.today())
-
+users = shelve.open('user')
 class User:
     def __init__(self, id):
         self.__id = id
@@ -33,7 +33,7 @@ class User:
 
 
 
-users = shelve.open('user')
+
 
 
 
@@ -52,8 +52,7 @@ def get_user(username, password,email):
     klist = list(users.keys())
     for key in klist:
         user = users[key]
-        print(users.get_username(), username, users.get_password(), password)
-        if users.get_username() == username and users.get_password() == password and users.get_email() == email:
+        if user.get_username() == username and user.get_password() == password and user.get_email() == email:
             return user
     return None
 
@@ -76,6 +75,3 @@ def init_db():
 
     for i in range(5):
         create_user('user'+str(i), 'pass'+str(i))
-
-
-
