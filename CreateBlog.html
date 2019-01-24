@@ -13,7 +13,7 @@
 </header>
 
 <div class = "form">
-    <form method="post" action="/">
+    <form method="post" enctype="multipart/form-data" action="/">
 
         <table>
         <tr>
@@ -23,25 +23,25 @@
             <br>
             <br>
 
-             <textarea name="DishName" id="dishName" class="textbox"></textarea>
+             <textarea name="dishName" id="dishName" class="textbox"></textarea>
             <br>
             <br>
-        <label for="ingredient">Ingredients</label>
+        <label for="ingredients">Ingredients</label>
 
             <br>
             <br>
 
-        <textarea name="Ingredients" id="ingredient" class="textbox"></textarea>
+        <textarea name="ingredients" id="ingredients" class="textbox"></textarea>
 
         <br>
         <br>
 
-        <label for="nutri">Nutrition Value</label>
+        <label for="nutrition">Nutrition Value</label>
 
             <br>
             <br>
 
-        <textarea name="Nutrition" id="nutri" class="textbox"></textarea>
+        <textarea name="nutrition" id="nutrition" class="textbox"></textarea>
 
         <br>
         <br>
@@ -51,16 +51,16 @@
         </th>
 
             <th width = 1000>
-        <label for="instruction">Instructions</label>
+        <label for="instructions">Instructions</label>
 
                 <br>
                 <br>
 
-        <textarea name="Instructions" id="instruction" rows="28" cols="100"></textarea>
+        <textarea name="instructions" id="instructions" rows="28" cols="100"></textarea>
 
         <br>
         <br>
-                <input type="file" name="file" id="file"/>
+                <input type="file" name="file" id="file" >
 
                 <br>
                 <br>

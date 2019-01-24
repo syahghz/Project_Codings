@@ -1,0 +1,22 @@
+*{
+	padding-left: 0;
+}
+
+h1{
+    font-size: 3em;
+    text-align: center;
+}
+
+body{
+    margin-left:6em;
+}
+
+th{
+    white-space: pre-wrap;
+}
+
+table{
+    text-align: left;
+    padding-left: 2em;
+}
+

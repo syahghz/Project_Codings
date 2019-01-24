@@ -1,0 +1,53 @@
+<!--<!doctype html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Recipe</title>-->
+    <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='RecipeAll.css') }}">-->
+<!--</head>-->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='RecipeAll.css') }}">
+{% extends 'NavBar.html' %}
+
+{% block header %}
+<br><br><br><br><br><br><br><br>
+<div><h1>{% block title %}Recipes{% endblock %}</h1></div>
+{% endblock %}
+
+{% block content %}
+<br><br><br><br><br>
+<body>
+
+{% for post in posts %}
+
+    <h1>{{ post['dishName']}}</h1>
+    <!--<p>{{post['file']}}</p>-->
+    <img src="/static/images/{{post['file']}}">
+    <table style="border:solid 2px black; width:95%">
+
+        <tr style="width:95%">
+            <th style="height:15em;">
+                <h2>Ingredients</h2>
+                <p>{{ post['ingredients'] }}</p>
+            </th>
+    <!--change width too longg-->
+            <th style="height:15em;">
+                <h2>Nutritional Value</h2>
+                <p>{{ post['nutrition'] }}</p>
+            </th>
+
+        </tr>
+        <tr>
+            <th style='height:15em;' colspan='2'>
+                <h2>Instructions</h2>
+                <p>{{ post['instructions'] }}</p>
+            </th>
+        </tr>
+
+    </table>
+<br>
+<br>
+<br>
+{% endfor %}
+</body>
+{% endblock %}
+<!--</html>-->
