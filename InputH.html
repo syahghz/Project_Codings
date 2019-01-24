@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../static/styling/css5.css"/>
+</head>
+<body>
+<div>
+
+
+    {% if bmiFloat <=18.5%}
+        <h1> Total BMI</h1>
+        {{ bmiFloat }}<br><br>
+        {{ name }}
+        {% for r in resulttext %}
+        {{ r }} <br/>
+        {% endfor %}
+
+
+
+    {% elif 18.5<=bmiFloat<=24.9 %}
+
+        <h1> Total BMI</h1>
+        {{ bmiFloat }}<br><br>
+        {{ name }}
+        {% for r in resulttext %}
+        {{ r }} <br/>
+        {% endfor %}
+
+    {% elif 25<=bmiFloat<=29.9 %}
+
+         <h1> Total BMI</h1>
+         {{ bmiFloat}}<br><br>
+         {{ name }}<br><br>
+         {% for r in resulttext %}
+         {{ r }} <br/>
+         {% endfor %}
+
+    {% elif bmiFloat>= 30 %}
+
+        <h1>Total BMI</h1>
+         {{ bmiFloat}}<br><br>
+         {{ name }}<br><br>
+         {% for r in resulttext %}
+         {{ r }} <br/>
+         {% endfor %}
+
+        <br>
+        <br>
+        <br>
+    {% else %}
+
+        <h1> Please TRY again!!! </h1>
+
+         <a href="{{ url_for('firstInput')}}"> Back</a>
+
+    {% endif %}
+    <button><a href="{{ url_for('beginner') }}"> Gooooooo!</a></button>
+
+</div>
+
+
+</body>
+</html>
