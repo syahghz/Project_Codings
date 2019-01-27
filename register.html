@@ -1,10 +1,30 @@
+<!doctype html>
+<title>Register - Flaskr</title>
+<link rel="stylesheet" href="/static/css1.css">
+{%  from "includes/formhelper.html" import render_field %}
+<nav>
+  <h1>Flaskr</h1>
+  <ul>
 
-<form method="post">
-    <label for="username">Username</label>
-    <input name="username" id="username" required><!--value="{{ request.form['username'] }}" -->
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required><!--value="{{ request.form['password'] }}" -->
-    <label for="email">Email</label>
-    <input type="email" name="'email" id="email" required><!--value="{{ request.form['email'] }}" -->
-    <input type="submit" value="Register">
-</form>
+      <li><a href="/register">Register</a>
+      <li><a href="/login">Log In</a>
+
+  </ul>
+</nav>
+<section class="content">
+  <header>
+
+  <h1>Register</h1>
+
+  </header>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+
+  <form method="post">
+    {{ render_field(form.id, class_='form-control') }}
+    {{ render_field(form.password, class_='form-control') }}
+    {{ form.submit }}
+  </form>
+
+</section>

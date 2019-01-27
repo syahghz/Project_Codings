@@ -1,91 +1,71 @@
 from flask import *
-from persistenceOne import *
+from user import *
+from tryapp import *
+import functools
 
-
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 app.config.from_mapping(
     SECRET_KEY='dev'
 )
 
-
 @app.route('/init')
 def init():
-    init_db()
+    init_users()
+
     return 'db initialised'
 
+@app.route('/')
+def index():
+    form = LoginForm(request.form)
+    if 'username' in session:
+
+        return render_template('lol.html' )
+    else:
+        return render_template('login.html', form = form)
 
 
-
-
-
-@app.route('/login',  methods=['GET', 'POST'])
+@app.route('/login',  methods=('GET', 'POST'))
 def login():
+    login_form = LoginForm(request.form)
+    error = None
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        email = request.form['email']
-        error = None
-        if not username:
-            error = 'Username is required.'
-        elif not password:
-            error = 'Password is required.'
-
-        elif not email:
-            error = 'Email is required'
+        user = get_user(login_form.id.data, login_form.password.data)
+        if user is None:
+            error = 'Wrong username and password'
         else:
-            user = get_user(username, password, email)
-            if user is None:
-                error = 'Wrong username and password and email'
-            else:
-                session['id'] = user.get_id()
-                session['user_name'] = user.get_username()
-                session['password'] = user.get_password()
-                session['email'] = user.get_email()
-                return'Success! Welcome! :)'
-            return redirect('hi')
+            session['username'] = user.username
+            return redirect(url_for('index'))
         flash(error)
-    return render_template('login.html')
+    return render_template('login.html', form=login_form)
 
-@app.route("/hi")
-def hi():
-    return render_template("hi.html")
-
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/register', methods=('GET', 'POST'))
 def register():
+    form = RegisterForm(request.form)
     if request.method == 'POST':
-        username = request.form['username']
-        print('username: '+username+"!")
-        password = request.form['password']
-        print('password: ' + password + "!")
-
-        #email = request.form['email']
-        email = request.form.get('email', 'az@a.com')
-
-        print('email: ' + email + "!")
+        username = form.id.data
+        password = form.password.data
         error = None
         if not username:
             error = 'Username is required.'
         elif not password:
             error = 'Password is required.'
-
-        elif not email:
-            error ='Email is required'
         else:
-            create_user(username, password, email)
+            create_user(username, password)
             return redirect(url_for('login'))
         flash(error)
-    return render_template('register.html')
+    return render_template('register.html', form=form)
 
 
 
-
-
-@app.route('/logout')
+@app.route('/logout', methods=('GET', 'POST'))
 def logout():
     session.clear()
-    redirect(url_for('login'))
-
-
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
     app.run(debug=True)
+    app.run(port=80)
+
+
+
+
