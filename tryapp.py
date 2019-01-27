@@ -12,6 +12,7 @@ class LoginForm(Form):
 class RegisterForm(Form):
     id = StringField('UserName', [validators.DataRequired('Please enter your name.')])
     password = PasswordField('Password', [validators.DataRequired('Please enter your password.')])
+    email = StringField('Email', [validators.DataRequired('Please enter your email')])
     submit = SubmitField('Register')
 
 
