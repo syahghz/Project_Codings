@@ -1,32 +1,18 @@
-from flask import *
-from app import RegistrationForm, LoginForm
-app = Flask(__name__)
+from wtforms import Form,StringField,RadioField, PasswordField, IntegerField,SubmitField, TextAreaField
+from wtforms import validators, ValidationError
 
-app.config['SECRET_KEY'] = 'ebaec4092587f550f6790781ba2271b4'
 
-@app.route("/")
-@app.route("/home")
-def home():
-    return render_template('test.html')
 
-@app.route("/about")
-def about():
-    return render_template('answers.html', title='About')
 
-@app.route('/register')
-def register():
-    form = RegistrationForm()
-    return render_template('Bodyresult.html', title='Register', form=form)
+class LoginForm(Form):
+    id = StringField('UserName', [validators.DataRequired('Please enter your name.')])
+    password = PasswordField('Password', [validators.DataRequired('Please enter your password.')])
+    submit = SubmitField('Login')
 
-@app.route('/login')
-def login():
-    form = LoginForm()
-
-    return render_template('lol.html', title='Login', form=form)
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
+class RegisterForm(Form):
+    id = StringField('UserName', [validators.DataRequired('Please enter your name.')])
+    password = PasswordField('Password', [validators.DataRequired('Please enter your password.')])
+    submit = SubmitField('Register')
 
 
 
