@@ -14,73 +14,64 @@ tester = 0
 def index():
     return render_template('NavBar.html')
 
-@appS.route('/ProgUp')
-def update():
-    return render_template('ProgUP.html')
 
 
 @appS.route('/TrackProg', methods=('GET', 'POST'))
 def add():
     if request.method == 'POST':
-        # less = checkHour()
-        #
-        # if less <= 12:
-
             exer = request.form['exer']
             hours = request.form['hours']
             mins = request.form['mins']
             id = str(uuid.uuid4())
             dt = datetime.datetime.now()
             date = dt.strftime("%d") + " " + dt.strftime("%B") + " " + dt.strftime("%Y")
+            # real_time =
             error = None
-            currentUsername = 'Renjun' #'vera'
+            currentUsername = 'mark' #'vera'
             storeBook(id, currentUsername, date, exer, hours, mins)
 
-            tester = displaybook(id)
+            tester = displaybook(currentUsername)
             request.form = ""
             # print(exer)
-            points = 50
-            print("checking boleh ke tk ", tester)
+            user_reward = calc_reward(exer, hours, mins, currentUsername)
+            if path.exists('point_File' + currentUsername + '.txt'):
+                point_File = open('point_File' + currentUsername + '.txt', 'r')
+                prevpoints = point_File.read()
+                num = int(prevpoints)
+                point_File.close()
+                points = int(num)
+                if points >= 50:
+                    ncode = gen_num()
+                    print(ncode, "passed through PS")
+                    Dcode = "WW" + str(ncode)
+                    print(Dcode)
+                    point_File = open('point_File' + currentUsername + '.txt', 'w')
+                    aftpoints = points - 50
+                    leftpoints = point_File.write("{}\n".format(aftpoints))
+                    print(leftpoints)
+                    point_File.close()
+                    return render_template('TrackProg.html', tester=tester, points=points, Dcode=Dcode)
+                print('tkde')
 
-            # print('jln sini ke tk')
-            # graph(exer,hours,mins)
-    #             #
-    #             #
-    #             # # read new
-    #             # graphFile = open('graphFile.txt', 'r')
-    #             # print('gah')
-    #             # contents = graphFile.read()
-    #             # print(contents)
-    #             # graphFile.close()
-    #             # print(contents)
-    #             # return render_template('TrackProg.html', contents=contents, tester=tester)
-            return render_template('TrackProg.html', tester=tester, points=points)
-        # else:
-        #     return less
+                return render_template('TrackProg.html', tester=tester, points=points)
+
     else:
-        tester = displaybook('Renjun')
-        points = 30
-        return render_template('TrackProg.html', tester=tester, points=points)
+        currentUsername = 'mark'
+        tester = displaybook(currentUsername)
+        if path.exists('point_File' + currentUsername + '.txt'):
+            point_File = open('point_File' + currentUsername + '.txt', 'r')
+            prevpoints = point_File.read()
+            num = int(prevpoints)
+            point_File.close()
+            points = int(num)
+
+            return render_template('TrackProg.html', tester=tester, points=points)
+        else:
+            points = 0
+            return render_template('TrackProg.html', tester=tester, points=points)
 
 
-# graph
-
-    # print('jln sini ke tk')
-    # callX = Xgraph()
-    # callY = Ygraph()
-    # plot(callX,callY)
-    #
-    #
-    # # read new
-    # graphFile = open('graphFile.txt', 'r')
-    # print('gah')
-    # contents = graphFile.read()
-    # print(contents)
-    # graphFile.close()
-    # print(contents)
-    # return render_template('TrackProg.html', contents =contents)
     return render_template('TrackProg.html', tester=tester)
-
 
 
 

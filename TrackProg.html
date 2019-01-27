@@ -77,18 +77,17 @@
 </div>
 <br><br><br><br><br><br><br>
 <div class="reward">
-    {% if points >= 50%}
+    {% if points > 49 %}
         Your Points:
-            Yay! You have accumulated 50 points! We are gifting you a $2 voucher for your hard work!
+            Yay! You have accumulated {{points}} points! We are gifting you a $2 voucher for your hard work!
+            Use code <div>{{[ Dcode ]}}</div>
         <p>Voucher is to be used in the delivery page only</p>
         <button>Use Now</button>
-    {%else%}
-        Your Points:
-            Yay! You have accumulated 30 points! You are a step closer to meeting your goal!
-    {%endif%}
 
 
+    {% endif %}
 </div>
+
 <br><br><br><br><br><br><br>
 <script>
     if ( window.history.replaceState ) {
@@ -114,6 +113,4 @@
 
 
 {% endblock %}
-
-
 

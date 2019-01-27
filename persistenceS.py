@@ -1,8 +1,9 @@
 import shelve
 # import matplotlib.pyplot as plt
-# import random
+import random
 # import matplotlib
-# import os
+import os.path
+from os import path
 # import datetime
 # import calendar
 
@@ -27,6 +28,9 @@ class AllBooks:
         self.mins = 0
         self.date = ""
         self.username = ""
+        print(self.hour)
+        print('the class')
+
 
 
 
@@ -41,22 +45,26 @@ def storeBook(id, username, date, exercise, hour, mins):
     exist = False
 
     book[id] = bok
+    print('masuk storebook')
+    return bok.exercise
 
 
 def displaybook(currentUserLogin):
     #'Renjun': #'vera'
-    currentUserLogin = 'Renjun'
+    # currentUserLogin = 'Renjun'
     klist = list(book.keys())
     print(klist)
     x.clear()
 
     #if currentUserLogin in klist:
     for i in klist:
-        print('checking...'+book[i].username)
+        # print('checking...'+book[i].username)
         if book[i].username == currentUserLogin:
-            print(x) #check if empty or not
+            # print(x) #check if empty or not
             x.insert(0, book[i])
+    print('masuk display')
     return x
+
 
 #
 # def graph(exer,hour,min):
@@ -74,128 +82,113 @@ def displaybook(currentUserLogin):
 #
 # # corresponding y axis values
 #
-#     ex = exer
-#     hr = hour * 60
-#     min = min
-#     ttime = int(hr + min)
-#     print(ttime)
-#
-#     if ex == "Vigorous":
-#         val = 5
-#         print(val)
-#         m = float(int(val) * int(ttime))
-#         print (m, "V")
-#         if m > 100:
-#             s = m // 100
-#         elif m >= 10:
-#             s = m // 10
-#         elif m < 10:
-#             s = m
-#
-#     elif ex == "Moderate":
-#         val = 3
-#         m = float(val * ttime)
-#         print(m, "M")
-#         if m > 100:
-#             s = m // 100
-#         elif m >= 10:
-#             s = m // 10
-#         elif m < 10:
-#             s = m
-#
-#     elif ex == 1:
-#         val = 1
-#         m = float(val * ttime)
-#         print(m, "L")
-#         if m > 100:
-#             s = m // 100
-#         elif m >= 10:
-#             s = m // 10
-#         elif m < 10:
-#             s = m
-#     s += s
-#     print(s, "ape ni")
-#     y_axis.append(s)
-#     print(y_axis,"first append")
-#     new = y_axis
-#     print(new, "new list")
-#     if len(y_axis) < len(x_axis):
-#         y_axis.append(s)
-#         print(y_axis,"full list for now")
-#     # while True:
-#     #     if len(y_axis) < len(x_axis):
-#     #         y_axis.append(s)
-#     #         print(y_axis)
-#     #     elif len(y_axis) == len(x_axis):
-#     #         break
-#
-#
-#
-#
-#     # plotting the points
-#     # da = matplotlib.dates.drange(x_axis[0], x_axis[-1], 1)
-#     # plt.xlim(da)
-#     # plt.ylim(y_axis[0], y_axis[-1])
-#     plt.plot(x_axis, y_axis)
-#     y_axis.clear()
-#     print(y_axis,"list cleared")
-#     y_axis = new
-#     print(y_axis,'the new,kept list')
-#
-#     # naming the x axis
-#     plt.xlabel('Days in Month')
-#     # naming the y axis
-#     plt.ylabel('Progress')
-#
-#
-#
-#     # giving a title to my graph
-#     plt.title('Progress by Day')
-#
-#     # function to show the plot
-#     print('before')
-#
-#     if len(os.listdir('C:\Y1 SEM 2\OOPP\SCodings\static\images')) != 0:
-#           for file in os.listdir('C:\Y1 SEM 2\OOPP\SCodings\static\images'):
-#                 if "graph" in file:
-#                      print(file)
-#                      print('correct')
-#                      graphFile = open('graphFile.txt', 'r')
-#                      print("Directory is not empty")
-#                      print('gah1')
-#                      d = graphFile.read()
-#                      print(d)
-#                      s = d.partition('\static')
-#                      print(s)
-#                      os.remove('C:\Y1 SEM 2\OOPP\SCodings' + s[1] + s[2])
-#                      print('removed')
-#                      graphFile.close()
-#
-#     n = random.randint(0, 100)
-#     print(n)
-#
-#     # save new
-#     plt.savefig('C:\Y1 SEM 2\OOPP\SCodings\static\images\graph' + str(n) + '.png')
-#     print('boleh')
-#
-#     # (in persistence?)
-#     # inheritence(onclick)
-#     # while True:
-#     #     if month == 1:
-#     #     if month ==2:
-#
-#     # make new
-#     graphFile = open('graphFile.txt', 'w')
-#     graphFile.write('..\static\images\graph' + str(n) + '.png')
-#     # count += 1
-#     graphFile.close()
-#     print('stored')
-#
-#         # return render_template('index.html')
-
-# # class checkHour(AllBooks):
-# #     def __init__(self, ):
 
 
-# g = graph()
 
+def calc_reward(exercise, hour, mins, currentUserLogin):
+    print(currentUserLogin)
+    print('going in')
+    reward = AllBooks
+    # ex = AllBooks(exercise)
+    reward.exercise = exercise #betul
+    print(reward.exercise)
+    reward.hour = int(hour) * 60 #BETUL
+    print(reward.hour)
+    reward.mins = int(mins) #BETUL
+    print(reward.mins)
+    ttime = int(reward.hour + reward.mins) #BETUL
+    print(ttime)
+    print('calculating now')
+
+    if reward.exercise == "Vigorous":
+        val = 5
+        print(val)
+        m = float(int(val) * int(ttime))
+        print(m, "V")
+        if m > 100:
+            s = m // 100
+        elif m >= 10:
+            s = m // 10
+        elif m < 10:
+            s = m
+
+    elif reward.exercise == "Moderate":
+        val = 3
+        m = int(val * ttime)
+        print(m, "M")
+        if m > 100:
+            s = m // 100
+            print('divide 100', s)
+        elif m >= 10:
+            s = m // 10
+            print('divide 10', s)
+        elif m < 10:
+            s = m
+            print('tk divide', s)
+
+    elif reward.exercise == "Light":
+        val = 1
+        m = float(val * ttime)
+        print(m, "L")
+        if m > 100:
+            s = m // 100
+        elif m >= 10:
+            s = m // 10
+        elif m < 10:
+            s = m
+    print(s, 'before')
+    # s += s
+    # print(s, "ape ni")
+
+    print('loop!')
+    pstore = list(book.keys())
+    # print(pstore)
+    # while True:
+    #     for i in pstore:
+    #         print('checking...'+book[i].username)
+    #         if book[i].username == currentUserLogin:
+
+    # While True:
+    for i in pstore:
+        print(i)
+        # print(book[i].username)
+        for u in book[i].username:
+            if book[i].username == currentUserLogin:
+                print(book[i].username)
+                # print(currentUserLogin)
+                if path.exists('point_File' + book[i].username + '.txt'):
+                    print('file ade')
+                    print('alright to reading in file!!')
+                    point_File = open('point_File' + book[i].username + '.txt', 'r')
+                    prevpoints = point_File.read()
+                    num = int(prevpoints)
+                    point_File.close()
+                    print(prevpoints, 'dh baca')
+
+                    point_File = open('point_File' + book[i].username + '.txt', 'w')
+                    newpoints = (num + int(s))
+                    print(newpoints)
+                    npoints = point_File.write( "{}\n".format(newpoints))
+                    point_File.close()
+                    print(npoints, 'dh tukar')
+
+                    break
+
+                else:
+                    print('file tkde')
+                    print(s)
+                    point_File = open('point_File' + book[i].username + '.txt', 'w')
+                    firstpoints = point_File.write( "{}\n".format(s))
+                    print(firstpoints)
+                    point_File.close()
+
+                    print('jadi tk')
+                    break
+
+        break
+    print('out')
+
+def gen_num():
+    num = random.randint(1000,10000)
+    print(num)
+    return num
