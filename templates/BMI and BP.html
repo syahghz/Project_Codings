@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>BMI and Body Percentage</title>
+    <link rel="stylesheet" type="text/css" href="../static/styling/css6.css"/>
+</head>
+<body>
+<div class="ooppie">
+    <a href="{{ url_for('beginner') }}" id="bmi"> BMI</a>
+</div>
+<div class="ooppie">
+    <button onclick="myFunction"> <a href="/lololol" id="bp"> Body Percentage</a></button>
+</div>
+
+
+<script>
+function myFunction(){
+alert("hi");
+     /*confirm("Press a button!");*/
+	 if (prompt("Male or Female?"))
+	 {window.location="{{url_for('body')}}";}
+	 else{window.location="{{url_for('percent')";}
+	 }
+</script>
+</body>
+</html>

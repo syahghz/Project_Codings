@@ -44,13 +44,16 @@ def register():
     if request.method == 'POST':
         username = form.id.data
         password = form.password.data
+        email = form.email.data
         error = None
         if not username:
             error = 'Username is required.'
         elif not password:
             error = 'Password is required.'
+        elif not email:
+            error = 'Email required please'
         else:
-            create_user(username, password)
+            create_user(username, password, email)
             return redirect(url_for('login'))
         flash(error)
     return render_template('register.html', form=form)

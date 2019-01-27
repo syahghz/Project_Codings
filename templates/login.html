@@ -1,5 +1,5 @@
 <!doctype html>
-<title>Register - Flaskr</title>
+<title>Log In - Flaskr</title>
 <link rel="stylesheet" href="/static/css1.css">
 {%  from "includes/formhelper.html" import render_field %}
 <nav>
@@ -14,18 +14,18 @@
 <section class="content">
   <header>
 
-  <h1>Register</h1>
+  <h1>Log In</h1>
 
   </header>
   {% for message in get_flashed_messages() %}
     <div class="flash">{{ message }}</div>
   {% endfor %}
 
-  <form method="post">
+  <form method="post" action="/login">
     {{ render_field(form.id, class_='form-control') }}
     {{ render_field(form.password, class_='form-control') }}
-    {{ render_field(form.email, class_='form-control') }}
     {{ form.submit }}
+
   </form>
 
 </section>

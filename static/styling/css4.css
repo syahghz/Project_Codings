@@ -8,7 +8,7 @@
     border:1px solid whitesmoke;
    border-radius: 5px 5px;
     background-color: dimgrey;
-    height:40%;
+    height:80px;
 
 }
 
@@ -20,13 +20,20 @@
       background-color: ghostwhite;
       border: none;
       outline: none;
-      height:80px;
+      height:40px;
+
+}
+
+.control
+{
+    margin-left: 440px;
+    margin-top: 60px;
 
 }
 button:focus{ outline: 1px solid black}
 #weight
 {
-        margin-left: 300px;
+        margin-left: 450px;
         margin-top:20px;
         width:300px;
         text-align: center;
@@ -34,7 +41,7 @@ button:focus{ outline: 1px solid black}
 }
 #height
 {
-        margin-left: 300px;
+        margin-left: 450px;
         margin-top:10px;
         width:300px;
         text-align: center;
@@ -59,7 +66,7 @@ h1{
     padding-right: 80px;
     padding-top: 20px;
     padding-bottom: 20px;
-    margin-left: 300px;
+    margin-left: 480px;
 
 
 }

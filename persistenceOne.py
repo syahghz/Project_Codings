@@ -4,14 +4,12 @@ from datetime import date
 # today = str(date.today())
 
 class User:
-    def __init__(self, id):
-        self.__id = id
+    def __init__(self):
+
         self.__username = ''
         self.__password = ''
         self.__email =''
 
-    def get_id(self):
-        return self.__id
 
     def set_username(self, username):
         self.__username = username
@@ -41,12 +39,12 @@ users = shelve.open('user')
 
 
 def create_user(username, password, email):
-    id = str(uuid.uuid4())
-    user = User(id)
+
+    user = User()
     user.set_username(username)
     user.set_password(password)
     user.set_email(email)
-    users[id] = user
+    users[username] = user
 
 def get_user(username, password,email):
     klist = list(users.keys())
@@ -75,7 +73,7 @@ def init_db():
     clear_user()
 
     for i in range(5):
-        create_user('user'+str(i), 'pass'+str(i))
+        create_user('user'+str(i), 'pass'+str(i), 'email'+str(i))
 
 
 

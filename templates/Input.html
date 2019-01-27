@@ -1,24 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head class="navibar">
 
-    <title>Title</title>
+    <title>{% block title %}{% endblock %}</title>
+
     <link rel="stylesheet" type="text/css" href="../static/styling/css4.css"/>
-</head>
-<body>
-<div>
-    <h1> Weight</h1>
-<form method="post" >
 
-    <input type="number" id="weight" name="weight" placeholder="Please enter your weight" value="{{ request.form['weight'] }}}">
-    <input type="number" id="height" name="height" placeholder="Please enter your height" value="{{ request.form['height'] }}}">
-    <input id="next" type="submit" value="Next Please">
+
+       <h1 class="tname">Weight Warriors</h1>
+       <p id="welc">
+   <script>
+	  var currentuser=localStorage["currentuser"];
+	  var displayuser=document.getElementById("welc");
+	  displayuser.innerText="WELCOME  "+currentuser+"!";
+   </script>
+      </p>
+        <div class="navbar">
+
+      <a href="#" >Home</a>
+      <a href="#" >About Us</a>
+      <a href="#" >Event</a>
+      <a href="#" >Volunteer</a>
+      <a href="#" >Recipe</a>
+      <a href="#" >Exercises</a>
+
+    <div class="inspi">
+    <button class="inspibtn">Inspirations
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="inspidown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+    </div>
+  <a href="#" >Delivery</a>
+    <div class="profpic">
+    <button class="picdrop"><img src="https://www.cabe-africa.org/wp-content/uploads/2012/01/1.png" id="small">
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="picdown-content">
+      <a href="/TrackProg">Track Your Progress</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+</div>
+        </div>
+
+</head>
+<hr>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#wh").click(function(){
+    $("#w").slideToggle("slow");
+  });
+});
+</script>
+<body>
+
+
+    <p class="yo"> 1cm = 0.393701 inches</p>
+    <p class="yo"> 1kg = 2.20462 pounds</p>
+<div id="wh">
+    <button class="tag"> Click here for your Weight and Height!</button>
+</div>
+
+
+    <div id="w">
+<form method="POST" >
+    <label class="control" for="weight">Weight:</label><br>
+    <input type="number" step="0.01" id="weight" name="weight" placeholder="Please enter your weight (kg)" value="{{ request.form['weight'] }}"><br>
+    <br>
+    <br>
+    <label class="control" for="height">Height:</label><br>
+    <p><input type="number" step="0.01" id="height" name="height" placeholder="Please enter your height (m)" value="{{ request.form['height'] }}"></p>
+    <p><input id="next" type="submit" value="Next Please"></p>
 </form>
     <br>
     <br>
     <br>
-
-</div>
+    </div>
 
 
 </body>
