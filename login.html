@@ -1,31 +1,30 @@
+
 <!doctype html>
 <title>Log In - Flaskr</title>
 <link rel="stylesheet" href="/static/css1.css">
-{%  from "includes/formhelper.html" import render_field %}
 <nav>
   <h1>Flaskr</h1>
   <ul>
-
+    
       <li><a href="/register">Register</a>
       <li><a href="/login">Log In</a>
-
+    
   </ul>
 </nav>
 <section class="content">
   <header>
-
+    
   <h1>Log In</h1>
 
   </header>
-  {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-  {% endfor %}
-
+  
+  
   <form method="post" action="/login">
-    {{ render_field(form.id, class_='form-control') }}
-    {{ render_field(form.password, class_='form-control') }}
-    {{ form.submit }}
-
+    <label for="username">Username</label>
+    <input name="username" id="username" required>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+    <input type="submit" value="Log In">
   </form>
 
 </section>
