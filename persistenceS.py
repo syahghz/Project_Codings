@@ -4,14 +4,14 @@ import random
 # import matplotlib
 import os.path
 from os import path
-# import datetime
+from datetime import datetime
+from datetime import timedelta
 # import calendar
 
 
 book = shelve.open("book")
 x = []
-x_axis = []
-y_axis = []
+voucher_list =[]
 
 
 # def is_empty(list):
@@ -45,6 +45,7 @@ def storeBook(id, username, date, exercise, hour, mins):
     exist = False
 
     book[id] = bok
+    print(book[id])
     print('masuk storebook')
     return bok.exercise
 
@@ -60,30 +61,12 @@ def displaybook(currentUserLogin):
     for i in klist:
         # print('checking...'+book[i].username)
         if book[i].username == currentUserLogin:
+            print('displaybook', currentUserLogin)
+            print('showdbook', book[i].username)
             # print(x) #check if empty or not
             x.insert(0, book[i])
     print('masuk display')
     return x
-
-
-#
-# def graph(exer,hour,min):
-#     x_axis = []
-#     y_axis = []
-#
-#     now = datetime.datetime.now()
-#     no_of_days=calendar.monthrange(now.year, now.month)[1]
-#     # x_axis = []
-#     print(now.year, now.month)
-#     for i in range(no_of_days + 1)[1::]:
-#         x_axis.append(i)
-#     print(x_axis)
-#
-#
-# # corresponding y axis values
-#
-
-
 
 def calc_reward(exercise, hour, mins, currentUserLogin):
     print(currentUserLogin)
@@ -92,11 +75,11 @@ def calc_reward(exercise, hour, mins, currentUserLogin):
     # ex = AllBooks(exercise)
     reward.exercise = exercise #betul
     print(reward.exercise)
-    reward.hour = int(hour) * 60 #BETUL
+    reward.hour = float(hour) * 60 #BETUL
     print(reward.hour)
-    reward.mins = int(mins) #BETUL
+    reward.mins = float(mins) #BETUL
     print(reward.mins)
-    ttime = int(reward.hour + reward.mins) #BETUL
+    ttime = float(reward.hour + reward.mins) #BETUL
     print(ttime)
     print('calculating now')
 
@@ -114,7 +97,7 @@ def calc_reward(exercise, hour, mins, currentUserLogin):
 
     elif reward.exercise == "Moderate":
         val = 3
-        m = int(val * ttime)
+        m = float(val * ttime)
         print(m, "M")
         if m > 100:
             s = m // 100
@@ -141,31 +124,33 @@ def calc_reward(exercise, hour, mins, currentUserLogin):
     # print(s, "ape ni")
 
     print('loop!')
-    pstore = list(book.keys())
-    # print(pstore)
-    # while True:
-    #     for i in pstore:
-    #         print('checking...'+book[i].username)
+    # pstore = list(book.keys())
+    # for i in pstore:
+    #     print(i)
+    #     print(book[i].username, 'the book i')
+    #     for u in book[i].username:
     #         if book[i].username == currentUserLogin:
-
-    # While True:
-    for i in pstore:
-        print(i)
+    keys = list(book.keys())
+    for ind in keys:
+        print(ind)
         # print(book[i].username)
-        for u in book[i].username:
-            if book[i].username == currentUserLogin:
-                print(book[i].username)
-                # print(currentUserLogin)
-                if path.exists('point_File' + book[i].username + '.txt'):
+        # for u in book[ind].username:
+        #     print('masuk u')
+        #     print(u)
+        #     print(currentUserLogin)
+        if book[ind].username == currentUserLogin:
+                print(book[ind].username)
+                print(currentUserLogin)
+                if path.exists('point_File' + book[ind].username + '.txt'):
                     print('file ade')
                     print('alright to reading in file!!')
-                    point_File = open('point_File' + book[i].username + '.txt', 'r')
+                    point_File = open('point_File' + book[ind].username + '.txt', 'r')
                     prevpoints = point_File.read()
-                    num = int(prevpoints)
+                    num = float(prevpoints)
                     point_File.close()
                     print(prevpoints, 'dh baca')
 
-                    point_File = open('point_File' + book[i].username + '.txt', 'w')
+                    point_File = open('point_File' + book[ind].username + '.txt', 'w')
                     newpoints = (num + int(s))
                     print(newpoints)
                     npoints = point_File.write( "{}\n".format(newpoints))
@@ -177,18 +162,36 @@ def calc_reward(exercise, hour, mins, currentUserLogin):
                 else:
                     print('file tkde')
                     print(s)
-                    point_File = open('point_File' + book[i].username + '.txt', 'w')
-                    firstpoints = point_File.write( "{}\n".format(s))
+                    point_File = open('point_File' + book[ind].username + '.txt', 'w')
+                    firstpoints = point_File.write( "{}".format(s))
                     print(firstpoints)
                     point_File.close()
 
                     print('jadi tk')
                     break
+        else:
+            print('masuk else')
+            continue
 
-        break
+    # continue
     print('out')
 
-def gen_num():
+
+def gen_num(date, currentUsername):
+    currentUserList = []
+    #generate the code number
     num = random.randint(1000,10000)
     print(num)
-    return num
+    Dcode = "WW" + str(num)
+    print(Dcode)
+
+    #take the expiry date
+    datexp = (datetime.now() + timedelta(days=5)).strftime('%Y-%m-%d')
+    print(datexp)
+
+    currentUserList.append(currentUsername)
+    currentUserList.append(date)
+    currentUserList.append(Dcode)
+    currentUserList.append(datexp)
+    print(currentUserList)
+    return currentUserList

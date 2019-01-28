@@ -25,49 +25,55 @@ def add():
             id = str(uuid.uuid4())
             dt = datetime.datetime.now()
             date = dt.strftime("%d") + " " + dt.strftime("%B") + " " + dt.strftime("%Y")
-            # real_time =
             error = None
-            currentUsername = 'mark' #'vera'
+            currentUsername = 'xuxi' #'vera'
             storeBook(id, currentUsername, date, exer, hours, mins)
 
             tester = displaybook(currentUsername)
-            request.form = ""
-            # print(exer)
             user_reward = calc_reward(exer, hours, mins, currentUsername)
             if path.exists('point_File' + currentUsername + '.txt'):
+                print('bacefile')
                 point_File = open('point_File' + currentUsername + '.txt', 'r')
                 prevpoints = point_File.read()
-                num = int(prevpoints)
+                num = float(prevpoints)
                 point_File.close()
-                points = int(num)
+                points = float(num)
                 if points >= 50:
-                    ncode = gen_num()
+                    ncode = gen_num(date, currentUsername)
                     print(ncode, "passed through PS")
-                    Dcode = "WW" + str(ncode)
-                    print(Dcode)
+
+                    if ncode[0] == currentUsername:
+                            print(ncode[0], 'usernow')
+                            Rcode = ncode[-2]
+                            print(Rcode, 'the code')
+
                     point_File = open('point_File' + currentUsername + '.txt', 'w')
                     aftpoints = points - 50
-                    leftpoints = point_File.write("{}\n".format(aftpoints))
+                    leftpoints = point_File.write("{}".format(aftpoints))
                     print(leftpoints)
                     point_File.close()
-                    return render_template('TrackProg.html', tester=tester, points=points, Dcode=Dcode)
-                print('tkde')
+                    return render_template('TrackProg.html', tester=tester, points=points, Rcode=Rcode)
+                else:
+                    print('tkde')
+                    return render_template('TrackProg.html', tester=tester, points= 0)
+            else:
+                return render_template('TrackProg.html', tester=tester, points=0)
 
-                return render_template('TrackProg.html', tester=tester, points=points)
 
     else:
-        currentUsername = 'mark'
+        currentUsername = 'xuxi'
         tester = displaybook(currentUsername)
         if path.exists('point_File' + currentUsername + '.txt'):
             point_File = open('point_File' + currentUsername + '.txt', 'r')
             prevpoints = point_File.read()
-            num = int(prevpoints)
+            num = float(prevpoints)
             point_File.close()
-            points = int(num)
-
+            points = float(num)
+            print(points, 'in else')
             return render_template('TrackProg.html', tester=tester, points=points)
         else:
             points = 0
+            print('tkde file utk bace')
             return render_template('TrackProg.html', tester=tester, points=points)
 
 

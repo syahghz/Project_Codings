@@ -80,10 +80,11 @@
     {% if points > 49 %}
         Your Points:
             Yay! You have accumulated {{points}} points! We are gifting you a $2 voucher for your hard work!
-            Use code <div>{{[ Dcode ]}}</div>
+            Use code <div>{{[ Rcode ]}}</div>
         <p>Voucher is to be used in the delivery page only</p>
         <button>Use Now</button>
-
+    {% elif points < 50 %}
+            <div>{{points}} to be hidden </div>
 
     {% endif %}
 </div>
