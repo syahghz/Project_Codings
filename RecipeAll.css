@@ -7,7 +7,7 @@ h1{
     text-align: center;
 }
 
-body{
+#bodyyy{
     margin-left:6em;
 }
 
@@ -18,5 +18,48 @@ th{
 table{
     text-align: left;
     padding-left: 2em;
+    padding-right:2em;
 }
 
+.image{
+    width:20em;
+    height:15em;
+}
+
+.button{
+    font-size:auto;
+    float:right;
+    margin-right:5em;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    background-color: #00868B;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    width:auto;
+    padding:1em;
+    text-decoration:none;
+}
+
+.button:hover {background-color: #006366;}
+
+.button:active {
+  background-color: #00868B;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.action{
+    text-decoration:none;
+    font-size:normal;
+    background-color: #00868B;
+    border: none;
+    width:99%;
+    height: auto;
+    color:white;
+    padding: 1em;
+}
+
+.action:hover {background-color: #006366;}

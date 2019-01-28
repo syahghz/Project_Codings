@@ -1,57 +1,43 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Recipe</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Recipe.css') }}">
-</head>
-<body>
-<header>
-    <h1 id="titleee">{{ post.dishName }}</h1>
-</header>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styleBar.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Recipe.css') }}">
+<div id = 'top'></div>
+{% extends 'NavBar.html' %}
 
-<!--{% for post in posts %}-->
-    <!--<article class="post">-->
-      <!--<header>-->
-        <!--<div>-->
-          <!--<h1>{{ post['dishName'] }}</h1>-->
-          <!--&lt;!&ndash;<div class="about">by {{ post['username'] }} on {{ post['created'] }}</div>&ndash;&gt;-->
-        <!--</div>-->
-        <!--&lt;!&ndash;{% if session['user_name'] == post['username'] %}&ndash;&gt;-->
-          <!--&lt;!&ndash;<a class="action" href="{{ url_for('update', id=post['id']) }}">Edit</a>&ndash;&gt;-->
-        <!--&lt;!&ndash;{% endif %}&ndash;&gt;-->
-      <!--</header>-->
-      <!--<p class="ingredients">{{ post['ingredients'] }}</p>-->
-         <!--<p class="instructions">{{ post['instructions'] }}</p>-->
-    <!--</article>-->
-    <!--{% if not loop.last %}-->
-      <!--<hr>-->
-    <!--{% endif %}-->
-  <!--{% endfor %}-->
+{% block header %}
+<br><br><br><br><br><br><br><br>
+<div><h1>{% block title %}{{ request.form['dishName'] or post['dishName'] }}{% endblock %}</h1>
 
+        <div class="about">by {{ post['username'] }} on {{ post['created'] }}</div>
+        {% if session['user_name'] == post['username'] %}
+        <a class="action" onclick="return confirm('Are you sure?');" href="{{ url_for('delete', id=post['id']) }}">Delete</a>
+        <a class="action" id="edit" href="{{ url_for('update', id=post['id']) }}">Edit</a>
+{% endif %}
+{% endblock %}
 
-<table border="1">
-        <tr>
-        <th height="300">
-            <h2>Ingredients</h2>
-            <p>{{ post['ingredients']}}</p>
-        </th>
-<!--change width too longg-->
-    <th height="300">
-        <h2>Nutritional Value</h2>
-        <p>{{ post['nutrition']}}</p>
-        </th>
+{% block content %}
+    <div id = "bodyyy">
+    <img class="image" src="/static/images/{{ post['file'] }}">
+    <table style="border:solid 2px black; width:95%">
+
+        <tr style="width:95%">
+            <th style="height:15em;">
+                <h2>Ingredients</h2>
+                <p>{{ request.form['ingredients'] or post['ingredients'] }}</p>
+            </th>
+            <th style="height:15em;">
+                <h2>Nutritional Value</h2>
+                <p>{{ request.form['nutrition'] or post['nutrition'] }}</p>
+            </th>
 
         </tr>
-    <tr>
-        <th height="300"  colspan='2'>
-            <h2>Instructions</h2>
-            <p>{{ post['instructions']}}</p>
-        </th>
+        <tr>
+            <th style='height:15em;' colspan='2'>
+                <h2>Instructions</h2>
+                <p>{{ request.form['instructions'] or post['instructions'] }}</p>
+            </th>
+        </tr>
 
-    </tr>
-
-</table>
-
-</body>
-</html>
+    </table>
+    </div>
+<br><br><br><br>
+{% endblock %}

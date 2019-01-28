@@ -4,14 +4,13 @@
 
 {% block header %}
 <br><br><br><br><br><br><br><br>
-<div><h1>{% block title %}Create Recipe{% endblock %}</h1></div>
+<div><h1>{% block title %}Update Recipe{% endblock %}</h1></div>
 {% endblock %}
 
 {% block content %}
 <body>
-
 <div class = "form">
-    <form method="post" enctype="multipart/form-data" action="/">
+    <form method="post" enctype="multipart/form-data" >
 
         <table>
         <tr>
@@ -21,7 +20,7 @@
             <br>
             <br>
 
-             <textarea name="dishName" id="dishName" class="textbox" maxlength='50' required></textarea>
+             <textarea name="dishName" id="dishName" class="textbox">{{ request.form['dishName'] or post['dishName'] }}</textarea>
             <br>
             <br>
         <label for="ingredients">Ingredients</label>
@@ -29,7 +28,7 @@
             <br>
             <br>
 
-        <textarea name="ingredients" id="ingredients" class="textbox" required></textarea>
+        <textarea name="ingredients" id="ingredients" class="textbox">{{ request.form['ingredients'] or post['ingredients'] }}</textarea>
 
         <br>
         <br>
@@ -39,7 +38,7 @@
             <br>
             <br>
 
-        <textarea name="nutrition" id="nutrition" class="textbox" required></textarea>
+        <textarea name="nutrition" id="nutrition" class="textbox">{{ request.form['nutrition'] or post['nutrition'] }}</textarea>
 
         <br>
         <br>
@@ -54,7 +53,7 @@
                 <br>
                 <br>
 
-        <textarea name="instructions" id="instructions" rows="26" cols="100" required></textarea>
+        <textarea name="instructions" id="instructions" rows="28" cols="100">{{ request.form['instructions'] or post['instructions'] }}</textarea>
 
         <br>
         <br>
@@ -63,7 +62,7 @@
                 <br>
                 <br>
 
-                <input type="submit" value="Create" id = "submit">
+                <input type="submit" value="Save" id="submit">
             </th>
         </tr>
         </table>
@@ -71,4 +70,5 @@
     </div>
 
 </body>
+
 {% endblock %}
