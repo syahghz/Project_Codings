@@ -7,6 +7,7 @@ IteminStore=shelve.open("IteminStore")
 ACart=shelve.open("allcart")
 users = shelve.open('user')
 blogs = shelve.open('blog')
+admins = shelve.open('admin')
 
 
 
@@ -34,24 +35,6 @@ blogs = shelve.open('blog')
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #Nicole's code
 import shelve
 import uuid
@@ -63,6 +46,7 @@ class User:
         self.__id = id
         self.__username = ''
         self.__password = ''
+        self.__email=''
 
     def get_id(self):
         return self.__id
@@ -72,12 +56,16 @@ class User:
 
     def set_password(self, password):
         self.__password = password
+    def set_email(self,email):
+        self.__email=email
 
     def get_username(self):
         return self.__username
 
     def get_password(self):
         return self.__password
+    def get_email(self):
+        return self.__email
 
 class Blog:
     def __init__(self, id):
@@ -115,21 +103,39 @@ def get_blog(id):
     if id in blogs:
         return blogs[id]
 
-def create_user(username, password):
+def create_user(username, password,email):
     id = str(uuid.uuid4())
     user = User(id)
     user.set_username(username)
     user.set_password(password)
+    user.set_email(email)
     users[id] = user
 
-def get_user(username, password):
+def get_user(username, password,email):
     klist = list(users.keys())
     for key in klist:
         user = users[key]
-        print(user.get_username(), username, user.get_password(), password)
-        if user.get_username() == username and user.get_password() == password:
+        print(user.get_username(), username, user.get_password(), password ,user.get_email(), email)
+        if user.get_username() == username and user.get_password() == password and user.get_email()==email:
             return user
     return None
+
+# def create_user(username, password,email):
+#     id = str(uuid.uuid4())
+#     user = User(id)
+#     user.set_username(username)
+#     user.set_password(password)
+#     user.set_email(email)
+#     users[id] = user
+#
+# def get_user(username, password , email):
+#     klist = list(users.keys())
+#     for key in klist:
+#         user = users[key]
+#         print(user.get_username(), username, user.get_password(), password)
+#         if user.get_username() == username and user.get_password() == password and user.get_email()== email:
+#             return user
+#     return None
 
 def update_user(id, user):
     users[id] = user
@@ -152,7 +158,7 @@ def init_db():
     clear_user()
     clear_blog()
     for i in range(5):
-        create_user('user'+str(i), 'pass'+str(i))
+        create_user('user'+str(i), 'pass'+str(i),'email'+str(i) )
         create_blog('user'+str(i), 'title'+str(i), 'body'+str(i))
 
 
@@ -168,13 +174,48 @@ def init_db():
 
 
 
-
-
-
 #my code
+class Admin:
+    def __init__(self, id):
+        self.__id = id
+        self.__username = ''
+        self.__password = ''
+        self.__email=''
+        self.__pic=''
+    def get_id(self):
+        return self.__id
+    def set_username(self, username):
+        self.__username = username
+    def set_password(self, password):
+        self.__password = password
+    def set_email(self,email):
+        self.__email=email
+    def set_pic(self,pic):
+        self.__pic=pic
+    def get_username(self):
+        return self.__username
+    def get_password(self):
+        return self.__password
+    def get_email(self):
+        return self.__email
+    def get_pic(self):
+        return self.__pic
 
+def create_admin(username, password,email):
+    id = str(uuid.uuid4())
+    admin = Admin(id)
+    admin.set_username(username)
+    admin.set_password(password)
+    admin.set_email(email)
+    admins[id] = admin
 
-
+def get_admin(username, password,email):
+    klist = list(admins.keys())
+    for key in klist:
+        admin = admins[key]
+        if admin.get_username() == username and admin.get_password() == password and admin.get_email()==email:
+            return admin
+    return None
 
 
 
@@ -206,42 +247,6 @@ class Item:
         self.calories=calories
     def set_ingredient(self,ingredient):
         self.ingredient=ingredient
-
-# class Food(Item):
-#     def __init__(self,ingredient):
-#         super().__init__()
-#         self.ingredient=ingredient
-
-    # def get_ingredient(self):
-    #     return self.__ingredient
-
-
-# class drink(Item):
-#     def __init__(self,name,price,calories):
-#         super().__init__()
-
-
-class Store:
-    fooddetail={}
-    foodname=[]
-    # fooddetail={"Soba noodle":{"name":"Soba noodle","price":"$3.50","calories":"205","ingredient":"green soybeans,low sodium soy sauce,fresh lime juice,sesame oil,cilantro,green onion,Sesame seeds,For a spicy alternative,weet chili sauce or sriracha sauce","pic":"soba_noodles.jpg"},
-    #             "thai noodle salad":{"name":"thai noodle salad","price":"$4","calories":"235","ingredient":"bean sprout,limes,zests and juice,salt-reduced soy sauce,brown sugar,red onion,carrot,spring onion,red capsicums,tomatoes,cucumber,lettuces,pork mince,ginger,garlic,chili powder"}
-    #             ,"Roasted Cauliflower and Broccoli":{"name":"Roasted Cauliflower and Broccoli","price":"$4.50","calories":"320","ingredient":"cauliflower,broccoli,garlic,olive oil,teaspoon salt"}
-    #             }
-
-
-    # foodname=["Soba noodle","thai noodle salad","Roasted Cauliflower and Broccoli"]
-    # def Storing(self):
-    #     f1=Food("Soba noodle","$3.50","205","green soybeans,low sodium soy sauce,fresh lime juice,sesame oil,cilantro,green onion,Sesame seeds,For a spicy alternative,weet chili sauce or sriracha sauce")
-    #     Store.fooddetail[f1.name]=f1
-    #     Store.foodname.append(f1.name)
-    #     f2=Food("thai noodle salad","$4","235","bean sprout,limes,zests and juice,salt-reduced soy sauce,brown sugar,red onion,carrot,spring onion,red capsicums,tomatoes,cucumber,lettuces,pork mince,ginger,garlic,chili powder")
-    #     Store.fooddetail[f2.name]=f2
-    #     Store.foodname.append(f2.name)
-    #     f3=Food("Roasted Cauliflower and Broccoli","$4,50","320","cauliflower,broccoli,garlic,olive oil,teaspoon salt")
-    #     Store.fooddetail[f3.name]=f3
-    #     Store.foodname.append(f3.name)
-
 
 
 
@@ -396,32 +401,22 @@ class editprofile(User):
     def __init__(self,id):
         super().__init__(id)
         self.__pic=""
-        self.__gender=""
         self.__goal=""
         self.__achievement=""
-        self.__address=""
-        self.__number=""
+
     def get_pic(self):
         return self.__pic
-    def get_gender(self):
-        return self.__gender
     def get_goal(self):
         return self.__goal
     def get_achievement(self):
         return self.__achievement
-    def get_address(self):
-        return self.__address
-    def get_number(self):
-        return self.__number
 
-    def set_gender(self,gender):
-        self.__gender=gender
     def set_goal(self,goal):
         self.__goal=goal
     def set_achievement(self,achievement):
         self.__achievement=achievement
-    def set_address(self,address):
-        self.__address=address
+    def set_pic(self,pic):
+        self.__pic=pic
 
 class usergoal(User):
     def __init__(self,id,goal):
@@ -430,6 +425,17 @@ class usergoal(User):
     def get_goal(self):
         return self.__goal
 
+# def adduserinfo(goal,achievement,pic):
+#     id = str(uuid.uuid4())
+#     info= editprofile(id)
+#     info.get_pic=pic
+#     info.get_goal=goal
+#     info.get_achievement=achievement
+#     userinfo[id] = info
+#     print(userinfo)
+
+
+
 # def addgoall(goal):
 #     id = str(uuid.uuid4())
 #     info= addgoall(id)
@@ -437,16 +443,70 @@ class usergoal(User):
 #     info.get_goal = goal
 #     userinfo["username"]][id] = info
 
+user=User(id)
+def adduserinfo(id,goal,achievement,pic):
+    # id = str(uuid.uuid4())
 
-def adduserinfo(gender, goal, achievement,address):
-    id = str(uuid.uuid4())
     info= editprofile(id)
-    # info.get_pic=pic
-    info.get_gender=gender
-    info.get_goal=goal
-    info.get_achievement=achievement
-    info.get_address=address
+    info.set_pic(pic)
+
+    test1=goal
+    while True:
+        if test1.startswith(" "):
+            test1= test1[1:]
+        else:
+            break
+    info.set_goal(test1)
+
+    test=achievement
+    while True:
+        if test.startswith(" "):
+            test= test[1:]
+        else:
+            break
+
+    info.set_achievement(test)
+    for i in userinfo:
+        if i==id:
+
+
+            del userinfo[id]
+            userinfo[id] = info
+
     userinfo[id] = info
+
+    print(userinfo[id])
+def userinfocallp(id):
+    for i in userinfo:
+        if i==id:
+            bb=userinfo[i]
+            # test1=bb.get_pic()
+
+            # userinfo[i]=test1
+            return bb.get_pic()
+    return ""
+
+def userinfocall(id):
+    for i in userinfo:
+        if i==id:
+            aa=userinfo[i]
+            print(aa.get_goal())
+            # test1=aa.get_goal()
+            # userinfo[id]=test1
+            return aa.get_goal()
+    return ""
+
+def userinfocalle(id):
+    for i in userinfo:
+        if i==id:
+            cc=userinfo[i]
+            print(userinfo[i])
+            print(cc.get_achievement())
+            # test1=cc.get_achievement()
+            return cc.get_achievement()
+
+    return ""
+
 
 def update_userinfo(info):
     userinfo[info.id] = info
@@ -463,7 +523,6 @@ def get_allinfo(id):
         return userinfo[id]
 
 def reduce():
-    print("im runnibg")
     for i in ACart:
 
         itemCart=ACart[i]
@@ -490,7 +549,7 @@ def storeintocart(id,quantity):
     test1=ACart[str(len(ACart)-1)]
     test1.quantity=quantity
     test1.price=float(test1.price)*int(test1.quantity)
-    test1.calories=float(test1.calories)*int(test1.quantity)
+    test1.calories=int(test1.calories)*int(test1.quantity)
     del ACart[str(len(ACart)-1)]
     ACart[str(len(ACart)-1)]=test1
 
@@ -503,4 +562,7 @@ def give_ACart():
     for i in klist:
         x.append(ACart[i])
     return x
+
+
+
 

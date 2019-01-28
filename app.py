@@ -10,8 +10,12 @@ import functools
 from werkzeug import *
 from werkzeug.utils import secure_filename
 import os
+from random import *
 import jinja2
 import sys
+from datetime import *
+from tkinter import *
+
 
 
 app.secret_key = '\xf5!\x07!qj\xa4\x08\xc6\xf8\n\x8a\x95m\xe2\x04g\xbb\x98|U\xa2f\x03'
@@ -81,10 +85,8 @@ app.config.from_mapping(
 #food=persistence.Store
 
 
-from tkinter import *
 
-def helloCallBack():
-    return render_template("delivery.html")
+
 #
 # def page1():
 #     page2text.pack_forget()
@@ -106,15 +108,23 @@ def helloCallBack():
 def remind():
 
     window= Tk()
+    width_of_window=460
+    height_of_window=115
+    screen_width=window.winfo_screenwidth()
+    screen_height=window.winfo_screenheight()
+    x_coordinate=(screen_width/2)-(width_of_window/2)
+    y_coordinate=(screen_height/2)-(height_of_window/2)
+    window.geometry("%dx%d+%d+%d" % (width_of_window,height_of_window,x_coordinate,y_coordinate))
     window.title("Have you?")
+    # window.wm_iconbitmap("../static/images/logo.png")
     window.configure(background="white")
     window.attributes('-topmost',True)
     pp=get_allinfos()
     Label(window , bg="white").grid(row=0,column=0)
-    Label(window , text="Have you exercise",bg="white",fg="black",font="none 40 bold").grid(row=1, column=0,sticky=N)
-    Button(window,text="No",width=6, command=window.destroy ).grid(row=3,column=0,sticky=W)
-    Button(window,text="Yes",width=6 ,command=buttonClick()).grid(row=3,column=0,sticky=E)
-    Button(window,text="Yes",width=6 ,command=lambda aurl="http://127.0.0.1:5000/l":OpenUrl(aurl)).grid(row=3,column=0,sticky=E)
+    Label(window , text="Have you exercise",bg="#00868B",fg="white",font="none 40 bold").grid(row=1, column=0,sticky=N)
+    Button(window,text="No",width=6, command=window.destroy ,fg="white",bg="#297373" ).grid(row=3,column=0,sticky=W)
+    Button(window,text="Yes",width=6 ,command=buttonClick(),fg="white",bg="#297373").grid(row=3,column=0,sticky=E)
+    Button(window,text="Yes",width=6 ,command=lambda aurl="http://127.0.0.1:5000/l":OpenUrl(aurl) ,fg="white",bg="#297373").grid(row=3,column=0,sticky=E)
 
     window.mainloop()
     return render_template("profile.html")
@@ -124,24 +134,11 @@ def buttonClick():
 def OpenUrl(url):
     webbrowser.open_new(url)
 
-
-
-
 @app.route("/l")
 def aboutitem():
-    print('*****************111.....')
-    if 'id' in session:
-        print('*****************111-0.....')
         item = get_itemallinfos()
-
         return render_template('delivery.html', item=item)
-    else:
-        print('*****************111-1.....')
-        return render_template('login.html')
-    # item=Store.fooddetail
-    # foodname=Store.foodname
-    # #return render_template("aboutitem.html" , aboutitem=food)
-    # return render_template("aboutitem.html",item=item,foodname=foodname)
+
 
 @app.route('/<string:id>/deleteitemadmin', methods=('GET', 'POST'))
 def deleteitem(id):
@@ -160,10 +157,6 @@ def deleteitem(id):
 
 
 
-@app.route("/plain")
-def plain():
-    return render_template("plain.html")
-
 @app.route("/showitemdetail/<id>")
 def show_item(id):
     item = get_itemallinfo(id)
@@ -175,25 +168,6 @@ def show_item(id):
         data.append(dict(num))
     return render_template("itemdetail.html",item = item ,data=data)
 
-# @app.route("/cart")
-# def shopping_cart():
-#     if "cart" not in session:
-#         flash("There is nothing in your cart.")
-#         return render_template("cart.html", display_cart = {}, total = 0)
-#     else:
-#         items = session["cart"]
-#         dict_of_melons = {}
-#
-#         total_price = 0
-#         for item in items:
-#             melon = get_itemallinfo(item)
-#             total_price += float(melon.price)
-#             if melon.id in dict_of_melons:
-#                 dict_of_melons[melon.id]["qty"] += 1
-#             else:
-#                 dict_of_melons[melon.id] = {"qty":1, "name": melon.name, "price":melon.price}
-#
-#         return render_template("cart.html", display_cart = dict_of_melons, total = total_price )
 
 @app.route("/cart")
 def shopping_cart():
@@ -237,14 +211,11 @@ def shopping_cart():
 
 @app.route("/add_to_cart/<id>", methods=('GET', 'POST'))
 def add_to_cart(id):
-    print("test0")
     if request.method == 'POST':
         quantity = request.form['quantity']
         storeintocart(id,quantity)
-        print("test1")
         return redirect("/cart")
 
-    print("test2")
     if "cart" not in session:
         session["cart"] = []
 
@@ -270,32 +241,58 @@ def delete_cart(id):
 
 @app.route("/payment")
 def payment():
-    return render_template("payment.html")
+    listofitem=give_ACart()
+    dictCart=give_ACartDict()
+    total_calories=0
+    total_price=0
+    for i in dictCart:
+        item=dictCart[i]
+
+        total_price += float(item.price)
+        total_calories+=float(item.calories)
+    return render_template("payment.html",display_cart=listofitem,total=total_price,calories=total_calories)
 
 @app.route("/creditcard" , methods=('GET', 'POST'))
 def creditcard():
     if request.method == 'POST':
-        cardname = request.form['cardname']
-        cardnumber = request.form['cardnumber']
-        expiry = request.form['expiry']
-        scode = request.form['scode']
-        error = None
-        if cardname.isalpha()==False:
-            error = 'Must be letters'
-        else:
-            if len(cardnumber)!=16:
-                error = 'It must only contain 16 digits. '
-            elif cardnumber.isdigit()==False:
-                error = 'It must contain only digits.'
-            else:
-                if len(scode)<3 or len(scode)>4:
-                    error= 'Please enter a valid security code'
-                else:
-                    if error is not None:
 
-                        flash(error)
-                    else:
-                        return redirect(url_for('aboutitem'))
+        # cardname = request.form['cardname']
+        # cardnumber = request.form['cardnumber']
+        expiry = request.form['expiry']
+        # scode = request.form['scode']
+
+        # if cardname.isalpha()==False:
+        #     error = 'Must be letters'
+        # else:
+        #     if len(cardnumber) != 16:
+        #         error = 'It must only contain 16 digits.'
+        #     elif cardnumber.isdigit() == False:
+        #         error = 'It must contain only digits.'
+        #     else:
+        #         if len(scode)<3 or len(scode)>4:
+        #             error= 'Please enter a valid security code'
+        #         else:
+        today=datetime.today()
+        month=int(today.month)
+        year= str(today.year)
+        year=int(year[-2:])
+        inputMonth= int(expiry[:2])
+        inputYear= int(expiry[-2:])
+        if (inputYear<year):
+            error="The card has expired."
+            flash( error )
+        elif (inputYear>=year):
+            if(inputMonth>12 or inputMonth<0):
+                error="Please enter a valid month."
+                flash(error)
+            else:
+                if(inputMonth<month):
+                    error="The card has expired."
+                    flash( error )
+                else:
+                    return redirect(url_for('finish'))
+        else:
+            return redirect(url_for('finish'))
     return render_template("creditcard.html")
 
 @app.route("/address" ,methods=('GET', 'POST'))
@@ -303,19 +300,7 @@ def afterpayment():
     if request.method == 'POST':
         contactnumber = request.form['contactnumber']
         add = request.form['add']
-        error = None
-        if not contactnumber:
-            error = 'contactnumber is required.'
-
-        elif not add:
-            error = 'Address is required'
-
-        else:
-            if len(contactnumber)!= 8:
-                error='Please enter a valid contact number'
-                flash(error)
-            else:
-                return redirect(url_for('payment'))
+        return redirect(url_for('payment'))
 
     return render_template("afterpay.html")
 
@@ -350,6 +335,19 @@ def allowed_file(filename):
 
 # admin for delivery
 
+
+@app.route("/adminpage")
+def adminpage():
+    if 'id' in session:
+        item = get_itemallinfos()
+        return render_template('adminpage.html',item=item )
+
+    else:
+        return render_template('login.html')
+
+
+
+
 @app.route("/adminl")
 def adminaboutitem():
     if 'id' in session:
@@ -371,19 +369,16 @@ def createitem():
         # file = request.files['picitem']
 
         if 'picitem' not in request.files:
-            flash('No file part')
             return redirect(request.url)
 
         file = request.files['picitem']
         # if user does not select file, browser also
         # submit a empty part without filename
         if file.filename == '':
-            flash('No selected file')
             return redirect(request.url)
 
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            flash('file {} saved'.format(file.filename))
             #filepic=file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             file.save(os.path.join(os.path.abspath('static'), 'images', filename))
             # return redirect('/l')
@@ -407,22 +402,15 @@ def updateitem(id):
         calories = request.form['calories']
         ingredient = request.form['ingredient']
         quantity = request.form["quantity"]
-        error = None
 
-        if not name:
-            error = 'Name is required.'
+        post.name = name
 
-        if error is not None:
-            flash(error)
-        else:
-            post.name = name
-
-            post.price = price
-            post.calories = calories
-            post.ingredient = ingredient
-            post.quantity= quantity
-            update_iteminfo(post)
-            return redirect(url_for('aboutitem'))
+        post.price = price
+        post.calories = calories
+        post.ingredient = ingredient
+        post.quantity= quantity
+        update_iteminfo(post)
+        return redirect(url_for('aboutitem'))
 
     return render_template('updateitem.html', post=post)
     # pic = request.files["picitem"]
@@ -439,69 +427,124 @@ def updateitem(id):
 
 
 
+# @app.route("/profile/<id>")
+# def profile(id):
+#     if 'id' in session:
+#         post=editprofile
+#         pp = get_allinfos()
+#         return render_template('profile.html', post=post,pp=pp)
+#
+#     else:
+#         return render_template('login.html')
+
+# @app.route("/editprofile",methods=('GET', 'POST'))
+# def editprofile():
+#     if request.method == 'POST':
+#         goal = request.form['goal']
+#         achievement=request.form['achievement']
+#         pic=request.form['picitem']
+#
+#         file = request.files['picitem']
+#         # if user does not select file, browser also
+#         # submit a empty part without filename
+#         if file and allowed_file(file.filename):
+#             filename = secure_filename(file.filename)
+#             flash('file {} saved'.format(file.filename))
+#             #filepic=file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+#             file.save(os.path.join(os.path.abspath('static'), 'images', filename))
+#             # return redirect('/l')
+#             # return redirect(url_for('createitem',filename=filepic))
+#         adduserinfo( goal,achievement,pic)
+#         return redirect(url_for('profile',id=session["id"]))
+#     return render_template("editprofile.html")
 
 
-@app.route("/profile")
-def profile():
+
+
+#with the help of Ace
+@app.route("/profile/<id>")
+def profile(id):
+    id=session['user_name']
+    if 'id' in session:
+        post=editprofile
+        pp = get_allinfo(id)
+        cc=userinfocall(id)
+        aa=userinfocalle(id)
+        bb=userinfocallp(id)
+        return render_template('profile.html', post=post,pp=pp,cc=cc,aa=aa,bb=bb)
+
+    else:
+        return render_template('login.html')
+    #
     # username = request.form['username']
     # password = request.form['password']
     # user = get_user(username, password)
     # session['id'] = user.get_id()
     # session['user_name'] = user.get_username()
-    post=editprofile
-    pp=get_allinfos()
-    return render_template("profile.html",post=post,pp=pp)
+    # post=editprofile
+    # pp=get_allinfos()
+    #
+    # return render_template("profile.html",post=post,pp=pp)
 
 @app.route("/editprofile",methods=('GET', 'POST'))
 def editprofile():
+
+    id=session['user_name']
+    aa=userinfocall(id)
+    bb=userinfocallp(id)
+    cc=userinfocalle(id)
+
     if request.method == 'POST':
-        gender = request.form.get('comp_select')
+
         goal = request.form['goal']
         achievement=request.form['achievement']
-        address = request.form['address']
-        # if 'picitem' not in request.files:
-        #     flash('No file part')
-        #     return redirect(request.url)
-        #
-        # file = request.files['picitem']
-        # # if user does not select file, browser also
-        # # submit a empty part without filename
-        # if file.filename == '':
-        #     flash('No selected file')
-        #     return redirect(request.url)
-        #
+        try:
+            file = request.files['picitem']
+            if 'picitem' not in request.files:
+                return redirect(request.url)
+            file = request.files['picitem']
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+            #filepic=file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                file.save(os.path.join(os.path.abspath('static'), 'images', filename))
+            # return redirect('/l')
+            # return redirect(url_for('createitem',filename=filepic))
+                adduserinfo(id, goal,achievement,file.filename)
+                return redirect(url_for('profile',id=session["id"],filename=file.filename))
+            print(file)
+            print(type(file))
+        except:
+            # file="FileStorage: 'default.png' ('image/png')"
+            file="default.png"
+            adduserinfo(id, goal,achievement,file)
+
+            return redirect(url_for('profile',id=session["id"],filename=file))
+        # if user does not select file, browser also
+        # submit a empty part without filename
         # if file and allowed_file(file.filename):
         #     filename = secure_filename(file.filename)
-        #     flash('file {} saved'.format(file.filename))
         #     #filepic=file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         #     file.save(os.path.join(os.path.abspath('static'), 'images', filename))
         #     # return redirect('/l')
         #     # return redirect(url_for('createitem',filename=filepic))
-        adduserinfo( gender,goal,achievement,address )
-        return redirect(url_for('profile'))
-    return render_template("editprofile.html",data=[{'gender':'Unknown'}, {'gender':'Male'}, {'gender':'Female'}])
+        #     adduserinfo(id, goal,achievement,file.filename)
+        #     return redirect(url_for('profile',id=session["id"],filename=file.filename))
+    return render_template("editprofile.html",aa=aa,bb=bb,cc=cc)
 
 
-@app.route('/<string:id>/update', methods=('GET', 'POST'))
-def update(id):
+@app.route('/<string:id>/updateprofile', methods=('GET', 'POST'))
+def updatep(id):
+    pp=get_allinfos()
+    id=session["user_name"]
     post =get_allinfo(id)
     if request.method == 'POST':
-        gender = request.form.get('comp_select')
         goal = request.form['goal']
         achievement=request.form['achievement']
-        address = request.form['address']
-        error = None
-
-        # if not :
-        #     error = 'Title is required.'
-
-        if error is not None:
-            flash(error)
-        else:
-            adduserinfo(gender,goal,achievement,address)
-            return redirect(url_for('profile'))
-
-    return render_template("editprofile.html",data=[{'gender':'Unknown'}, {'gender':'Male'}, {'gender':'Female'}],post=post)
+        post.goal = goal
+        post.achievement = achievement
+        update_userinfo(post)
+        return redirect(url_for('profile'))
+    return render_template("updateprofile.html",post=post,pp=pp)
 
 # @app.route('/goal', methods=('GET', 'POST'))
 # def register():
@@ -582,39 +625,129 @@ def index():
         return render_template('login.html')
 
 
+# @app.route('/login',  methods=['GET', 'POST'])
+# def login():
+#     if request.method == 'POST':
+#         username = request.form['username']
+#         password = request.form['password']
+#         email = request.form['email']
+#         error = None
+#         if not username:
+#             error = 'Username is required.'
+#         elif not password:
+#             error = 'Password is required.'
+#
+#         elif not email:
+#             error = 'Email is required'
+#         else:
+#             user = get_user(username, password, email)
+#             if user is None:
+#                 error = 'Wrong username and password and email'
+#             else:
+#                 session['id'] = user.get_id()
+#                 session['user_name'] = user.get_username()
+#                 session['password'] = user.get_password()
+#                 session['email'] = user.get_email()
+#                 return redirect(url_for('profile',id=session["id"]))
+#         flash(error)
+#     return render_template('login.html')
+
+
+# @app.route('/register', methods=['GET', 'POST'])
+# def register():
+#     if request.method == 'POST':
+#         username = request.form['username']
+#         print('username: '+username+"!")
+#         password = request.form['password']
+#         print('password: ' + password + "!")
+#
+#         #email = request.form['email']
+#         email = request.form.get('email', 'az@a.com')
+#
+#         print('email: ' + email + "!")
+#         error = None
+#         if not username:
+#             error = 'Username is required.'
+#         elif not password:
+#             error = 'Password is required.'
+#
+#         elif not email:
+#             error ='Email is required'
+#         else:
+#             create_user(username, password, email)
+#             return redirect(url_for('login'))
+#         flash(error)
+#     return render_template('register.html')
+
+@app.route('/registeradmin', methods=('GET', 'POST'))
+def adminregister():
+    if request.method == 'POST':
+        username = request.form['ausername']
+        password = request.form['apassword']
+        email= request.form['aemail']
+        error = None
+        if not username:
+            error = 'Username is required.'
+        elif not password:
+            error = 'Password is required.'
+        elif not email:
+            error = 'Email is required'
+        else:
+            create_admin(username, password, email)
+            return redirect(url_for('login'))
+        flash(error)
+    return render_template('adminregister.html')
+
 @app.route('/login',  methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        email=request.form['email']
+        type=request.form.get('type')
         error = None
         if not username:
             error = 'Username is required.'
         elif not password:
             error = 'Password is required.'
         else:
-            user = get_user(username, password)
-            if user is None:
-                error = 'Wrong username and password'
-            else:
-                session['id'] = user.get_id()
-                session['user_name'] = user.get_username()
-                return redirect(url_for('profile'))
+            if type=="User":
+                user = get_user(username,password,email)
+                if user is None:
+                    error = 'Wrong username,password and email.'
+                else:
+                    session['id'] = user.get_id()
+                    session['user_name'] = user.get_username()
+                    session['email']=user.get_email()
+                    return redirect(url_for('profile',id=session["id"]))
+            elif type=="Admin":
+
+                admin=get_admin(username,password,email)
+                if admin is None:
+                    error='Wrong username,password and email.'
+                else:
+                    session['id'] = admin.get_id()
+                    session['user_name'] = admin.get_username()
+                    session['email']=admin.get_email()
+                    return redirect(url_for('adminaboutitem'))
         flash(error)
-    return render_template('login.html')
+    return render_template('login.html', data=[{'type':'User'}, {'type':'Admin'}] )
 
 @app.route('/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        email= request.form['email']
         error = None
         if not username:
             error = 'Username is required.'
         elif not password:
             error = 'Password is required.'
+        elif not email:
+            error = 'Email is required'
         else:
-            create_user(username, password)
+            create_user(username, password, email)
             return redirect(url_for('login'))
         flash(error)
     return render_template('register.html')
