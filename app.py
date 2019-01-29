@@ -84,6 +84,26 @@ def show_item(id):
     return render_template("itemdetail.html",item = item ,data=data)
 
 
+#when press user points button (syahiirah's)
+@app.route('/del')
+def del_list():
+    listofitem=give_ACart()
+    dictCart=give_ACartDict()
+    total_price=0
+    for i in dictCart:
+        item=dictCart[i]
+        total_price += float(item.price)
+    total_price-=float(2)
+    val = '1'
+    k = list(voucher_code.keys())
+    for i in k:
+        print(i)
+        voucher_code.pop(i)
+        print('wee')
+        return render_template('payment.html',total=total_price)
+
+
+
 @app.route("/cart")
 def shopping_cart():
     cheat=True
@@ -325,14 +345,15 @@ def editprofile():
             # return redirect('/l')
             # return redirect(url_for('createitem',filename=filepic))
                 adduserinfo(id, goal,achievement,file.filename)
-                return redirect(url_for('profile',id=session["id"],filename=file.filename))
+                session['pic']=userinfocallp(session['user_name'])
+                return redirect(url_for('profile',id=session["id"],filename=file.filename,bl=session['pic']))
 
         except:
             # file="FileStorage: 'default.png' ('image/png')"
             file="default.png"
             # adduserinfo(id, goal,achievement,file)
-
-            return redirect(url_for('profile',id=session["id"],filename=file))
+            session['pic']=userinfocallp(session['user_name'])
+            return redirect(url_for('profile',id=session["id"],filename=file,bl=session['pic']))
     return render_template("editprofile.html",aa=aa,bb=bb,cc=cc)
 
 @app.route('/logout')
