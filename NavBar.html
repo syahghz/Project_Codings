@@ -7,39 +7,40 @@
 <body>
 
 <div class="navibar">
-   <h1 class="tname">Weight Warriors</h1>
-   <p id="welc">
-   <script>
-	  var currentuser=localStorage["currentuser"];
-	  var displayuser=document.getElementById("welc");
-	  displayuser.innerText="WELCOME  "+currentuser+"!";
-
-	  </script>
-   </p>
+    <h1 class="tname">Weight Warriors</h1>
+    <p id="welc">
+        Welcome {{ session["user_name"] }} !
+    </p>
 
     <div class="navbar">
 
-  <a href="#" >Home</a>
-  <a href="#" >Recipe</a>
-  <a href="#" >Exercises</a>
-  <a href="#" >Delivery</a>
-    <div class="profpic">
-    <button class="picdrop"><img src="https://www.cabe-africa.org/wp-content/uploads/2012/01/1.png" id="small">
-    </button>
-    <div class="picdown-content">
-      <a href="/profile">Your Profile</a>
-      <a href="/TrackProg">Track Your Progress</a>
-    </div>
-</div>
-</div>
+        <a href="#" >Home</a>
+        <a href="#" >Recipe</a>
+        <a href="#" >Exercises</a>
+        <a href="#" >Delivery</a>
+        <div class="profpic">
+            {% if bl==none or bl=='' %}
+                <button class="picdrop"><img src="../static/images/default.png" id="small"/></button>
+            {% else %}
+                <button><img src="/static/images/{{ session['pic'] }}"  id="small"/> </button>
+            {% endif %}
 
-<hr>
+{#            <button class="picdrop"><img src="https://www.cabe-africa.org/wp-content/uploads/2012/01/1.png" id="small">#}
+{#            </button>#}
+            <div class="picdown-content">
+                <a href={{ url_for('profile',id=session["id"],bl=session['pic']) }}>Your Profile</a>
+                <a href="/TrackProg">Track Your Progress</a>
+            </div>
+        </div>
+    </div>
+
+    <hr>
 </div>
 <section class="content">
-  <header id="centerkan">
-    {% block header %}{% endblock %}
-  </header>
-  {% block content %}{% endblock %}
+    <header id="centerkan">
+        {% block header %}{% endblock %}
+    </header>
+    {% block content %}{% endblock %}
 </section>
 
 
