@@ -19,11 +19,6 @@
     <br>
     <br>
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
     <h1 class="pagetitle">Food Delivery</h1>>
     <div class="notfoodnav">
     <div id="decoration">
@@ -50,6 +45,8 @@
     </div>
 <br>
     <br>
+    <br>
+        <a class="edit" href="{{ url_for('shopping_cart') }}">Your Cart</a>
     <div class="foodoptions">
         <ul>
             {% for food in item %}
@@ -101,42 +98,4 @@
     </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-<!--<div id="cont">-->
-    <!--<div class="fnavcon">-->
-
-        <!--<a class="fbutton" href="https://www.google.com"><img class="fnavi" src="../static/images/nav1.jpg">-->
-            <!--<h3 class="centered">All</h3>-->
-        <!--</a>-->
-    <!--</div>-->
-
-    <!--<div class="fnavcon">-->
-        <!--<a class="fbutton"><img class="fnavi" src="../static/images/soba_noodles.jpg"></a>-->
-        <!--<h3 class="centered">Main Dish</h3>-->
-    <!--</div>-->
-
-    <!--<div class="fnavcon">-->
-        <!--<a class="fbutton"><img class="fnavi" src="../static/images/nav3.jpg"></a>-->
-        <!--<h3 class="centered">Soup</h3>-->
-    <!--</div>-->
-
-    <!--<div class="fnavcon">-->
-        <!--<a class="fbutton"><img class="fnavi" src="../static/images/nav4.jpg"></a>-->
-        <!--<h3 class="centered">Dessert</h3>-->
-    <!--</div>-->
-
-    <!--<div class="fnavcon">-->
-        <!--<a class="fbutton"><img class="fnavi" src="../static/images/nav5.jpg"></a>-->
-        <!--<h3 class="centered">Drink</h3>-->
-    <!--</div>-->
-
-<!--</div>-->
 {% endblock %}

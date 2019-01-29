@@ -368,7 +368,7 @@ def adminregister():
             error = 'Email is required'
         else:
             create_admin(username, password, email)
-            return redirect(url_for('login'))
+            return redirect(url_for('adminpage'))
         flash(error)
     return render_template('adminregister.html')
 
@@ -395,7 +395,7 @@ def login():
                     session['email']=user.get_email()
                     session['pic']=userinfocallp(session['user_name'])
 
-                    return redirect(url_for('profile',id=session["id"]))
+                    return redirect(url_for('profile',id=session["id"],bl=session['pic']))
             elif type=="Admin":
 
                 admin=get_admin(username,password,email)
@@ -405,7 +405,7 @@ def login():
                     session['id'] = admin.get_id()
                     session['user_name'] = admin.get_username()
                     session['email']=admin.get_email()
-                    return redirect(url_for('adminaboutitem'))
+                    return redirect(url_for('adminpage'))
         flash(error)
     return render_template('login.html', data=[{'type':'User'}, {'type':'Admin'}] )
 
