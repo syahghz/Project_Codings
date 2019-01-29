@@ -52,27 +52,30 @@
 <div class="total">
 <div class="marvel">
     <h1>Male</h1>
-    {% for i in display %}
-
-    <p>Height:{{i.get_height}}</p>
-    <p> Weight:{{i.get_weight}}</p>
-    <p> Total:{{ i.get_total}}</p>
+    {% for i in mmm %}
+        {% if i.get_gender()=='males' %}
+            <p>Height:{{i.get_height()}}</p>
+            <p> Weight:{{i.get_weight()}}</p>
+            <p> Total: {{i.get_total()}}</p>
+        {% endif %}
     {% endfor %}
 </div>
 <div class="weareone">
     <h1>Female</h1>
-    {% for r in havedisplay %}
-     <p>Height:{{r.get_height}}</p>
-    <p> Weight:{{r.get_weight}}</p>
-    <p> Total:{{r.get_total}}</p>
+    {% for r in fff %}
+        {% if r.get_gender()=='females' %}
+         <p>Height:{{r.get_height()}}</p>
+        <p> Weight:{{r.get_weight()}}</p>
+        <p> Total:{{r.get_total()}}</p>
+        {% endif %}
     {% endfor %}
 </div>
 <div class="DC">
     <h1>BMI</h1>
-    {% for s in nodisplay %}
-     <p>Height:{{s.get_height}}</p>
-    <p> Weight:{{s.get_weight}}</p>
-    <p> Total:{{ s.get_sum}}</p>
+    {% for s in help %}
+     <p>Height:{{s.get_height()}}</p>
+    <p> Weight:{{s.get_weight()}}</p>
+    <p> Total:{{ s.get_sum()}}</p>
     {% endfor %}
 </div>
 <div id="hi">

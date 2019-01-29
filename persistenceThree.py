@@ -4,18 +4,20 @@ from datetime import date
 
 #Body Percentage
 class BodyPercentage:
-    def __init__(self,id):
+    def __init__(self,id,total):
         self.__id=id
         self.__age = 0
         self.__weight = 0.0
         self.__height = 0.0
         self.__bmi = 0.0
-        self.__total =0.0
+        self.__gender =""
+        self.__total =total
 
 
     def get_id(self):
         return self.__id
-
+    def get_gender(self):
+        return self.__gender
 
     def get_age(self):
         return self.__age
@@ -42,7 +44,8 @@ class BodyPercentage:
          return self.__total
     def set_total(self, total):
         self.__total= total
-
+    def set_gender(self,gender):
+        self.__gender=gender
 
 
 
@@ -55,7 +58,7 @@ class BodyPercentage:
 
 age = shelve.open('ages')
 measurements = shelve.open('measure')
-bmi = shelve.open('bmis')
+bmiAll = shelve.open('bmis')
 
 
 
@@ -77,21 +80,29 @@ def get_ages():
     return age_list
 
 
-def store_measurements(age, weight, height, bmi, total):
+def store_measurements(gender,age, weight, height, bmi, total):
     id = str(uuid.uuid4())
-    measure = BodyPercentage(id)
+    measure = BodyPercentage(id,total)
     measure.set_age(age)
+    measure.set_gender(gender)
+    print(gender)
+    print(measure.get_gender())
+    print("thistime")
     measure.set_weight(weight)
     measure.set_height(height)
     measure.set_bmi(bmi)
     measure.set_total(total)
-
+    print("test1")
+    print(measure.get_total())
+    print(total)
+    print('this')
     measure.created = str(date.today())
 
     measurements[id] = measure
 
-def calculations():
+def calculations(bmi,age):
   total = float(1.20) * float(bmi) + float(0.23)* int(age) - float(16.2)
+  print(total)
   return total
 
 def get_measurements():
@@ -101,6 +112,7 @@ def get_measurements():
     for i in klist:
         x.append(measurements[i])
     print(x)
+    print("here")
     return x
 
 
@@ -145,7 +157,7 @@ def storingBMI(id,h, w, sum):
     bmis.set_weight(w)
     bmis.set_sum(sum)
     bmis.created = str(date.today())
-    bmi[id] = bmis
+    bmiAll[id] = bmis
 
 def getting_sum(w,h):
     totalbmi = float(w) / (float(h) * float(h)) *float(703)
@@ -154,10 +166,10 @@ def getting_sum(w,h):
 
 def displayBMI():
     print("gggggggggggggggggggggggggggggggggggggg")
-    klist = list(bmi.keys())
+    klist = list(bmiAll.keys())
     x = []
     for i in klist:
-        x.append(bmi[i])
+        x.append(bmiAll[i])
     print(x)
     return x
 

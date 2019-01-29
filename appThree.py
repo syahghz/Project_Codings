@@ -121,6 +121,7 @@ def bmiandbp():
 @appThree.route('/heyo', methods=['GET','POST'])
 def percentage():
     print('rt')
+    session["gender"]='males'
 
 
     if request.method == 'POST':
@@ -130,8 +131,8 @@ def percentage():
        bmi = float (request.form['bmi'])
        session['bmi']= str(float(weight) / (float(height) * float(height)) *float(703))
        session['pb'] = str(float(1.20) * float(bmi) + float(0.23)* int(age) - float(16.2))
-
-       store=store_measurements(age, weight,height,bmi, total=session['pb'])
+       gender=session['gender']
+       store=store_measurements(gender,age, weight,height,bmi, total=calculations(bmi,age))
 
 
        return redirect(url_for('result',store=store))
@@ -171,6 +172,7 @@ def result():
 
 @appThree.route('/EXO', methods=('GET', 'POST'))
 def laa():
+    session['gender']='females'
     if request.method == 'POST':
         age = request.form['age']
         weight = float(request.form['weight'])
@@ -180,8 +182,8 @@ def laa():
 
 
         session['bp'] = str(float(1.20)* float(bmi) + (float(0.23) * int(age)) - float(5.4))
-
-        psh=store_measurements(age,weight,height,bmi,total=session['bp'])
+        gender=session['gender']
+        psh=store_measurements(gender,age,weight,height,bmi,total=calculations(bmi,age))
 
         return redirect(url_for('result2', psh=psh))
 
@@ -216,12 +218,12 @@ def result2():
 
 @appThree.route('/last')
 def last():
-    display = get_measurements()
-    nodisplay = displayBMI()
-    havedisplay =get_measurements()
+    bmi = displayBMI()
+    males = get_measurements()
+    female =get_measurements()
+    print()
 
-
-    return render_template('history.html', display=display, help=nodisplay, fff=havedisplay)
+    return render_template('history.html', mmm=males, help=bmi, fff=female)
 if __name__ == '__main__':
     appThree.run(debug=True)
     appThree.run(port=80)

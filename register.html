@@ -1,19 +1,19 @@
-{% extends 'base.html' %}
+{% extends 'baseN.html' %}
 
 {% block header %}
     <h1>{% block title %}Register{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
+  <div id="Nic_register">
     <form method="post">
-        <label for="username">Username:</label>
+        <label for="username">Username</label>
         <input name="username" id="username" required>
-        <label for="password">Password:</label>
+        <label for="password">Password</label>
         <input type="password" name="password" id="password" required>
-        <label for="cpassword">Confirm Password:</label>
-        <input type="password" name="cpassword" id="cpassword" required>
-        <label for="email">Email:</label>
+        <label for="email">Email</label>
         <input type="email" name="email" id="email" required>
         <input type="submit" value="Register">
     </form>
+  </div>
 {% endblock %}

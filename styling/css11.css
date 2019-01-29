@@ -132,7 +132,7 @@ hr{
 
 .marvel ,.weareone ,.DC
 {
-    border:1px solid #00868B;
+    border:2px solid #00868B;
     display: inline-block;
     text-align: center;
     background-color: #B23939;
@@ -148,8 +148,8 @@ hr{
 .marvel ,.weareone ,.DC h1
 {
     font-size: 1em;
-    font-family: "Lucinda Grande", "Lucinda Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
-    color: #00868B;
+    font-family: "Comic Sans MS";
+    color: whitesmoke;
 }
 
 #hi{
@@ -160,6 +160,12 @@ hr{
     padding:20px;
     background-color: #00868B;
     text-decoration: none;
-    color: #B23939;
+    color: whitesmoke;
     margin-top: 30px;
+    border-color: #B23939;
+}
+
+.DC p
+{
+    color:whitesmoke;
 }

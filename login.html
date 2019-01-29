@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'baseN.html' %}
 
 {% block header %}
     <h1>{% block title %}Log In{% endblock %}</h1>
@@ -18,7 +18,9 @@
                 <option value="{{ o.type }}">{{ o.type }}</option>
             {% endfor %}
         </select>
+        <br>
         <input type="submit" value="Log In">
 
     </form>
 {% endblock %}
+
