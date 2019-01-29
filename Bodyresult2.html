@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Hi</title>
+   <link rel="stylesheet" type="text/css" href="../static/styling/css10.css"/>
+</head>
+<body>
+<div class='navibar'>
+<h1 class="tname">Weight Warriors</h1>
+       <p id="welc">
+   <script>
+	  var currentuser=localStorage["currentuser"];
+	  var displayuser=document.getElementById("welc");
+	  displayuser.innerText="WELCOME  "+currentuser+"!";
+   </script>
+      </p>
+        <div class="navbar">
+
+      <a href="#" >Home</a>
+      <a href="#" >About Us</a>
+      <a href="#" >Event</a>
+      <a href="#" >Volunteer</a>
+      <a href="#" >Recipe</a>
+      <a href="#" >Exercises</a>
+
+    <div class="inspi">
+    <button class="inspibtn">Inspirations
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="inspidown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+    </div>
+  <a href="#" >Delivery</a>
+    <div class="profpic">
+    <button class="picdrop"><img src="https://www.cabe-africa.org/wp-content/uploads/2012/01/1.png" id="small">
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="picdown-content">
+      <a href="/TrackProg">Track Your Progress</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+</div>
+        </div>
+</div>
+<hr>
+<br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $(".women").click(function(){
+    $(".results").slideDown("slow");
+  });
+});
+</script>
+ <div class="women">
+ <h1> Your results are......</h1>
+</div>
+<div class="results">
+    {% if  10<= femaleFloat<= 12 %}
+     <p>{{ femaleFloat}}</p>
+     <p>{{ enter}}</p>
+    {%  elif 14<=femaleFloat<=20%}
+     <p>{{ femaleFloat}}</p>
+     <p>{{ enter}}</p>
+    {%  elif 21<=femaleFloat<=24 %}
+    <p>{{ femaleFloat}}</p>
+     <p>{{ enter}}</p>
+    {%  elif 25<=femaleFloat<=31 %}
+     <p>{{ femaleFloat}}</p>
+     <p>{{ enter}}</p>
+    {% elif femaleFloat>32 %}
+     <p>{{ femaleFloat}}</p>
+     <p>{{ enter}}</p>
+    {% else %}
+     <p>{{result}}</p>
+    {% endif %}
+
+</div>
+<p><a id="back" href="{{url_for('bmiandbp')}}">Let's go back!</a></p>
+</body>
+</html>

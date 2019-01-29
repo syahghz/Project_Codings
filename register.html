@@ -1,26 +1,11 @@
-{##}
-{#<form method="post">#}
-{#    <label for="username">Username</label>#}
-{#    <input name="username" id="username" required>#}
-{#    <label for="password">Password</label>#}
-{#    <input type="password" name="password" id="password" required>#}
-{#    <label for="email">Email</label>#}
-{#    <input type="email" name="'email" id="email" required>#}
-{#    <label for="ugender">Type:</label>#}
-{#    <select id="ugender" name="comp_select" class="selectpicker form-control">#}
-{#        {% for o in data %}#}
-{#            <option value="{{ o.type }}">{{ o.type }}</option>#}
-{#        {% endfor %}#}
-{#    </select>#}
-{#    <input type="submit" value="Register">#}
-{#</form>#}
-{% extends 'base.html' %}
+{% extends 'baseN.html' %}
 
 {% block header %}
     <h1>{% block title %}Register{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
+  <div id="Nic_register">
     <form method="post">
         <label for="username">Username</label>
         <input name="username" id="username" required>
@@ -30,4 +15,5 @@
         <input type="email" name="email" id="email" required>
         <input type="submit" value="Register">
     </form>
+  </div>
 {% endblock %}

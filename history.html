@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>History</title>
+    <link rel="stylesheet" type="text/css" href="../static/styling/css11.css"/>
+
+</head>
+<body>
+<div class="navibar">
+<h1 class="tname">Weight Warriors</h1>
+       <p id="welc">
+   <script>
+	  var currentuser=localStorage["currentuser"];
+	  var displayuser=document.getElementById("welc");
+	  displayuser.innerText="WELCOME  "+currentuser+"!";
+   </script>
+      </p>
+        <div class="navbar">
+
+      <a href="#" >Home</a>
+      <a href="#" >About Us</a>
+      <a href="#" >Event</a>
+      <a href="#" >Volunteer</a>
+      <a href="#" >Recipe</a>
+      <a href="#" >Exercises</a>
+
+    <div class="inspi">
+    <button class="inspibtn">Inspirations
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="inspidown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+    </div>
+  <a href="#" >Delivery</a>
+    <div class="profpic">
+    <button class="picdrop"><img src="https://www.cabe-africa.org/wp-content/uploads/2012/01/1.png" id="small">
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="picdown-content">
+      <a href="/TrackProg">Track Your Progress</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+</div>
+        </div>
+</div>
+<hr>
+<div class="total">
+<div class="marvel">
+    <h1>Male</h1>
+    {% for i in display %}
+
+    <p>Height:{{i.get_height}}</p>
+    <p> Weight:{{i.get_weight}}</p>
+    <p> Total:{{ i.get_total}}</p>
+    {% endfor %}
+</div>
+<div class="weareone">
+    <h1>Female</h1>
+    {% for r in havedisplay %}
+     <p>Height:{{r.get_height}}</p>
+    <p> Weight:{{r.get_weight}}</p>
+    <p> Total:{{r.get_total}}</p>
+    {% endfor %}
+</div>
+<div class="DC">
+    <h1>BMI</h1>
+    {% for s in nodisplay %}
+     <p>Height:{{s.get_height}}</p>
+    <p> Weight:{{s.get_weight}}</p>
+    <p> Total:{{ s.get_sum}}</p>
+    {% endfor %}
+</div>
+<div id="hi">
+    <a href="/WinterSoldier" id="whitewolf">Return?</a>
+</div>
+</div>
+
+
+
+
+
+</body>
+</html>

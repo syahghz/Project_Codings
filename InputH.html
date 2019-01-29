@@ -1,64 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head class="navibar">
 
-    <title>Title</title>
+    <title>{% block title %}{% endblock %}</title>
+
+
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" type="text/css" href="../static/styling/css5.css"/>
-</head>
-<body>
-<div>
 
+
+
+
+</head>
+
+
+
+<body>
+<div class="navibar">
+   <h1 class="tname">Weight Warriors</h1>
+   <p id="welc">
+   <script>
+	  var currentuser=localStorage["currentuser"];
+	  var displayuser=document.getElementById("welc");
+	  displayuser.innerText="WELCOME  "+currentuser+"!";
+	  </script>
+   </p>
+
+    <div class="navbar">
+
+  <a href="#" >Home</a>
+  <a href="#" >About Us</a>
+  <a href="#" >Event</a>
+  <a href="#" >Volunteer</a>
+  <a href="#" >Recipe</a>
+  <a href="#" >Exercises</a>
+    <div class="inspi">
+    <button class="inspibtn">Inspirations
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="inspidown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+    </div>
+  <a href="#" >Delivery</a>
+    <div class="profpic">
+    <button class="picdrop"><img src="https://www.cabe-africa.org/wp-content/uploads/2012/01/1.png" id="small">
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="picdown-content">
+      <a href="/TrackProg">Track Your Progress</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+</div>
+</div>
+<hr>
+
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% block content %}{% endblock %}
+</section>
+
+
+<div id="results">
+    <h1> Total BMI </h1>
+</div>
+
+<div class="container ">
 
     {% if bmiFloat <=18.5%}
-        <h1> Total BMI</h1>
-        {{ bmiFloat }}<br><br>
-        {{ name }}
+
+      <p>{{ bmiFloat }}</p><br><br>
+       <p> {{ name }}</p>
         {% for r in resulttext %}
-        {{ r }} <br/>
+       <p>{{ r }}</p> <br>
         {% endfor %}
 
 
 
     {% elif 18.5<=bmiFloat<=24.9 %}
 
-        <h1> Total BMI</h1>
-        {{ bmiFloat }}<br><br>
-        {{ name }}
+
+        <p>{{ bmiFloat }}</p><br><br>
+        <p> {{ name }}</p>
         {% for r in resulttext %}
-        {{ r }} <br/>
+         <p>{{ r }}</p> <br>
         {% endfor %}
 
     {% elif 25<=bmiFloat<=29.9 %}
 
-         <h1> Total BMI</h1>
-         {{ bmiFloat}}<br><br>
-         {{ name }}<br><br>
-         {% for r in resulttext %}
-         {{ r }} <br/>
-         {% endfor %}
+
+       <p>{{ bmiFloat }}</p><br><br>
+       <p> {{ name }}</p>
+        {% for r in resulttext %}
+       <p>{{ r }}</p> <br>
+        {% endfor %}
 
     {% elif bmiFloat>= 30 %}
 
-        <h1>Total BMI</h1>
-         {{ bmiFloat}}<br><br>
-         {{ name }}<br><br>
-         {% for r in resulttext %}
-         {{ r }} <br/>
-         {% endfor %}
+
+        <p>{{ bmiFloat }}</p><br><br>
+        <p> {{ name }}</p>
+        {% for r in resulttext %}
+        <p>{{ r }}</p> <br>
+        {% endfor %}
 
         <br>
         <br>
         <br>
+
+
     {% else %}
 
-        <h1> Please TRY again!!! </h1>
+       <h1 class="results"> Please TRY again!!! </h1>
 
-         <a href="{{ url_for('firstInput')}}"> Back</a>
+
+    <a id='back' href="{{ url_for('firstInput')}}"> Back</a>
 
     {% endif %}
-    <button><a href="{{ url_for('beginner') }}"> Gooooooo!</a></button>
+    <a id='go' href="{{ url_for('beginner') }}"> Gooooooo!</a>
 
 </div>
+
+
 
 
 </body>

@@ -1,6 +1,6 @@
 from flask import *
+from persistenceThree import *
 
-import math
 
 from wtforms import Form
 
@@ -16,16 +16,18 @@ appThree.config.from_mapping(
 def firstInput():
 
     if request.method == 'POST':
-        w = request.form['weight']
-        h = request.form['height']
+        w = float(request.form['weight'])
+        h = float(request.form['height'])
 
-        session["bmi"] = str(float(w)/(float(h)*float(h)))
-
-
+        session["bmi"] = str(float(w) / (float(h) * float(h)) *float(703))
 
 
+        ching = storingBMI(id, h, w, sum=getting_sum(w,h))
 
-        return redirect(url_for('nextplease'))
+
+
+
+        return redirect(url_for('nextplease', ching=ching))
 
     return render_template('Input.html',)
 
@@ -37,7 +39,7 @@ def nextplease():
     bmiFloat = float(session["bmi"])
     resulttext = ''
     textFileToRead = ''
-
+    name =''
 
 
 
@@ -54,11 +56,12 @@ def nextplease():
         textFileToRead = 'advice_overweight.txt'
 
     elif bmiFloat >= 30:
+      textFileToRead = 'advice_obese'
 
-        textFileToRead = 'advice_obese'
 
     else:
-        print('Try again')
+           print('Try again')
+
 
 
     advice_file = open(textFileToRead, 'r')
@@ -98,7 +101,7 @@ def nextplease():
 
 
 
-    return render_template('InputH.html', resulttext=advice , bmiFloat=bmiFloat )
+    return render_template('InputH.html', resulttext=advice , bmiFloat=bmiFloat)
 
 @appThree.route("/123123123")
 def beginner():
@@ -107,38 +110,118 @@ def beginner():
 @appThree.route('/BlackPanther')
 def video():
     return render_template('Video.html')
+@appThree.route('/WinterSoldier')
+def bmiandbp():
+    return render_template('BMI and BP.html')
+
+
+
+
 
 @appThree.route('/heyo', methods=['GET','POST'])
 def percentage():
-
-    if request.method['POST']:
-       weight = request.form['weight']
-       height = request.form['height']
-       wa = request.form['waist']
-       neck = request.form['neck']
-       hip = request.form ['hip']
+    print('rt')
 
 
+    if request.method == 'POST':
+       age = request.form['age']
+       weight = float(request.form['weight'])
+       height = float(request.form['height'])
+       bmi = float (request.form['bmi'])
+       session['bmi']= str(float(weight) / (float(height) * float(height)) *float(703))
+       session['pb'] = str(float(1.20) * float(bmi) + float(0.23)* int(age) - float(16.2))
 
-       session['bp'] =float(495/(1.29579-(0.35004*math.log10(wa+hip-neck))+(0.22100*math.log10(height))) - 450)
-
-       return redirect(url_for('letmego'))
-
-    return render_template('Body Percentage.html')
-
-
-@appThree.route('/EXO')
-def letmego():
-    print('fighting')
-    body = session['bp']
+       store=store_measurements(age, weight,height,bmi, total=session['pb'])
 
 
-    return render_template('Bodyresult.html', body=body)
+       return redirect(url_for('result',store=store))
+
+    return render_template('Body_Percentage.html')
 
 
 
 
 
+@appThree.route('/we', methods=('GET', 'POST'))
+def result():
+
+    maleFloat = float(session['pb'])
+    enter = ''
+
+
+    if 2<= maleFloat<= 4:
+        enter = 'Essential Fat'
+
+    elif 6<=maleFloat<=13:
+        enter ='Athletes'
+
+    elif 14 <= maleFloat <=17:
+        enter = 'Fit'
+
+    elif 18 <=maleFloat <= 25:
+        enter ='Acceptable'
+
+    elif maleFloat>25:
+        enter = 'Obese'
+
+    else:
+        print('hi')
+
+    return render_template('Bodyresult.html', enter=enter, maleFloat=maleFloat)
+
+@appThree.route('/EXO', methods=('GET', 'POST'))
+def laa():
+    if request.method == 'POST':
+        age = request.form['age']
+        weight = float(request.form['weight'])
+        height = float(request.form['height'])
+        bmi = float(request.form['bmi'])
+        session['bmi'] = str(float(weight) / (float(height) * float(height)))
+
+
+        session['bp'] = str(float(1.20)* float(bmi) + (float(0.23) * int(age)) - float(5.4))
+
+        psh=store_measurements(age,weight,height,bmi,total=session['bp'])
+
+        return redirect(url_for('result2', psh=psh))
+
+    return render_template('Body_Percentage2.html')
+
+@appThree.route('/wewillrocku', methods=('GET', 'POST'))
+def result2():
+
+    femaleFloat = float(session['bp'])
+    enter = ''
+    result=''
+
+    if 10<= femaleFloat<= 12:
+        enter = 'Essential Fat'
+
+    elif 13<=femaleFloat<=20:
+        enter ='Athletes'
+
+    elif 21 <= femaleFloat <=24:
+        enter = 'Fit'
+
+    elif 25 <=femaleFloat <= 31:
+        enter ='Acceptable'
+
+    elif femaleFloat>32:
+        enter = 'Obese'
+
+    else:
+        print('hi')
+        result= 'again'
+    return render_template('Bodyresult2.html', enter=enter, result=result, femaleFloat=femaleFloat)
+
+@appThree.route('/last')
+def last():
+    display = get_measurements()
+    nodisplay = displayBMI()
+    havedisplay =get_measurements()
+
+
+    return render_template('history.html', display=display, help=nodisplay, fff=havedisplay)
 if __name__ == '__main__':
     appThree.run(debug=True)
     appThree.run(port=80)

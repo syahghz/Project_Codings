@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Weight Warriors</title>
+    <link rel="stylesheet" type="text/css" href="../static/styling/css2.css"/>
+</head>
+
+<body>
+    <div class="container">
+        <div class="column active">
+            <div class="content">
+                <h1>1</h1>
+                <div class="box">
+                    <h2>Under Weight</h2>
+                    <p> Here are some light exercises to do</p>
+                    <p> But remember! Don't forget to eat something!</p>
+                    <a href="{{url_for('video')}}">Here are some tips!</a>
+                </div>
+            </div>
+            <div class="bg bg1"></div>
+        </div>
+        <div class="column">
+            <div class="content">
+                <h1>2</h1>
+                <div class="box">
+                    <h2>Normal Weight</h2>
+                    <p> Great to hear that you are feeling healthy!</p>
+                    <p> But do you still want to learn how to exercise?</p>
+                    <a href="{{url_for('video')}}">Here are some tips!</a>
+                </div>
+            </div>
+            <div class="bg bg2"></div>
+        </div>
+        <div class="column">
+            <div class="content">
+                <h1>3</h1>
+                <div class="box">
+                    <h2>Over Weight</h2>
+                    <p> Having some low self-esteem about how you look?</p>
+                    <p> Don't worry! There are ways you could look for help!</p>
+                    <a href="{{url_for('video')}}">Here are some tips!</a>
+                </div>
+            </div>
+            <div class="bg bg3"></div>
+        </div>
+        <div class="column">
+            <div class="content">
+                <h1>4</h1>
+                <div class="box">
+                    <h2>Obese</h2>
+                    <p> Decrease the amount of calorie input,</p>
+                    <p> Increase the amount of calorie output!</p>
+                     <a href="{{url_for('video')}}">Here are some tips!</a>
+                </div>
+            </div>
+            <div class="bg bg4"></div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        $(document).on('mouseover', '.container .column', function(){
+            $(this).addClass('active').siblings().removeClass('active')
+        })
+    </script>
+
+
+</body>
+</html>

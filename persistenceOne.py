@@ -1,59 +1,54 @@
 import shelve
 import uuid
-from datetime import date
+import datetime
 # today = str(date.today())
 
 class User:
-    def __init__(self):
-
+    def __init__(self, id):
+        self.__id = id
         self.__username = ''
         self.__password = ''
-        self.__email =''
+        self.__email=''
 
+    def get_id(self):
+        return self.__id
 
     def set_username(self, username):
         self.__username = username
 
     def set_password(self, password):
         self.__password = password
+    def set_email(self,email):
+        self.__email=email
 
     def get_username(self):
         return self.__username
 
     def get_password(self):
         return self.__password
-
-    def set_email(self, email):
-        self.__email = email
-
     def get_email(self):
         return self.__email
 
 
+users =shelve.open('user')
 
-users = shelve.open('user')
-
-
-
-
-
-
-def create_user(username, password, email):
-
-    user = User()
+def create_user(username, password,email):
+    id = str(uuid.uuid4())
+    user = User(id)
     user.set_username(username)
     user.set_password(password)
     user.set_email(email)
-    users[username] = user
+    users[id] = user
 
 def get_user(username, password,email):
     klist = list(users.keys())
     for key in klist:
         user = users[key]
-        print(user.get_username(), username, user.get_password(), password)
-        if user.get_username() == username and user.get_password() == password and user.get_email() == email:
+        print(user.get_username(), username, user.get_password(), password ,user.get_email(), email)
+        if user.get_username() == username and user.get_password() == password and user.get_email()==email:
             return user
     return None
+
 
 def update_user(id, user):
     users[id] = user
@@ -73,7 +68,8 @@ def init_db():
     clear_user()
 
     for i in range(5):
-        create_user('user'+str(i), 'pass'+str(i), 'email'+str(i))
+        create_user('user'+str(i), 'pass'+str(i),'email'+str(i) )
+
 
 
 

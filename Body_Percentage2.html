@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head >
+
+    <title>Body Percentage</title>
+       <link rel="stylesheet" type="text/css" href="../static/styling/css8.css"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+       <title>{% block title %}{% endblock %}</title>
+
+</head>
+
+<body>
+
+<div class="navibar">
+       <h1 class="tname">Weight Warriors</h1>
+       <p id="welc">
+   <script>
+	  var currentuser=localStorage["currentuser"];
+	  var displayuser=document.getElementById("welc");
+	  displayuser.innerText="WELCOME  "+currentuser+"!";
+   </script>
+      </p>
+        <div class="navbar">
+
+      <a href="#" >Home</a>
+      <a href="#" >About Us</a>
+      <a href="#" >Event</a>
+      <a href="#" >Volunteer</a>
+      <a href="#" >Recipe</a>
+      <a href="#" >Exercises</a>
+
+    <div class="inspi">
+    <button class="inspibtn">Inspirations
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="inspidown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+    </div>
+  <a href="#" >Delivery</a>
+    <div class="profpic">
+    <button class="picdrop"><img src="https://www.cabe-africa.org/wp-content/uploads/2012/01/1.png" id="small">
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="picdown-content">
+      <a href="/TrackProg">Track Your Progress</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+</div>
+        </div>
+</div>
+<hr>
+<p class="yo"> 1cm = 0.393701 inches</p>
+<p class="yo"> 1kg = 2.20462 pounds</p>
+
+      <div class="Body">
+          <h2>Calculate!</h2>
+          <form class="form-horizontal" method="post">
+            <div class="form-group">
+                <input type="number"  id="age" name="age" placeholder="" value="{{ request.form['age'] }}" required="">
+              <label>Age(Years)</label>
+            </div>
+            <div class="form-group">
+              <input type="number" step="0.01" id="weight" name="weight" placeholder=""  value="{{ request.form['weight'] }}" required="">
+               <label>Weight(Pounds)</label>
+            </div>
+            <div class="form-group">
+               <input  type="number" step="0.01" id="height" name="height" placeholder="" value="{{ request.form['height'] }}" required="">
+               <label>Height(Inches)</label>
+            </div>
+              <div class="form-group">
+               <input  type="number" step="0.01" id="bmi" name="bmi" placeholder="" value="{{ request.form['bmi'] }}" required="">
+               <label>BMI(Taken from BMI)</label>
+            </div>
+            <input id="letmego" type="submit" value="Let Me Go">
+          </form>
+      </div>
+
+</body>
+</html>
+
