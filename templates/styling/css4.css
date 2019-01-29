@@ -1,0 +1,257 @@
+
+
+.center-outer {
+display: table;
+width: 100%;
+height: 100%;
+}
+
+.center-inner {
+display: table-cell;
+vertical-align: middle;
+text-align: center;
+}
+
+/* Essential CSS - Makes the effect work */
+
+
+
+.bubbles {
+display: inline-block;
+font-family: "Comic Sans MS";
+ font-weight: bold;
+position: relative;
+border-radius: 10%;
+background: none;
+    border: #B23939;
+}
+.bubbles:hover
+{
+    background-color: #00868B;
+}
+
+.bubbles .yo {
+position: relative;
+margin: 1em 0 0;
+font-family: 'Luckiest Guy', cursive;
+color:black;
+z-index: 2;
+}
+
+.individual-bubble {
+position: absolute;
+border-radius: 100%;
+bottom: 10px;
+background-color: #fff;
+z-index: 1;
+}
+
+
+
+#w{
+   border:1px solid whitesmoke;
+   border-radius: 5px 5px;
+    background-color: #B23939;
+    display: none;
+}
+#wh{
+    border:1px solid whitesmoke;
+   border-radius: 5px 5px;
+    background-color: #B23939;
+    height:80px;
+
+}
+
+
+.tag{
+      margin-left: 330px;
+      margin-top: 5px;
+      font-size: 2em ;
+      font-family: 'Ubuntu', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
+
+      border: none;
+      outline: none;
+      height:40px;
+
+}
+
+.control
+{
+    margin-left: 440px;
+    margin-top: 60px;
+
+}
+
+#weight
+{
+        margin-left: 450px;
+        margin-top:20px;
+        width:300px;
+        text-align: center;
+        border-radius: 5px 5px;
+}
+#height
+{
+        margin-left: 450px;
+        margin-top:10px;
+        width:300px;
+        text-align: center;
+        border-radius: 5px 5px;
+}
+
+h1{
+    margin-left: 280px;
+    font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+#next{
+      border: 1px solid #ffffff;
+      background: none;
+      padding: 10px 20px;
+      font-size: 20px;
+      font-family: 'monterrat';
+      cursor: pointer;
+      margin-left:520px;
+      margin-right: 10px;
+      margin-top: 20px;
+      color: ghostwhite;
+      transition: 0.8s;
+      position: relative;
+      overflow: hidden;
+
+
+}
+
+
+
+
+
+
+*{
+	padding-left: 0px;
+	margin: 0px;
+}
+
+
+
+/* Navigation bar including title*/
+.navibar{
+	background-color: white;
+	font-size: 1.2em;
+	font-style: normal;
+
+	width: 100%;
+    padding-top: 20px;
+}
+/*weight warrior*/
+.tname{
+	text-align: center;
+	margin-left: 1%;
+    color: #B23939;
+    font-size: 1.9em;
+    font-family: "Courier New";
+    font-weight: bolder;
+}
+
+#welc{
+	float: right;
+	margin-top: -30px;
+	margin-right: 30px;
+    color:  #297373;
+}
+
+/*profpic*/
+#small{
+	width:30px;
+	height: 30px;
+    margin-bottom: -10px;
+    margin-top: -5px;
+    margin-left: -8px;
+}
+
+/*line*/
+hr{
+	background-color: #00868B;
+    border-color: #00868B;
+	height: 2px;
+	margin-top: 15px;
+    width: 100%;
+}
+
+/*the links*/
+.navbar{
+    padding-left: 15em;
+}
+
+.navbar a {
+  float: left;
+  font-size: 18px;
+  color: #00868B;
+  text-align: center;
+  padding: 12px 12px;
+  text-decoration: none;
+  text-shadow:0px 0 black, 0 0.1px black, 0.1px 0 black, 0 0px black;
+}
+
+/*dropdowns*/
+.profpic, .inspi {
+  float: left;
+  overflow: hidden;
+}
+
+ .profpic .picdrop{
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: #00868B;
+  padding: 11.5px 11.5px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+ }
+
+.inspi .inspibtn {
+  font-size: 18px;
+  border: none;
+  outline: none;
+  color: #00868B;
+  text-shadow:0px 0 black, 0 0.1px black, 0.1px 0 black, 0 0px black;
+  padding: 12px 12px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .profpic:hover .picdrop, .inspi:hover .inspibtn{
+  border-bottom: 2px solid #B23939;
+  text-shadow: none;
+}
+
+.picdown-content, .inspidown-content{
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.picdown-content a, .inspidown-content a{
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.picdown-content a:hover ,.inspidown-content a:hover{
+  background-color: white;
+}
+
+.profpic:hover .picdown-content, .inspi:hover .inspidown-content {
+  display: block;
+}

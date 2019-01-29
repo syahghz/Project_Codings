@@ -1,0 +1,326 @@
+
+
+*{
+	padding-left: 0px;
+	margin: 0px;
+}
+
+
+
+/* Navigation bar including title*/
+.navibar{
+	background-color: white;
+	font-size: 1.2em;
+	font-style: normal;
+
+	width: 100%;
+    padding-top: 20px;
+}
+/*weight warrior*/
+.tname{
+	text-align: center;
+	margin-left: 1%;
+    color: #B23939;
+    font-size: 1.9em;
+    font-family: "Courier New";
+}
+
+#welc{
+	float: right;
+	margin-top: -30px;
+	margin-right: 30px;
+    color:  #297373;
+}
+
+/*profpic*/
+#small{
+	width:30px;
+	height: 30px;
+    margin-bottom: -10px;
+    margin-top: -5px;
+    margin-left: -8px;
+}
+
+/*line*/
+hr{
+	background-color: #00868B;
+    border-color: #00868B;
+	height: 2px;
+	margin-top: 15px;
+    width: 100%;
+
+}
+
+/*the links*/
+.navbar{
+    padding-left: 15em;
+}
+
+.navbar a {
+  float: left;
+  font-size: 18px;
+  color: #00868B;
+  text-align: center;
+  padding: 12px 12px;
+  text-decoration: none;
+  text-shadow:0px 0 black, 0 0.1px black, 0.1px 0 black, 0 0px black;
+}
+
+/*dropdowns*/
+.profpic, .inspi {
+  float: left;
+  overflow: hidden;
+}
+
+ .profpic .picdrop{
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: #00868B;
+  padding: 11.5px 11.5px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+ }
+
+.inspi .inspibtn {
+  font-size: 18px;
+  border: none;
+  outline: none;
+  color: #00868B;
+  text-shadow:0px 0 black, 0 0.1px black, 0.1px 0 black, 0 0px black;
+  padding: 12px 12px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .profpic:hover .picdrop, .inspi:hover .inspibtn{
+  border-bottom: 2px solid #B23939;
+  text-shadow: none;
+}
+
+.picdown-content, .inspidown-content{
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.picdown-content a, .inspidown-content a{
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.picdown-content a:hover ,.inspidown-content a:hover{
+  background-color: white;
+}
+
+.profpic:hover .picdown-content, .inspi:hover .inspidown-content {
+  display: block;
+}
+
+
+
+
+
+body
+{
+    background:white;
+    font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+    text-align: center;
+}
+
+#bmi
+{
+
+     background: #00868B;
+      font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+      padding: 20px;
+      font-size: 1.5em;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 0 10px black;
+      float: left;
+      margin-left: 250px;
+      margin-top: 120px;
+      display: inline-block;
+      width: 195px;
+      height: 110px;
+      text-align: center;
+      line-height: 80px;
+      color: #B23939;
+
+
+}
+
+#bmi:hover
+{
+    background-color: #03a9f4;
+}
+
+.inline
+{
+    text-align: center;
+}
+
+.oopp
+{
+    margin: 0 auto;
+    margin-top: 80px;
+    margin-left: 710px;
+    width: 150px;
+    text-align: center;
+
+}
+.dropbtn
+{
+      background: #00868B;
+      font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+      padding: 50px ;
+      font-size: 1.5em;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 10px black;
+      outline-color: black;
+      margin-left: 40px;
+      width:157%;
+      height:220%;
+      color: #B23939;
+
+
+
+}
+.dropbtn:hover
+{
+    background-color: #03a9f4;
+}
+
+.oopp ul
+{
+    list-style-type: none;
+    margin-left: 40px;
+
+}
+.oopp ul li
+{
+    padding: 30px ;
+    background: cadetblue;
+    display: none;
+    width: 161%;
+      height: 200%;
+    opacity: 0;
+}
+.oopp:hover li
+{
+    animation: load 1s forwards;
+    display: block;
+}
+@keyframes load
+{  0%{
+    transform: translateX(25px) rotate(-30deg) scale(1) ;
+}
+    100%
+{
+   opacity: 1;
+   transform: translateX(0px) rotate(0) scale(1);
+   box-shadow: 0 0 10px black;
+}
+    
+}
+
+.oopp li:first-child
+{
+  animation-delay: 0;
+}
+.oopp li:nth-child(2)
+{
+     animation-delay:0.5s;
+}
+
+.msfil
+{
+    text-decoration: none;
+    color: #B23939;
+}
+.swing button
+{
+    position: absolute;
+
+    right:84%;
+    transform: translate(-50%, -50%);
+
+
+}
+
+.swing button
+{
+    background: #00868B;
+    color: #B23939;
+    width: 120px;
+    height: 80px;
+    border: 1px solid #262626;
+    font-size: 18px;
+    border-radius: 4px;
+    transition: .6s;
+    overflow: hidden;
+    box-shadow: 0 0 5px black;
+}
+.swing button:focus
+{
+    outline:none;
+}
+.swing button:before
+{
+    content:'';
+    display: block;
+    position: absolute;
+    background: rgba(255,255,255,.5);
+    width:60px;
+    height:100%;
+    left: 0;
+    top: 0;
+    opacity: 0.5s;
+    filter: blur(30px);
+    transform: translateX(-130px) skewX(-15deg);
+}
+
+.swing button:after{
+    content:'';
+    display: block;
+    position: absolute;
+    background: rgba(255,255,255,.2);
+    width: 30px;
+    height: 100%;
+    left:30px;
+    top: 0;
+    opacity:0;
+    filter: blur(30px);
+    transform: translate(-100px) scaleX(-15deg);
+
+}
+.swing button:hover
+{
+    background: #03a9f4;
+    cursor: pointer;
+}
+.swing button:hover:before
+{
+    transform: translateX(300px) skewX(-15deg);
+    opacity: .6;
+    transition: .7s;
+}
+
+.swing button:hover:after
+{
+    transform: translateX(300px) skewX(-15deg);
+    opacity: 1;
+    transition: .7s;
+}
