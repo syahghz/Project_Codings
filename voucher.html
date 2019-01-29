@@ -1,0 +1,30 @@
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='voucher.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styleBar.css') }}">
+{% extends 'NavBar.html'%}
+
+{% block header %}
+<br><br><br><br><br><br><br><br>
+<div id="typ"><h1>{% block title %}Your Vouchers{% endblock %}</h1></div>
+{% endblock %}
+
+
+{% block content %}
+<br><br><br><br><br>
+{%for i in k %}
+<div class="voucher">
+
+
+    <p id="re">Received : {{vlist[i].date}}</p>
+    <br>
+    <p><h2 id="code">Voucher Code: {{vlist[i].vcode}}</h2></p>
+    <button id="off" formaction="/del"><a href="del" id="del"}>Get my $2 off!</a></button>
+    <p id="exp">Expires on: {{vlist[i].expd}}</p>
+
+
+
+</div>
+<br><br><br>
+ {%endfor%}
+
+{% endblock %}
+

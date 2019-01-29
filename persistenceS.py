@@ -11,7 +11,9 @@ from datetime import timedelta
 
 book = shelve.open("book")
 x = []
-voucher_list =[]
+voucher_code = shelve.open('voucher_code')
+voucher_list = []
+
 
 
 # def is_empty(list):
@@ -124,20 +126,9 @@ def calc_reward(exercise, hour, mins, currentUserLogin):
     # print(s, "ape ni")
 
     print('loop!')
-    # pstore = list(book.keys())
-    # for i in pstore:
-    #     print(i)
-    #     print(book[i].username, 'the book i')
-    #     for u in book[i].username:
-    #         if book[i].username == currentUserLogin:
     keys = list(book.keys())
     for ind in keys:
         print(ind)
-        # print(book[i].username)
-        # for u in book[ind].username:
-        #     print('masuk u')
-        #     print(u)
-        #     print(currentUserLogin)
         if book[ind].username == currentUserLogin:
                 print(book[ind].username)
                 print(currentUserLogin)
@@ -177,21 +168,56 @@ def calc_reward(exercise, hour, mins, currentUserLogin):
     print('out')
 
 
-def gen_num(date, currentUsername):
-    currentUserList = []
-    #generate the code number
-    num = random.randint(1000,10000)
-    print(num)
-    Dcode = "WW" + str(num)
+class VoucherGift():
+    def __init__(self):
+        # self.exercise = ''
+        # self.hour = 0
+        # self.mins = 0
+        self.date = ""
+        self.username = ""
+        self.vcode = ""
+        self.expd = ""
+        self.number = ""
+        # print(self.hour)
+        # print('the class')
+
+def gen_num(id,date, username):
+    number = random.randint(1000, 10000)
+    Dcode = "WW" + str(number)
     print(Dcode)
-
-    #take the expiry date
-    datexp = (datetime.now() + timedelta(days=5)).strftime('%Y-%m-%d')
+    datexp = (datetime.now() + timedelta(days=5)).strftime('%d'+ " " + '%B' + " " +'%Y')
     print(datexp)
+    vC = VoucherGift()
+    vC.username = username
+    vC.date = date
+    vC.vcode = Dcode
+    vC.expd = datexp
+    vC.number = number
 
-    currentUserList.append(currentUsername)
-    currentUserList.append(date)
-    currentUserList.append(Dcode)
-    currentUserList.append(datexp)
-    print(currentUserList)
-    return currentUserList
+    exist = False
+    voucher_code[id] = vC
+
+    keys = list(voucher_code.keys())
+    print(keys)
+    # voucher_list.clear()
+
+    # if currentUserLogin in klist:
+    for i in keys:
+        # print('checking...'+book[i].username)
+        print('masuk i')
+        print(voucher_code)
+        # user = voucher_code[username]
+        # print('cul', username)
+        # print('vcu', user)
+        if voucher_code[i].username == username:
+            print('displaybook', username)
+            print('showdbook', voucher_code[i].username)
+            # print(x) #check if empty or not
+            print(voucher_code[i].expd, 'ape')
+            # voucher_list.insert(0, voucher_code[i])
+            # print(voucher_list, 'voucher lsit')
+            print('masuk display')
+            return voucher_code
+            break
+        else:
+            break

@@ -80,9 +80,9 @@
     {% if points > 49 %}
         Your Points:
             Yay! You have accumulated {{points}} points! We are gifting you a $2 voucher for your hard work!
-            Use code <div>{{[ Rcode ]}}</div>
+
         <p>Voucher is to be used in the delivery page only</p>
-        <button>Use Now</button>
+    <button><a href="delivery" >Use Now</a> </button>
     {% elif points < 50 %}
             <div>{{points}} to be hidden </div>
 
@@ -93,14 +93,6 @@
 <script>
     if ( window.history.replaceState ) {
         window.history.replaceState( null, null, window.location.href );
-    }
-//     function myFunction() {
-//         if (confirm('Confirm update of progress?')){
-//            window.location = "http://www.google.com/";
-//         }else{
-//            alert("You are not redirected.")
-// }
-//     }
 </script>
 
 <!--<div>-->
