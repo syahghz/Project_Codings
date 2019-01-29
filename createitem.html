@@ -6,9 +6,10 @@
     <link rel="stylesheet" type="text/css" href="../static/foodnavi.css">
 </head>
 <body>
+<img src="../static/images/food.jpg" class="goleft">
 <div class="itemform">
     <form method="post" enctype="multipart/form-data">
-        <fieldset id="particular">
+        <fieldset id="particularcr">
 
             <h1 class="title">Add Item In Delivery</h1>
 
@@ -27,6 +28,7 @@
                     <!--</select>-->
                 <!--</label>-->
                 <label for="utype">Type:</label>
+            <br>
                 <select id="utype" name="comp_select" class="selectpicker form-control">
                     {% for o in data %}
                     <option value="{{ o.type }}">{{ o.type }}</option>
@@ -35,16 +37,21 @@
 
                 <br>
                 <br>
-                <label for="price" class="eachq">Price:<textarea cols=25 rows=1 name="price" id="price" required ></textarea></label>
+                <label for="price" class="eachq">Price:</label><br>
+                <input name="price" id="price" pattern="[0-9]?[0-9]?[0-9]([.][0-9][0-9])?)" required >
                 <br>
                 <br>
-                <label for="calories" class="eachq">Calories:<textarea cols=25 rows=1 name="calories" id="calories" required ></textarea></label>
+                <label for="calories" class="eachq">Calories:</label><br>
+                <input name="calories" id="calories" pattern="[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?" required >
                 <br>
                 <br>
-                <label for="ingredient" class="eachq">Ingredient:<textarea cols=55 rows=5 name="ingredient" id="ingredient" required ></textarea></label>
+                <label for="ingredient" class="eachq">Ingredient:</label><br>
+                <input style="width:250px; height:50px; " name="ingredient" id="ingredient" required >
                 <br>
                 <br>
-                <label for="quantity" class="eachq">Quantity:<textarea cols=25 rows=1 name="quantity" id="quantity" required ></textarea></label>
+                <label for="quantity" class="eachq">Quantity:</label><br>
+                <input name="quantity" id="quantity" pattern="[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?" required >
+            <br><br>
                 <input id="picitem" class="picitem" type="file" name="picitem">
                 <!--<input id="picitem" class="picitem" type="file" name="picitem" accept="image/*">-->
                 <br>
@@ -54,8 +61,8 @@
         </fieldset>
 
         <div class="changebut">
-            <a href="delivery.html"><button type="button">Back</button></a> <input type="reset" value="Reset" />
-            <input type="submit" value="Create" id="Create" onclick="return alert('Food been created.');"/>
+            <a href="{{ url_for('adminpage') }}"><button type="button">Back</button></a> <input type="reset" value="Reset" />
+            <input type="submit" value="Create" id="Create"/>
         </div>
 
 

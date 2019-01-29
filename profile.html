@@ -2,12 +2,26 @@
 
 {% block content %}
 <br><br><br><br><br><br><br>
-<title>Title</title>
+<title>{{ session["user_name"] }}</title>
     <link rel="stylesheet" type="text/css" href="../static/profile.css">
 
 
 <div class="editbut">
+    {% if bb==none or bb=='' %}
+        <li class="owninfo">
+        <img src="../static/images/default.png" class="pic"/></li>
+    {% else %}
+        <li class="owninfo">
+        <img src="/static/images/{{ bb }}"  class='pic'/> </li>
+    {% endif %}
 
+{#    <li class="owninfo">#}
+{#    {% if pp==[] %}#}
+{##}
+{#        <img src="https://www.cabe-africa.org/wp-content/uploads/2012/01/1.png" class="pic"/>#}
+{#        {% else %}#}
+{#        <img src="/static/images/{{ pp['pic'] }}"  class='pic'/></li>#}
+{#{% endif %}#}
     <ul>
 
         <li class="owninfo">
@@ -22,20 +36,24 @@
             <br>
         </li>
 
+
         <li class="owninfo">
-            <a class="edit">My Progress</a>
+            <a class="edit" href="">My Progress</a>
+{#            {{ url_for('add') }}#}
             <br>
         </li>
 
         <li class="owninfo">
-            <a class="edit">Exercise Plan</a>
+            <a class="edit" href="">Exercise Plan</a>
+{#            {{ url_for('bmiandbp') }}#}
+
             <br>
         </li>
 
-        <li class="owninfo">
-            <a class="edit">Customize Diet</a>
-            <br>
-        </li>
+{#        <li class="owninfo">#}
+{#            <a class="edit" href="">Customize Diet</a>#}
+{#            <br>#}
+{#        </li>#}
 
     </ul>
 </div>
@@ -48,8 +66,9 @@
 
             <li class="owninfo">
 
-                <p id="name"> {{ session['user_name'] }} </p>
-
+                <p id="namenn"> {{ session['user_name'] }} </p>
+                <br>
+                <br>
 
             </li>
             <li class="owninfo">
@@ -61,31 +80,29 @@
 
     <div class="ownstuff" >
         <ul>
-            <li class="owninfo"><h2>My Goal</h2></li>
 
-            {% if pp==[] %}
-                <li class="owninfo">   <p id='goal'> Excerise daily </p>    </li>
-
-            <li class="owninfo"> <h2>My Achievement</h2></li>
-
-            <li class="owninfo"><p id="ach"> Have an account for this website</p></li>
-
-                {% else %}
-
-            <li><p id='goal'> {{ pp[-1]["get_goal"] }} </p></li>
-
-                <li class="owninfo"> <h2>My Achievement</h2></li>
-
-            <li class="owninfo"><p id="ach">{{ pp[-1]["get_achievement"] }}</p></li>
-        {% endif %}
-            <br>
+<li class="owninfo">
+    <h2 id="profiletitt">My Goal</h2></li>
+           {% if cc==none or cc==''%}
+               <li class="owninfo">   <p class='goal'> You have no goal yet. </p></li>
+           {% else %}
+               <li class="owninfo"> <p class='goal'>{{ cc }}</p></li>
+            {% endif %}
 
 
+            <li class="owninfo"> <h2 id="profiletitt">My Achievement</h2></li>
+
+            {% if aa==none or aa==''%}
+                <li class="owninfo">   <p class='goal'> You have no achievement yet.</p></li>
+            {% else %}
+                <li class="owninfo">   <p class='goal'>{{ aa }}</p></li>
+            {% endif %}
 
             <br>
-
+            <br>
         </ul>
     </div>
+
 </div>
 
   {% endblock %}

@@ -13,25 +13,18 @@
 <br>
 <ul>
 {% for food in display_cart %}
-<li class="itembox">
-    <div class="allitem">
+<li class="itemboxcart">
+    <div class="allitemcart ">
         <img class="deliverypiccart" src= "/static/images/{{ food['pic'] }}" >
         <h1 id="cartname">Name:{{ food["name"] }}</h1>
-        <p class="incartword">Price:${{ food["price"] }}</p>
+        <p class="incartword">Price:$ {{ "%.2f" % food["price"] }}</p>
         <p class="incartword">Calories: {{ food["calories"] }}</p>
-        <p class="incartword">Amount: {{ food["quantity"] }}</p>
-{#        <br>#}
-{#        <form action="{{ url_for('deletecart', id=post['id']) }}" method="post">#}
-{#            <input class="danger" type="submit" value="Delete">#}
-{#        </form>#}
-        <!--pic=item[food]["pic"]-->
-        <!--with open (pic."rb") as f:-->
-        <!--image=f.read()-->
+        <p class="incartword">Amount Buying: {{ food["quantity"] }}</p>
+{#        <a href="{{ url_for('deletecart', id=food['id']) }}">Delete</a>#}
     </div>
-{#    <form action="{{ url_for('delete_cart', id=post['id']) }}" method="post">#}
-{#        <input class="danger" type="submit" value="Delete" >#}
-{#    </form>#}
 </li>
+
+
 <br>
 {% endfor %}
 </ul>
@@ -40,7 +33,9 @@
 <h3>Total: ${{ "%.2f" % total }} </h3>
 {#<h3>Total Calories: {{ "%.2f" % calories }} </h3>#}
 <br>
+    <a class="edit" href="{{ url_for('afterpayment') }}">Checkout</a>
+    <a class="edit" href="{{ url_for('resett') }}">Remove All</a>
+    <a class="edit" href="{{ url_for('aboutitem') }}">Back</a>
 
-<a class="edit" href="{{ url_for('afterpayment') }}">Checkout</a>
 <br>
 {% endblock %}

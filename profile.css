@@ -1,0 +1,159 @@
+
+
+.pic{
+    width: 50%;
+    height: 50%;
+}
+
+/*.btn{
+	height: 20px;
+	width: 75px;
+	text-align: center;
+	border-radius: 5px;
+	background-color: #00bfff;
+	color: white;
+	border-color: #00688b;
+	margin-left:730%;
+	padding: 2px;
+	margin-top: 6px;
+}*/
+
+.owninfo{
+    display: block;}
+
+.ownstuff{text-align:center ;
+    border-radius:30px;
+display:block;
+    padding:50px;
+    border-style:solid;
+border-color: #9C1A1C;}
+
+.edit{
+    display:block;
+    text-decoration:none;
+    background-color:#00868B;
+    color:white;
+    border-radius:10px;
+    padding:10px;
+    width:50%;
+    font-size:2em;
+    text-align: center;}
+
+.change{
+    display:inline-block;
+    text-decoration:none;
+    background-color:#00868B;
+    color:white;
+    border-radius:10px;
+    padding:10px;
+    width:25%;
+    font-size:2em;
+    text-align:center;
+    }
+
+#changeright{float:right;
+            clear:both;
+            }
+#changeleft{clear:both;}
+
+.changebut{margin:0;
+        overflow:auto;}
+
+
+.edit:hover{
+    background-color:white;
+    color:#297373;
+}
+
+.side{float:right;
+text-align: center;
+    width:40%;
+    margin:35px;
+}
+
+.editbut{float:left;
+   padding:0;
+    margin:25px;
+    width:50%
+}
+
+
+/*editprofile*/
+.form{color:#00868B;
+margin:auto;}
+
+#particular{
+    text-align:center;
+    margin:auto;
+    width:80%;
+    height:85%;
+    opacity:0.85;}
+
+.question{
+    display: inline-block;
+    clear: left;
+    width: 250px;
+    text-align: left;
+    margin:auto;
+}
+
+.title{text-align: center;}
+
+.question label {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+form { margin: 1em 0; display: flex; flex-direction: column; }
+
+/*.c{z-index: auto;*/
+    /*position: relative;*/
+    /*line-height: normal;*/
+    /*font-size: 13.3333px;*/
+    /*transition: none 0s ease 0s;*/
+    /*transition-property: none;*/
+    /*transition-duration: 0s;*/
+    /*transition-timing-function: ease;*/
+    /*transition-delay: 0s;*/
+    /*background: transparent !important;}*/
+#namenn{font-size: 5em;
+    color:#B23939;
+}
+
+#profiletitt{font-size:4em;
+                color:#00868B;}
+
+.goal{font-size:3em;}
+
+
+.edit{
+    display:block;
+    text-decoration:none;
+    background-color:#00868B;
+    color:white;
+    border-radius:10px;
+    padding:10px;
+    width:25%;
+    font-size:2em;
+    text-align: center;
+    float:right;
+    margin:20px;}
+
+.edit:hover{
+    background-color:
+            #297373;
+    color:#97ae75;
+}
+
+#editleft{ display:inline-block;
+    text-decoration:none;
+    background-color:#00868B;
+    color:white;
+    border-radius:10px;
+    padding:10px;
+    width:25%;
+    font-size:2em;
+    text-align: center;
+    float:left;
+    margin:20px;}
+

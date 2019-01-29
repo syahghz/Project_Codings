@@ -6,63 +6,33 @@
     <link rel="stylesheet" type="text/css" href="../static/profile.css">
 
 <div class="form">
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <fieldset id="particular">
 
-        <h1 class="title">Edit!</h1>
+        <h1 class="title">Edit Profile!</h1>
 
 
-        <div class="question">
+            <label for='picitem'>Upload Profile Picture:</label>
             <input id="picitem" class="picitem" type="file" name="picitem">
-            <!--<label class="eachq">Type:-->
-                <!--<select>-->
-                    <!--<option class="option" id="unknowng">Unknown</option>-->
-                    <!--<option class="option" id="maleg">Male</option>-->
-                    <!--<option class="option" id="femaleg">Female</option>-->
-
-                <!--</select>-->
-            <!--</label>-->
-            <label for="ugender">Gender:</label>
-            <select id="ugender" name="comp_select" class="selectpicker form-control">
-                {% for o in data %}
-                <option value="{{ o.gender }}">{{ o.gender }}</option>
-                {% endfor %}
-            </select>
-            <br>
-            <br>
-            <label for="goal">Goal</label>
-            <textarea cols=50 rows=10 name="goal" id="goal">{{ request.form['goal'] }}</textarea>
 
             <br>
             <br>
-            <label for="achievement">Achievement</label>
-            <textarea cols=50 rows=10 name="achievement" id="achievement">{{ request.form['achievement'] }}</textarea>
-            <br>
-            <br>
-            <label for="address">Address</label>
-            <textarea cols=50 rows=10 name="address" id="address">{{ request.form['address'] }}</textarea>
-            <br>
 
-        </div>
+            <label for="goal">Goal:</label>
+            <textarea cols=55 rows=5 name="goal" id="goal" >{{ request.form['goal'] or aa }}</textarea>
+<br>
+            <br>
+            <label for="achievement">Achievement:</label>
+            <textarea cols=55 rows=5 name="achievement" id="achievement">{{ request.form['achievement'] or cc}}</textarea>
+            <br>
+<br>
         </fieldset>
+
         <br>
-        <input class="change" type="reset" value="Back">
-        <input class="change" type="submit" value="Save">
-        <!--<label for="goal">My Goal:<textarea cols=55 rows=5 name="goal" id="goal" required ></textarea></label>-->
-        <!--<br>-->
-        <!--<label for="achievement">My Achievement:<textarea cols=55 rows=5 name="ach" id="achievement" required ></textarea></label>-->
-        <!--<br>-->
-        <!--<label for="address">My Address:<textarea cols=55 rows=5 name="address" id="address" required ></textarea></label>-->
-
-
-        <!--<div class="changebut">-->
-        <!--<br>-->
-        <!--<a class="change" id="changeleft" href="">Back</a>-->
-        <!--<br>-->
-        <!--<a class="change" id="changeright" href="">Save Changes</a>-->
-        <!--</div>-->
-
+        <input class="edit" type="button" href="{{ url_for('profile',id=session["id"]) }}" value="Back"><input id="editleft" class="edit" type="submit" value="Save">
 
     </form>
-</div>
+    </div>
+
+
 {% endblock %}

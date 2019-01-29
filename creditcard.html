@@ -2,41 +2,52 @@
 
 {% block content %}
 <br><br><br><br><br><br><br>
-
-
+<div class="errormessage">
+    {% for message in get_flashed_messages() %}
+        <p class="errorrr">{{ message }}</p>
+    {% endfor %}
+</div>
 <title>Using Credit Card</title>
+
     <link rel="stylesheet" type="text/css" href="../static/foodnavi.css">
 
-<div class="itemform">
+    <div class="bodyimage">
+<div class="itemformmm">
     <form method="post">
-        <fieldset id="particular">
+        <fieldset id="particularcc">
 
             <h1 class="title">Food Delivery Payment</h1>
 
 
-            <div class="question">
-                <label for="cardname" class="eachq">Name On Card:<input name="cardname" id="cardname" required ></label>
+            <div class="questioncc">
+                <label for="cardname" class="eachq">Name On Card:</label><br>
+                    <input name="cardname" type="text" id="cardname" required >
                 <br>
                 <br>
-                <label for="cardnumber" class="eachq">Card Number:<input name="cardnumber" id="cardnumber" pattern="\d{16}" title="16 digits" required ></label>
+                <label for="cardnumber" class="eachq">Card Number:</label><br>
+                    <input name="cardnumber" type="text" pattern="[0-9]{16}" id="cardnumber"  title="16 digits" required >
                 <br>
                 <br>
-                <label for="expiry" class="eachq">Expiry Date:<textarea cols=25 rows=1 name="expiry" id="expiry" required ></textarea></label>
+                <label for="expiry" class="eachq">Expiry Date:</label><br>
+                    <input type="text" pattern="([0-9]{2})+([/]{1})+([0-9]{2})" name="expiry" id="expiry" placeholder="mm/yy" required >
                 <br>
                 <br>
-                <label for="scode" class="eachq">Security Code:<input name="scode" id="scode" pattern=".{3,4}" required ></label>
+                <label for="scode" class="eachq">Security Code:</label><br>
+                    <input type="text" name="scode" id="scode" pattern=".{3,4}" required >
                 <br>
                 <br>
             </div>
+
+
+            <input class="edit" type="submit" href="{{ url_for('finish') }}" >
+             <input class="edit" type="reset" value="Reset" />
+            <a href="{{ url_for('payment') }}"><button class="edit" type="button">Back</button></a>
+
         </fieldset>
-
-        <div class="changebut">
-            <a href="{{ url_for('payment') }}"><button type="button">Back</button></a> <input type="reset" value="Reset" />
-            <button type="submit"><a href="{{ url_for("finish") }}"> Submit </a></button>
-        </div>
-
 
     </form>
 </div>
 
+</div>
+    <img src="../static/images/backk.jpg" class="waterr">
 {% endblock %}

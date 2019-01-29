@@ -1,7 +1,9 @@
 {% extends "NavBar.html" %}
 
 {% block content %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='foodnavi.css') }}">
+    <link rel="stylesheet" type="text/css" href="../static/foodnavi.css">
+
+
 
 
 
@@ -22,7 +24,7 @@
     <br>
     <br>
     <br>
-    <br>
+    <h1 class="pagetitle">Food Delivery</h1>>
     <div class="notfoodnav">
     <div id="decoration">
     <div class="slides">
@@ -37,56 +39,65 @@
         <div id="slide-3" class="inside">
             <img class="s" src="../static/images/slide3.jpg">
         </div>
-        <div id="slide-4" class="inside">
-            <img class="s" src="../static/images/slide3.jpg">
-        </div>
-        <div id="slide-5" class="inside">
-            <img class="s" src="../static/images/slide3.jpg">
-        </div>
+
 
     <div class="dotcon">
         <a href="#slide-1" class="dot"> </a>
         <a href="#slide-2" class="dot"> </a>
         <a href="#slide-3" class="dot"> </a>
-        <a href="#slide-4" class="dot"> </a>
-        <a href="#slide-5" class="dot"> </a>
     </div>
 </div>
     </div>
-
+<br>
+    <br>
     <div class="foodoptions">
         <ul>
             {% for food in item %}
                 {% if food.quantity==0 %}
+                    <li class="itemboxhome">
 
-            <li class="itemboxhome">
-                <div class="allitemhome">
-                    <p>Out of stock</p>
-                    <h1>{{ food["name"] }}</h1>
-                    <p>{{ food["price"] }}</p>
-                    <p>{{ food["calories"] }}</p>
-                    <img class="deliverypic" src= "/static/images/{{ food['pic'] }}" >
-                    <br>
-                </div>
-            </li>
-            <br>
-            <br>
+                        <div class="allitemhome">
+
+                                <div class="allfoodpiccontain">
+                                    <div id="outtstockk">
+                                    <p id="outtstock">Out Of Stock</p>
+                                    </div>
+                                    <img class="deliverypicallblack" src= "/static/images/{{ food['pic'] }}" >
+                                </div>
+                                <div class="allitemhomedetail">
+                                    <h1 class="leftdeta">Name:</h1><h1 class="centerdeta"> {{ food["name"] }}</h1>
+                                    <p class="leftdeta">Price:</p><p class="centerdeta"> ${{ food["price"] }}</p>
+                                    <p class="leftdeta">Calories:</p><p class="centerdeta"> Calories: {{ food["calories"] }}</p>
+                                </div>
+
+                            <br>
+                        </div>
+                    </li>
+
                 {% else %}
-                <li class="itemboxhome">
-                    <div class="allitemhome">
-                        <h1>{{ food["name"] }}</h1>
-                        <p>{{ food["price"] }}</p>
-                        <p>{{ food["calories"] }}</p>
-                        <img class="deliverypic" src= "/static/images/{{ food['pic'] }}" >
-                        <a class="btn btn-primary" href=/showitemdetail/{{ food.id }}>Details</a>
-                        <br>
-                    </div>
-                </li>
+                    <li class="itemboxhome">
+
+                        <div class="allitemhome">
+                            <a class="gotoindivifood" href=/showitemdetail/{{ food.id }}>
+                                <div class="allfoodpiccontain">
+                                    <img class="deliverypicall" src= "/static/images/{{ food['pic'] }}" >
+                                </div>
+                                <div class="allitemhomedetail">
+                                    <h1 class="leftdeta">Name:</h1><h1 class="centerdeta"> {{ food["name"] }}</h1>
+                                    <p class="leftdeta">Price:</p><p class="centerdeta"> ${{ food["price"] }}</p>
+                                    <p class="leftdeta">Calories:</p><p class="centerdeta"> Calories: {{ food["calories"] }}</p>
+                                </div>
+                            </a>
+                            <br>
+                        </div>
+                    </li>
                 {% endif %}
             {% endfor %}
         </ul>
-
-
+<br>
+    <br>
+<br>
+    <br>
     </div>
     </div>
 

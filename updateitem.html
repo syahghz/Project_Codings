@@ -1,26 +1,40 @@
+<link rel="stylesheet" type="text/css" href="../static/foodnavi.css">
+{#<img src="/static/images/{{ food["pic"] }}">#}
+<div class="itemformupdate">
+    <fieldset id="particularup">
 <form method="post">
-    <label for="name">Name:</label>
-    <input name="name" id="name"
+    <h1 class="title">Food Update</h1>
+    <div class="questioncc">
+    <label for="name">Name:</label><br>
+    <input  name="name" id="name"
            value="{{ request.form['name'] or post['name'] }}" required>
-    <label for="price">price</label>
-    <textarea name="price" id="price">{{ request.form['price'] or post['price'] }}</textarea>
-
-    <label for="calories">calories</label>
+        <br>
+    <label for="price">price</label><br>
+    <input name="price" id="price" value="{{ request.form['price'] or post['price'] }}" required>
+<br>
+    <label for="calories">calories</label><br>
     <input name="calories" id="calories"
            value="{{ request.form['calories'] or post['calories'] }}" required>
-
-    <label for="ingredient">Ingredient</label>
-    <input name="ingredient" id="ingredient"
+<br>
+    <label for="ingredient">Ingredient</label><br>
+    <input name="ingredient" id="ingredient" style="height:100px; width:300px;"
            value="{{ request.form['ingredient'] or post['ingredient'] }}" required>
-
-    <label for="quantity">Quantity</label>
+<br>
+    <label for="quantity">Quantity</label><br>
     <input name="quantity" id="quantity"
            value="{{ request.form['quantity'] or post['quantity'] }}" required>
-
+<br>
+<br>
     <input type="submit" value="Save" id="Create" />
+    </div>
 
 </form>
-<form action="{{ url_for('deleteitem', id=post['id']) }}" method="post">
-    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+<br>
+        <br>
+        <br>
+        <br>
+    </fieldset><form action="{{ url_for('deleteitem', id=post['id']) }}" method="post">
+    <input class="danger" style="width:50px; margin:auto;" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
 </form>
-<hr>
+</div>
+

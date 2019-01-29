@@ -9,37 +9,10 @@ users = shelve.open('user')
 blogs = shelve.open('blog')
 admins = shelve.open('admin')
 
-
-
-# class Item:
-#     def __init__(self,name,price,calories):
-#         self.name=name
-#         self.price=price
-#         self.calories=calories
-#     # def get_name(self):
-#     #     return self.__name
-#     # def get_price(self):
-#     #     return self.__price
-#     # def get_calories(self):
-#     #     return self.__calories
-#     #
-#     # def set_name(self,name):
-#     #     self.__name=name
-#     # def set_price(self,price):
-#     #     self.__price=price
-#     # def set_calories(self,calories):
-#     #     self.__calories=calories
-
-
-
-
-
-
-#Nicole's code
-import shelve
 import uuid
 from datetime import date
 # today = str(date.today())
+
 
 class User:
     def __init__(self, id):
@@ -53,7 +26,6 @@ class User:
 
     def set_username(self, username):
         self.__username = username
-
     def set_password(self, password):
         self.__password = password
     def set_email(self,email):
@@ -61,47 +33,11 @@ class User:
 
     def get_username(self):
         return self.__username
-
     def get_password(self):
         return self.__password
     def get_email(self):
         return self.__email
 
-class Blog:
-    def __init__(self, id):
-        self.id = id
-        self.username = ''
-        self.title = ''
-        self.body = ''
-        self.created = ''
-
-
-def create_blog(username, title, body):
-    id = str(uuid.uuid4())
-    blog = Blog(id)
-    blog.title = title
-    blog.username = username
-    blog.body = body
-    blog.created = str(date.today())
-    blogs[id] = blog
-
-def update_blog(blog):
-    blogs[blog.id] = blog
-
-def delete_blog(id):
-    if id in blogs:
-        del blogs[id]
-
-def get_blogs():
-    klist = list(blogs.keys())
-    x = []
-    for i in klist:
-        x.append(blogs[i])
-    return x
-
-def get_blog(id):
-    if id in blogs:
-        return blogs[id]
 
 def create_user(username, password,email):
     id = str(uuid.uuid4())
@@ -119,23 +55,6 @@ def get_user(username, password,email):
         if user.get_username() == username and user.get_password() == password and user.get_email()==email:
             return user
     return None
-
-# def create_user(username, password,email):
-#     id = str(uuid.uuid4())
-#     user = User(id)
-#     user.set_username(username)
-#     user.set_password(password)
-#     user.set_email(email)
-#     users[id] = user
-#
-# def get_user(username, password , email):
-#     klist = list(users.keys())
-#     for key in klist:
-#         user = users[key]
-#         print(user.get_username(), username, user.get_password(), password)
-#         if user.get_username() == username and user.get_password() == password and user.get_email()== email:
-#             return user
-#     return None
 
 def update_user(id, user):
     users[id] = user
@@ -156,10 +75,9 @@ def add_user(user):
 
 def init_db():
     clear_user()
-    clear_blog()
     for i in range(5):
         create_user('user'+str(i), 'pass'+str(i),'email'+str(i) )
-        create_blog('user'+str(i), 'title'+str(i), 'body'+str(i))
+
 
 
 
@@ -175,6 +93,7 @@ def init_db():
 
 
 #my code
+
 class Admin:
     def __init__(self, id):
         self.__id = id
@@ -271,26 +190,14 @@ def get_itemallinfos():
     klist = list(IteminStore.keys())
     x = []
     for i in klist:
-        # print('*****get_itemallinfos()::...i['+i+']')
-        # if i in IteminStore:
-        #     print(IteminStore[i])
             x.append(IteminStore[i])
-        # print('*****get_itemallinfos()::...END!!!')
     return x
 
-# def get_itemallinfoss():
-#     klist = list(IteminStore.keys())
-#     x = []
-#     for i in klist:
-#         x.append(IteminStore[i])
-#     return x
 
 
 def get_itemallinfo(id):
     if id in IteminStore:
-        print("canfind")
         return IteminStore[id]
-    print("idk")
     conn=IteminStore[id]
     cursor=conn.cursor()
     cursor.execute(IteminStore[id])
@@ -333,68 +240,19 @@ def get_cartallinfos():
 def get_cartallinfo(id):
     if id in users:
         return users[id]
-    # cart.append(item)
-    # allcart.append(cart)
-    # users["id"][cart]=cart
-    # users["id"][allcart]=allcart
 
-    # if cart in users==True:
-    #     users["id"][cart]=cart
-    # elif cart in users==False:
-    #     users["id"]["cart"]=cart
 def reducequantity(id,quantity):
     IteminStore[id].quantity-=quantity
 
-
-# def reducequantityy(id,quantity):
-#     if id in cart :
-#         IteminStore[id].quantity-=quantity
 
 def delete_itemadmin(id):
     if id in IteminStore:
         del IteminStore[id]
 
 def delete_itemcart(id):
+
     if id in ACart:
         del ACart[id]
-
-# def clear_cart():
-#     cart=[]
-#     return cart
-
-    #def add_items(self,item):
-    #   Cart.cart[item.get_name]=item
-# def display():
-#     klist = list(Store.fooddetail.keys())
-#     x = []
-#     for i in klist:
-#         x.append(Store.fooddetail[i])
-#     return x
-
-# def connect():
-#     cursor = get_itemallinfos()
-#
-#     return cursor
-
-# def get_melon_by_id(id):
-#     """Query for a specific melon in the database by the primary key"""
-#     cursor = connect()
-#     query = """SELECT id
-#                FROM melons
-#                WHERE id = ?;"""
-#
-#     cursor.execute(query, (id,))
-#
-#     row = cursor.fetchone()
-#
-#     if not row:
-#         return None
-#
-#     melon = Item(row[0])
-#
-#     return melon
-
-
 
 
 class editprofile(User):
@@ -425,23 +283,6 @@ class usergoal(User):
     def get_goal(self):
         return self.__goal
 
-# def adduserinfo(goal,achievement,pic):
-#     id = str(uuid.uuid4())
-#     info= editprofile(id)
-#     info.get_pic=pic
-#     info.get_goal=goal
-#     info.get_achievement=achievement
-#     userinfo[id] = info
-#     print(userinfo)
-
-
-
-# def addgoall(goal):
-#     id = str(uuid.uuid4())
-#     info= addgoall(id)
-#     # info.get_pic=pic
-#     info.get_goal = goal
-#     userinfo["username"]][id] = info
 
 user=User(id)
 def adduserinfo(id,goal,achievement,pic):
@@ -507,6 +348,12 @@ def userinfocalle(id):
 
     return ""
 
+def userinfocalldd(id):
+    for i in userinfo:
+        if i==id:
+            dd=userinfo[i]
+            return dd.get_birth()
+    return ""
 
 def update_userinfo(info):
     userinfo[info.id] = info
@@ -562,7 +409,3 @@ def give_ACart():
     for i in klist:
         x.append(ACart[i])
     return x
-
-
-
-

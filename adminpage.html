@@ -1,0 +1,45 @@
+<title>Admin Page</title>
+<div class="admincome">
+<h1 class="tname">Weight Warriors</h1>
+<h2 class="adminhello">Welcome Admin!</h2>
+</div>
+<link rel="stylesheet" type="text/css" href="../static/foodnavi.css">
+<div class="buttonbutton">
+    <br>
+    <br>
+    <br>
+    <br>
+<a class="edit" href="{{ url_for('logout') }}">Log Out</a>
+<a class="edit" href="{{ url_for('adminregister') }}">Create Admin Account</a>
+<a class="edit" href="{{ url_for('createitem') }}">Add Item</a>
+</div>
+<br>
+<br>
+<br>
+<br>
+<table>
+    <caption>Food Details</caption>
+<tr>
+    <th>Name Of Food</th>
+    <th>Type</th>
+    <th>Price</th>
+    <th>Clories</th>
+    <th>Ingredient</th>
+    <th>Quantity</th>
+    <th>Update</th>
+
+
+</tr>
+    {% for food in item %}
+<tr>
+                <td>{{ food["name"] }}</td>
+        <td>{{ food["type"] }}</td>
+        <td>{{ food["price"] }}</td>
+        <td>{{ food["calories"] }}</td>
+        <td>{{ food["ingredient"] }}</td>
+                <td>{{ food["quantity"] }}</td>
+        <td><a href="/{{ food.id }}/updateitem">Update</a></td>
+
+
+    {% endfor %}
+</table>
