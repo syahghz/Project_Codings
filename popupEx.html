@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Popup container - can be anything you want */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 400%;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -200%;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  /*margin-left: -5px;*/
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+</style>
+</head>
+<body style="text-align:center">
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<h2>Popup</h2>
+
+<div class="popup" onclick="myFunction()">Click me to toggle the popup!
+
+
+    <span class="popuptext" id="myPopup">
+        <h2>Light Exercise:</h2>
+        <p>Among the three, Light exercise has the slowest progress but it is still good for the health. While performing Light exercise, you should be able to sing since you would be working out less than 50% of your maximum heart rate.
+            Light exercise can be turned to moderate exercise just by increasing the speed or duration of the activity.</p>
+        <p><b>Examples of Light Exercise:</b> Walking, vacuuming, gardening and cooking.</p>
+        <!--<p>src = https://www.livestrong.com/article/415100-what-is-light-exercise/</p>-->
+
+        <h2>Moderate Exercise:</h2>
+        <p>Moderate exercise are activities that requires a certain amount of effort which will noticeably accelerates the heart rate, causing you to breathe slightly harder than usual and break a sweat. We recommend for you to
+        take part in Moderate exercises as they are more productive than light exercise while still be less straining as compared to Vigorous exrcises.</p>
+        <p><b>Examples of Moderate Exercise:</b> Brisk walking, Tennis(doubles), Cycling and Dancing </p>
+        <!--<p>src = http://www.heart.org/HEARTORG/HealthyLiving/PhysicalActivity/FitnessBasics/Moderate-to-Vigorous-What-is-your-level-of-intensity_UCM_463775_Article.jsp?appName=MobileApp</p>-->
+
+        <h2>Vigorous Exercise:</h2>
+        <p>Vigorous exercise are activities that needs to be done with a large amount of effort as compared to the other two types of exercises. This intensity will cause rapid breathing due to an increasing heart rate while carrying them out.</p>
+        <p>Examples of Vigorous Exercise: Running, competitive sports like soccer and basketball, carrying loads more than 20kg and swimming laps.</p>
+        <!--<p>src = https://www.nutrifyt.com/blog/post/difference-between-moderate-and-vigorous-physical-activity-pattern/</p>-->
+    </span>
+
+</div>
+
+
+
+
+
+
+
+
+<script>
+// When the user clicks on div, open the popup
+function myFunction() {
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+}
+</script>
+
+</body>
+</html>
+

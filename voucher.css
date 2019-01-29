@@ -1,10 +1,10 @@
 .voucher{
     border: 1px solid black;
-    padding: 5px;
+    /*padding: 5px;*/
     margin: auto;
     width: 35%;
     height: 20%;
-    /*background-image: url("../static/images/Reward.jpg");*/
+
 }
 
 #code{
@@ -21,7 +21,7 @@
     font-size: 0.8em;
     color: #B23939;
     float: right;
-    padding-top: 50px;
+    padding-top: 45px;
 }
 
 #off{
