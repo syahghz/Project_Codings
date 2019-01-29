@@ -27,10 +27,10 @@
                          <option value="Moderate">Moderate</option>
                          <option value="Light">Light</option>
                      </select>&nbsp;
-            <div class="show">
-            <i class="fa fa-info-circle"></i>
-                <div id="appear">Click me to know more!</div>
-            </div>
+            <!--<div class="show">-->
+            <!--<i class="fa fa-info-circle"></i>-->
+                <!--<div id="appear">Click me to know more!</div>-->
+            <!--</div>-->
         <br><br><br>
         <h4>Time Taken</h4>
             <br>
@@ -53,6 +53,29 @@
 <div class="Trt">
     <h2 id="tp" >Your Progress:</h2>
     <br>
+
+
+<!--TABLE-->
+  <table class="scrollT">
+
+        {% if tester|length == 0: %}
+           <div class="notable">
+               <h3 id="noP"> You currently have no progress</h3>
+               <br>
+               <p id="wecenter">Track your progress by filling up the form on the right according to your exercise routine!</p>
+           </div>
+        {% else: %}
+          <tr><th>Date of update</th><th>Time updated</th><th>Type of Exercise</th><th>Time Taken</th></tr>
+            {% for i in tester[0:5] %}
+                <tr><td>{{i['date']}}</td><td>{{i['rtime']}}</td><td>{{ i['exercise'] }}</td><td>{{ i['hour'] }} hrs {{ i['mins'] }} mins</td></tr>
+            {% endfor %}
+        {% endif %}
+
+  </table>
+
+<br><br><br><br><br><br><br>
+</div>
+<br><br><br><br>
 
 <div class="reward">
     {% if points > 49 %}
@@ -85,70 +108,10 @@
 
             </div>
 
-    {% elif points < 50 %}
-            <div>{{points}} to be hidden </div>
 
     {% endif %}
 </div>
 
-
-<!--TABLE-->
-  <table class="scrollT">
-
-        {% if tester|length == 0: %}
-           <div class="notable">
-               <h3 id="noP"> You currently have no progress</h3>
-               <br>
-               <p id="wecenter">Track your progress by filling up the form on the right according to your exercise routine!</p>
-           </div>
-        {% else: %}
-          <tr><th>Date</th><th>Type of Exercise</th><th>Time Taken</th></tr>
-            {% for i in tester[0:5] %}
-                <tr><td>{{i['date']}}</td><td>{{ i['exercise'] }}</td><td>{{ i['hour'] }} hrs {{ i['mins'] }} mins</td></tr>
-            {% endfor %}
-        {% endif %}
-
-  </table>
-
-<br><br><br><br><br><br><br>
-</div>
-<br><br><br><br><br><br><br>
-<!--<div class="reward">-->
-    <!--{% if points > 49 %}-->
-        <!--&lt;!&ndash;Your Points:&ndash;&gt;-->
-            <!--&lt;!&ndash;Yay! You have accumulated {{points}} points! We are gifting you a $2 voucher for your hard work!&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;Use code <div>{{[ Rcode ]}}</div>&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;<p>Voucher is to be used in the delivery page only</p>&ndash;&gt;-->
-        <!--&lt;!&ndash;<button><a href="delivery">Use Now</button>&ndash;&gt;-->
-            <!--<button id="myBtn">You have a Gift!</button>-->
-
-            <!--&lt;!&ndash; The Modal &ndash;&gt;-->
-            <!--<div id="myModal" class="modal">-->
-
-              <!--&lt;!&ndash; Modal content &ndash;&gt;-->
-              <!--<div class="modal-content">-->
-                <!--<div class="modal-header">-->
-                  <!--<span class="close">&times;</span>-->
-                  <!--<h1>Weight Warriors</h1>-->
-                <!--</div>-->
-                <!--<div class="modal-body">-->
-                    <!--<p>Amazing! You have collected <b>{{points}}</b> points!</p>-->
-                    <!--<p>We are gifting you a <b>$2 voucher</b> for your excellent progress!</p>-->
-                    <!--<button class="modalB"><a href="delivery" id="modalB">Use It Now!</a></button>-->
-                    <!--<br><br>-->
-                <!--</div>-->
-                <!--<div class="modal-footer">-->
-                  <!--<h3>*Voucher is only to be used under delivery</h3>-->
-                <!--</div>-->
-              <!--</div>-->
-
-            <!--</div>-->
-
-    <!--{% elif points < 50 %}-->
-            <!--<div>{{points}} to be hidden </div>-->
-
-    <!--{% endif %}-->
-<!--</div>-->
 
 
 <br><br><br><br><br><br><br>

@@ -23,9 +23,11 @@ def add():
             id = str(uuid.uuid4())
             dt = datetime.datetime.now()
             date = dt.strftime("%d") + " " + dt.strftime("%B") + " " + dt.strftime("%Y")
+            rtime = dt.strftime("%I:%M:%S %p")
+            print(rtime)
             error = None
             currentUsername = 'xuxi' #'vera'
-            storeBook(id, currentUsername, date, exer, hours, mins)
+            storeBook(id, currentUsername, date, rtime,  exer, hours, mins)
 
             tester = displaybook(currentUsername)
             user_reward = calc_reward(exer, hours, mins, currentUsername)

@@ -125,6 +125,13 @@ th, td{
 /*modal*/
 body {font-family: Arial, Helvetica, sans-serif;}
 
+button #myBtn{
+    border-radius: 4px;
+    border-color: #00868b;
+    margin-left: 90%;
+    padding-left: 50%;
+}
+
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
@@ -230,3 +237,9 @@ p, .modalB{
   font-size: 0.5em;
 }
 
+/*button #myBtn{*/
+    /*border-radius: 4px;*/
+    /*border-color: #00868b;*/
+    /*margin-left: 90%;*/
+    /*padding-left: 50%;*/
+/*}*/

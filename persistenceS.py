@@ -36,10 +36,11 @@ class AllBooks:
 
 
 
-def storeBook(id, username, date, exercise, hour, mins):
+def storeBook(id, username, date, rtime, exercise, hour, mins):
     bok = AllBooks()
     bok.username = username
     bok.date = date
+    bok.rtime = rtime
     bok.exercise = exercise
     bok.hour = hour
     bok.mins = mins
