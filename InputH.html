@@ -75,7 +75,7 @@
 
     {% if bmiFloat <=18.5%}
 
-      <p>{{ bmiFloat }}</p><br><br>
+      <p class="under">{{ bmiFloat }}</p><br><br>
        <p> {{ name }}</p>
         {% for r in resulttext %}
        <p>{{ r }}</p> <br>
@@ -86,7 +86,7 @@
     {% elif 18.5<=bmiFloat<=24.9 %}
 
 
-        <p>{{ bmiFloat }}</p><br><br>
+        <p class="under">{{ bmiFloat }}</p><br><br>
         <p> {{ name }}</p>
         {% for r in resulttext %}
          <p>{{ r }}</p> <br>
@@ -95,7 +95,7 @@
     {% elif 25<=bmiFloat<=29.9 %}
 
 
-       <p>{{ bmiFloat }}</p><br><br>
+       <p class="under">{{ bmiFloat }}</p><br><br>
        <p> {{ name }}</p>
         {% for r in resulttext %}
        <p>{{ r }}</p> <br>
@@ -104,7 +104,7 @@
     {% elif bmiFloat>= 30 %}
 
 
-        <p>{{ bmiFloat }}</p><br><br>
+        <p class="under">{{ bmiFloat }}</p><br><br>
         <p> {{ name }}</p>
         {% for r in resulttext %}
         <p>{{ r }}</p> <br>
@@ -126,6 +126,10 @@
     <a id='go' href="{{ url_for('beginner') }}"> Gooooooo!</a>
 
 </div>
+
+ <div>
+     <img src="bmi.gif" style="width:50%;height:10%;">
+ </div>
 
 
 
