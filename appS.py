@@ -65,7 +65,7 @@ def add():
 @appS.route('/voucher')
 def voucher():
     vlist = []
-    currentUsername = 'xuxi'
+    currentUsername = session["user_name"]
     id = str(uuid.uuid4())
     dt = datetime.datetime.now()
     date = dt.strftime("%d") + " " + dt.strftime("%B") + " " + dt.strftime("%Y")

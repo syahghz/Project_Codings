@@ -30,8 +30,8 @@ class AllBooks:
         self.mins = 0
         self.date = ""
         self.username = ""
-        print(self.hour)
-        print('the class')
+        # print(self.hour)
+        # print('the class')
 
 
 
@@ -48,8 +48,8 @@ def storeBook(id, username, date, rtime, exercise, hour, mins):
     exist = False
 
     book[id] = bok
-    print(book[id])
-    print('masuk storebook')
+    # print(book[id])
+    # print('masuk storebook')
     return bok.exercise
 
 
@@ -57,40 +57,40 @@ def displaybook(currentUserLogin):
     #'Renjun': #'vera'
     # currentUserLogin = 'Renjun'
     klist = list(book.keys())
-    print(klist)
+    # print(klist)
     x.clear()
 
     #if currentUserLogin in klist:
     for i in klist:
         # print('checking...'+book[i].username)
         if book[i].username == currentUserLogin:
-            print('displaybook', currentUserLogin)
-            print('showdbook', book[i].username)
+            # print('displaybook', currentUserLogin)
+            # print('showdbook', book[i].username)
             # print(x) #check if empty or not
             x.insert(0, book[i])
-    print('masuk display')
+    # print('masuk display')
     return x
 
 def calc_reward(exercise, hour, mins, currentUserLogin):
-    print(currentUserLogin)
-    print('going in')
+    # print(currentUserLogin)
+    # print('going in')
     reward = AllBooks
     # ex = AllBooks(exercise)
     reward.exercise = exercise #betul
-    print(reward.exercise)
+    # print(reward.exercise)
     reward.hour = float(hour) * 60 #BETUL
-    print(reward.hour)
+    # print(reward.hour)
     reward.mins = float(mins) #BETUL
-    print(reward.mins)
+    # print(reward.mins)
     ttime = float(reward.hour + reward.mins) #BETUL
-    print(ttime)
-    print('calculating now')
+    # print(ttime)
+    # print('calculating now')
 
     if reward.exercise == "Vigorous":
         val = 5
-        print(val)
+        # print(val)
         m = float(int(val) * int(ttime))
-        print(m, "V")
+        # print(m, "V")
         if m > 100:
             s = m // 100
         elif m >= 10:
@@ -101,129 +101,193 @@ def calc_reward(exercise, hour, mins, currentUserLogin):
     elif reward.exercise == "Moderate":
         val = 3
         m = float(val * ttime)
-        print(m, "M")
+        # print(m, "M")
         if m > 100:
             s = m // 100
-            print('divide 100', s)
+            # print('divide 100', s)
         elif m >= 10:
             s = m // 10
-            print('divide 10', s)
+            # print('divide 10', s)
         elif m < 10:
             s = m
-            print('tk divide', s)
+            # print('tk divide', s)
 
     elif reward.exercise == "Light":
         val = 1
         m = float(val * ttime)
-        print(m, "L")
+        # print(m, "L")
         if m > 100:
             s = m // 100
         elif m >= 10:
             s = m // 10
         elif m < 10:
             s = m
-    print(s, 'before')
+    # print(s, 'before')
     # s += s
     # print(s, "ape ni")
 
-    print('loop!')
+    # print('loop!')
     keys = list(book.keys())
     for ind in keys:
-        print(ind)
+        # print(ind)
         if book[ind].username == currentUserLogin:
-                print(book[ind].username)
-                print(currentUserLogin)
+                # print(book[ind].username)
+                # print(currentUserLogin)
                 if path.exists('point_File' + book[ind].username + '.txt'):
-                    print('file ade')
-                    print('alright to reading in file!!')
+                    # print('file ade')
+                    # print('alright to reading in file!!')
                     point_File = open('point_File' + book[ind].username + '.txt', 'r')
                     prevpoints = point_File.read()
                     num = float(prevpoints)
                     point_File.close()
-                    print(prevpoints, 'dh baca')
+                    # print(prevpoints, 'dh baca')
 
                     point_File = open('point_File' + book[ind].username + '.txt', 'w')
                     newpoints = (num + int(s))
-                    print(newpoints)
+                    # print(newpoints)
                     npoints = point_File.write( "{}\n".format(newpoints))
                     point_File.close()
-                    print(npoints, 'dh tukar')
+                    # print(npoints, 'dh tukar')
 
                     break
 
                 else:
-                    print('file tkde')
-                    print(s)
+                    # print('file tkde')
+                    # print(s)
                     point_File = open('point_File' + book[ind].username + '.txt', 'w')
                     firstpoints = point_File.write( "{}".format(s))
-                    print(firstpoints)
+                    # print(firstpoints)
                     point_File.close()
 
-                    print('jadi tk')
+                    # print('jadi tk')
                     break
         else:
-            print('masuk else')
+            # print('masuk else')
             continue
 
     # continue
-    print('out')
+    # print('out')
 
 
-class VoucherGift():
-    def __init__(self):
-        # self.exercise = ''
-        # self.hour = 0
-        # self.mins = 0
-        self.date = ""
-        self.username = ""
-        self.vcode = ""
-        self.expd = ""
-        self.number = ""
-        # print(self.hour)
-        # print('the class')
 
-def gen_num(id,date, username):
+
+def make_voucher(id,date, username):
     number = random.randint(1000, 10000)
     Dcode = "WW" + str(number)
     print(Dcode)
     datexp = (datetime.now() + timedelta(days=5)).strftime('%d'+ " " + '%B' + " " +'%Y')
-    print(datexp)
-    vC = VoucherGift()
-    vC.username = username
-    vC.date = date
-    vC.vcode = Dcode
-    vC.expd = datexp
-    vC.number = number
 
-    exist = False
-    voucher_code[id] = vC
+    vC = []
+    vC.append(id)
+    vC.append(username)
+    vC.append(date)
+    vC.append(Dcode)
+    vC.append(datexp)
+    print(vC, 'the list created')
 
-    keys = list(voucher_code.keys())
-    print(keys)
-    # voucher_list.clear()
+    voucher_list.append(vC)
+    print(voucher_list)
+    return voucher_list
 
-    # if currentUserLogin in klist:
-    for i in keys:
-        # print('checking...'+book[i].username)
-        print('masuk i')
-        print(voucher_code)
-        # user = voucher_code[username]
-        # print('cul', username)
-        # print('vcu', user)
-        if voucher_code[i].username == username:
-            print('displaybook', username)
-            print('showdbook', voucher_code[i].username)
-            # print(x) #check if empty or not
-            print(voucher_code[i].expd, 'ape')
-            # voucher_list.insert(0, voucher_code[i])
-            # print(voucher_list, 'voucher lsit')
-            print('masuk display')
-            return voucher_code
-            break
-        else:
-            break
+def delete_voucher():
+    return voucher_list
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# works
+# class VoucherGift():
+#     def __init__(self):
+#         # self.exercise = ''
+#         # self.hour = 0
+#         # self.mins = 0
+#         self.date = ""
+#         self.username = ""
+#         self.vcode = ""
+#         self.expd = ""
+#         self.number = ""
+#         # print(self.hour)
+#         # print('the class')
+#
+# def gen_num(id,date, username):
+#     print(username, 'check 1s')
+#     number = random.randint(1000, 10000)
+#     Dcode = "WW" + str(number)
+#     print(Dcode)
+#     datexp = (datetime.now() + timedelta(days=5)).strftime('%d'+ " " + '%B' + " " +'%Y')
+#     print(datexp)
+#     vC = VoucherGift()
+#     vC.username = username
+#     vC.date = date
+#     vC.vcode = Dcode
+#     vC.expd = datexp
+#     vC.number = number
+#
+#     print(vC.username, 'check s2')
+#     exist = False
+#     voucher_code[id] = vC
+#     print(voucher_code, 'voucher code')
+#
+#
+#     keys = list(voucher_code.keys())
+#     print(keys)
+#     # voucher_list.clear()
+#
+#     # if currentUserLogin in klist:
+#     for i in keys:
+#         # print('checking...'+book[i].username)
+#         print('masuk i')
+#         print(voucher_code)
+#         # user = voucher_code[username]
+#         # print('cul', username)
+#         # print('vcu', user)
+#         print(voucher_code[i].username)
+#         if voucher_code[i].username == username:
+#             print('displaybook', username)
+#             print('showdbook', voucher_code[i].username)
+#             # print(x) #check if empty or not
+#             print(voucher_code[i].expd, 'ape')
+#             # voucher_list.insert(0, voucher_code[i])
+#             # print(voucher_list, 'voucher lsit')
+#             print('masuk okay')
+#             print(voucher_code)
+#             return voucher_code
+#             break
+#         else:
+#             continue
+#
+# def check_voucher(username):
+#     if path.exists('point_File' + username + '.txt'):
+#         print('bacefile')
+#         point_File = open('point_File' + username + '.txt', 'r')
+#         voucherInFile = point_File.read()
+#         print(voucherInFile)
+#         point_File.close()
 
 
 
